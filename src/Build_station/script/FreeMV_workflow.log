@@ -1,0 +1,11 @@
+work_flow = {
+        'sync_code'                 :   0,
+        'pre_configure'             :   0,
+        'build_default_libs'        :   0,
+        'build_app_only'            :   1,
+        'run_app_only'              :   0,
+        'build_run_app'             :   0,
+        'user_interactive'          :   0,
+        'clean_env'                 :   0,
+        }
+
