@@ -14,24 +14,21 @@ sys.path.append(lib_path)
 from getconfig import Getconfig
 
 config_file_backup = file_path + '/config.xml'
-config_file =file_path + '/config_operate.xml'
-shutil.copyfile(config_file_backup,config_file)
+config_file = file_path + '/config_operate.xml'
+#shutil.copyfile(config_file_backup,config_file)
 
 
-class buildStationConfig(QFrame,QMainWindow):
+class buildStationConfig(QMainWindow):
     def __init__(self, parent = None):
         super(buildStationConfig,self).__init__(parent)
         self.buildConfigWin = buildConfigUi.Ui_buildConfig()
+        self.buildConfigWin.QWidget.contextMenuPolicy()
+        self.buildConfigWin.menuBar = QMenuBar()
+        self.fileBar = self.buildConfigWin.menuBar.addMenu("save")
+        self.actionBar = self.buildConfigWin.menuBar.addAction("help")
+        self.buildConfigWin.menuBar.show()
         self.buildConfigWin.setupUi(self)
-        self.connect(self.buildConfigWin.buildType_ComboBox, SIGNAL("currentIndexChanged(int)"),self.tokenFill)
-        
-    def tokenFill(self):
-        if self.buildConfigWin.buildType_ComboBox.currentText() == "Public":
-            self.buildConfigWin.buildToken_lineEdit.setReadOnly
-            print "help"
-        elif self.buildConfigWin.buildType_ComboBox.currentText() == "Private":
-            self.buildConfigWin.buildToken_lineEdit.setText("")
-    
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
