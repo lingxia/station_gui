@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'buildConfigUi.ui'
 #
-# Created: Wed Aug 13 19:31:20 2014
+# Created: Wed Aug 13 22:16:37 2014
 #      by: PyQt4 UI code generator 4.11.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -23,18 +23,24 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class Ui_buildConfig(object):
-    def setupUi(self, buildConfig):
-        buildConfig.setObjectName(_fromUtf8("buildConfig"))
-        buildConfig.resize(521, 494)
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(_fromUtf8("dapeng.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        buildConfig.setWindowIcon(icon)
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName(_fromUtf8("MainWindow"))
+        MainWindow.resize(660, 553)
+        self.centralwidget = QtGui.QWidget(MainWindow)
+        self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtGui.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 660, 21))
+        self.menubar.setObjectName(_fromUtf8("menubar"))
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtGui.QStatusBar(MainWindow)
+        self.statusbar.setObjectName(_fromUtf8("statusbar"))
+        MainWindow.setStatusBar(self.statusbar)
 
-        self.retranslateUi(buildConfig)
-        QtCore.QMetaObject.connectSlotsByName(buildConfig)
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    def retranslateUi(self, buildConfig):
-        buildConfig.setWindowTitle(_translate("buildConfig", "Build Configuration", None))
-        buildConfig.setWhatsThis(_translate("buildConfig", "<html><head/><body><p><br/></p></body></html>", None))
+    def retranslateUi(self, MainWindow):
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow", None))
 
