@@ -22,7 +22,6 @@ class buildStationConfig(QMainWindow):
     def __init__(self, parent = None):
         super(buildStationConfig,self).__init__(parent)
         self.buildConfigWin = buildConfigUi.Ui_buildConfig()
-        self.buildConfigWin.QWidget.contextMenuPolicy()
         self.buildConfigWin.menuBar = QMenuBar()
         self.fileBar = self.buildConfigWin.menuBar.addMenu("save")
         self.actionBar = self.buildConfigWin.menuBar.addAction("help")
