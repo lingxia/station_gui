@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'buildConfigUi.ui'
 #
-# Created: Wed Aug 13 19:31:20 2014
+# Created: Wed Aug 13 23:57:08 2014
 #      by: PyQt4 UI code generator 4.11.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -30,6 +30,9 @@ class Ui_buildConfig(object):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8("dapeng.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         buildConfig.setWindowIcon(icon)
+        self.comboBox = QtGui.QComboBox(buildConfig)
+        self.comboBox.setGeometry(QtCore.QRect(160, 200, 69, 22))
+        self.comboBox.setObjectName(_fromUtf8("comboBox"))
 
         self.retranslateUi(buildConfig)
         QtCore.QMetaObject.connectSlotsByName(buildConfig)

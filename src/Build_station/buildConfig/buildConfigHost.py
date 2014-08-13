@@ -18,16 +18,20 @@ config_file = file_path + '/config_operate.xml'
 #shutil.copyfile(config_file_backup,config_file)
 
 
-class buildStationConfig(QMainWindow):
+class buildStationConfig(QWidget):
     def __init__(self, parent = None):
         super(buildStationConfig,self).__init__(parent)
         self.buildConfigWin = buildConfigUi.Ui_buildConfig()
-        self.buildConfigWin.QWidget.contextMenuPolicy()
-        self.buildConfigWin.menuBar = QMenuBar()
-        self.fileBar = self.buildConfigWin.menuBar.addMenu("save")
-        self.actionBar = self.buildConfigWin.menuBar.addAction("help")
-        self.buildConfigWin.menuBar.show()
+        self.addMenuBar()
         self.buildConfigWin.setupUi(self)
+
+    def addMenuBar(self):
+        self.buildConfigWin.menuBar = QMenuBar()
+        self.buildConfigWin.menuBar.setGeometry(QRect(100, 50, 60, 10))
+#        self.file = self.menuBar.addMenu("File")
+#        self.saveFile = self.file.addAction("Save")
+#        self.menuBar.setNativeMenuBar(True)
+#        self.menuBar.setVisible(True)
 
 
 if __name__ == "__main__":
