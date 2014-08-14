@@ -30,12 +30,12 @@ class buildStationConfig(QtGui.QMainWindow):
         self.statuBar = self.statusBar()
 
 #********************* Actions **********************        
-        self.saveAct = QtGui.QAction(QtGui.QIcon("save.png"),"&Save",self)
+        self.saveAct = QtGui.QAction(QtGui.QIcon("pics/save.png"),"&Save",self)
         self.saveAct.setShortcut("Ctrl+S")
         self.saveAct.setStatusTip("Save the Configuration File")
         self.saveAct.whatsThis()
         
-        self.quitAct = QtGui.QAction(QtGui.QIcon("quit.png"),"Quit",self)
+        self.quitAct = QtGui.QAction(QtGui.QIcon("pics/quit.png"),"Quit",self)
         self.quitAct.setShortcut("Ctrl+Q")
         self.quitAct.setStatusTip("Quit the Configuration")
         self.saveAct.whatsThis()
