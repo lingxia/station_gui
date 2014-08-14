@@ -1,0 +1,15 @@
+<RCC>
+<qresource>
+	<file>codewarrior.png</file>
+	<file>dapeng.png</file>
+	<file>gcc.png</file>
+	<file>kds.png</file>
+	<file>private.png</file>
+	<file>privateyes.png</file>
+	<file>quit.png</file>
+	<file>save.png</file>
+	<file>token.png</file>
+	<file>uv4.png</file>
+	<file>iar.png</file>
+</qresource>
+</RCC>

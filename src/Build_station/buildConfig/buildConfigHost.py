@@ -1,7 +1,6 @@
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
+from PyQt4 import QtGui,QtCore 
 import sys,os,shutil
-import buildConfigUi
+from buildConfigUi import Ui_buildConfig
 
 file_path = os.path.dirname(os.path.abspath(__file__))
 main_path = os.path.join(file_path,'../')
@@ -18,24 +17,41 @@ config_file = file_path + '/config_operate.xml'
 #shutil.copyfile(config_file_backup,config_file)
 
 
-class buildStationConfig(QWidget):
+class buildStationConfig(QtGui.QMainWindow):
     def __init__(self, parent = None):
-        super(buildStationConfig,self).__init__(parent)
-        self.buildConfigWin = buildConfigUi.Ui_buildConfig()
-        self.addMenuBar()
+        QtGui.QWidget.__init__(self,parent)
+        self.buildConfigWin = Ui_buildConfig()
         self.buildConfigWin.setupUi(self)
+        self.setFixedSize(self.width(),self.height())
 
-    def addMenuBar(self):
-        self.buildConfigWin.menuBar = QMenuBar()
-        self.buildConfigWin.menuBar.setGeometry(QRect(100, 50, 60, 10))
-#        self.file = self.menuBar.addMenu("File")
-#        self.saveFile = self.file.addAction("Save")
-#        self.menuBar.setNativeMenuBar(True)
-#        self.menuBar.setVisible(True)
+#*********** MenuBar, ToolBar, StatusBar ************         
+        self.menuBar = self.menuBar()
+        self.toolBar = self.addToolBar("ToolBar")
+        self.statuBar = self.statusBar()
 
+#********************* Actions **********************        
+        self.saveAct = QtGui.QAction(QtGui.QIcon("save.png"),"&Save",self)
+        self.saveAct.setShortcut("Ctrl+S")
+        self.saveAct.setStatusTip("Save the Configuration File")
+        self.saveAct.whatsThis()
+        
+        self.quitAct = QtGui.QAction(QtGui.QIcon("quit.png"),"Quit",self)
+        self.quitAct.setShortcut("Ctrl+Q")
+        self.quitAct.setStatusTip("Quit the Configuration")
+        self.saveAct.whatsThis()
+        
+
+#****************add Menus and Actions**************
+        self.fileMenu = self.menuBar.addMenu("File")
+        self.fileMenu.addAction(self.saveAct)
+        self.fileMenu.addAction(self.quitAct)
+        
+        self.toolBar.addAction(self.saveAct)
+        self.toolBar.addAction(self.quitAct)  
+    
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
+    app = QtGui.QApplication(sys.argv)
     buildTestWin = buildStationConfig()
     buildTestWin.show()
     sys.exit(app.exec_())
