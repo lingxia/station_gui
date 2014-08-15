@@ -342,7 +342,7 @@
     <rect>
      <x>310</x>
      <y>150</y>
-     <width>61</width>
+     <width>77</width>
      <height>311</height>
     </rect>
    </property>
@@ -403,13 +403,6 @@
     </item>
    </layout>
   </widget>
-  <zorder>horizontalLayoutWidget</zorder>
-  <zorder>line1</zorder>
-  <zorder>ideLabel</zorder>
-  <zorder>verticalLayoutWidget</zorder>
-  <zorder>verticalLayoutWidget_2</zorder>
-  <zorder>verticalLayoutWidget_3</zorder>
-  <zorder>iarComboBox</zorder>
  </widget>
  <tabstops>
   <tabstop>privateCheckBox</tabstop>
