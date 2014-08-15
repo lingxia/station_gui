@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'buildConfigUi.ui'
 #
-# Created: Fri Aug 15 14:41:03 2014
+# Created: Fri Aug 15 17:48:18 2014
 #      by: PyQt4 UI code generator 4.11.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -28,7 +28,7 @@ class Ui_buildConfig(object):
         buildConfig.setObjectName(_fromUtf8("buildConfig"))
         buildConfig.resize(418, 471)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(_fromUtf8("pics/dapeng.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(_fromUtf8("../pic/dapeng.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         buildConfig.setWindowIcon(icon)
         self.horizontalLayoutWidget = QtGui.QWidget(buildConfig)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(70, 60, 291, 51))
@@ -197,6 +197,7 @@ class Ui_buildConfig(object):
 
     def retranslateUi(self, buildConfig):
         buildConfig.setWindowTitle(_translate("buildConfig", "Build Configuration", None))
+        buildConfig.setStatusTip(_translate("buildConfig", "GUI of Build Station Configuration", None))
         buildConfig.setWhatsThis(_translate("buildConfig", "<html><head/><body><p><br/></p></body></html>", None))
         self.privateCheckBox.setStatusTip(_translate("buildConfig", "If you want configurate a private station, checked the box", None))
         self.tokenButton.setStatusTip(_translate("buildConfig", "If the station is private, please set a token", None))
@@ -213,7 +214,7 @@ class Ui_buildConfig(object):
         self.kdsButton.setText(_translate("buildConfig", "KDS", None))
         self.cw10Button.setStatusTip(_translate("buildConfig", "Configurate your Code Worrior path", None))
         self.cw10Button.setText(_translate("buildConfig", "CW", None))
-        self.mingwButton.setStatusTip(_translate("buildConfig", "Configurate your MinGW path", None))
+        self.mingwButton.setStatusTip(_translate("buildConfig", "MinGW is required when use gcc_arm (e.g. C:/MinGW)", None))
         self.mingwButton.setText(_translate("buildConfig", "MinGW", None))
         self.iarLineEdit.setStatusTip(_translate("buildConfig", "Configurate your IAR path", None))
         self.uv4LineEdit.setStatusTip(_translate("buildConfig", "Configurate your UV4 path", None))

@@ -15,7 +15,10 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>pics/dapeng.png</normaloff>pics/dapeng.png</iconset>
+    <normaloff>../pic/dapeng.png</normaloff>../pic/dapeng.png</iconset>
+  </property>
+  <property name="statusTip">
+   <string>GUI of Build Station Configuration</string>
   </property>
   <property name="whatsThis">
    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -261,7 +264,7 @@
     <item>
      <widget class="QPushButton" name="mingwButton">
       <property name="statusTip">
-       <string>Configurate your MinGW path</string>
+       <string>MinGW is required when use gcc_arm (e.g. C:/MinGW)</string>
       </property>
       <property name="text">
        <string>MinGW</string>
