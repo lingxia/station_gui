@@ -98,7 +98,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="Line" name="line2">
+  <widget class="Line" name="line">
    <property name="geometry">
     <rect>
      <x>-10</x>
@@ -114,10 +114,10 @@
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>170</y>
+     <x>20</x>
+     <y>150</y>
      <width>91</width>
-     <height>96</height>
+     <height>91</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -172,9 +172,9 @@
   <widget class="QWidget" name="verticalLayoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>170</y>
-     <width>181</width>
+     <x>110</x>
+     <y>150</y>
+     <width>191</width>
      <height>91</height>
     </rect>
    </property>
@@ -199,7 +199,7 @@
    <property name="geometry">
     <rect>
      <x>310</x>
-     <y>170</y>
+     <y>150</y>
      <width>77</width>
      <height>91</height>
     </rect>
@@ -226,6 +226,119 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QLabel" name="debuggerLabel">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>120</y>
+     <width>251</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="statusTip">
+    <string>Configurate the Debuggers that needed</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Debugger Configuration&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line2">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>240</y>
+     <width>421</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="debuggerLabel_2">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>250</y>
+     <width>251</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="statusTip">
+    <string>Configurate the Platforms that needed</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Platform Configuration&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="platformComboBox">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>340</y>
+     <width>131</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="statusTip">
+    <string>Select the platforms that you need</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="platformButton">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>290</y>
+     <width>101</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="statusTip">
+    <string>Select the platforms you need</string>
+   </property>
+   <property name="text">
+    <string>Platform</string>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../pic/platform.png</normaloff>../pic/platform.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>40</width>
+     <height>40</height>
+    </size>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QListView" name="platformListView">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>290</y>
+     <width>111</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <property name="statusTip">
+    <string>Platforms have been selected</string>
+   </property>
+  </widget>
+  <widget class="QListView" name="deviceListView">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>290</y>
+     <width>111</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <property name="statusTip">
+    <string>Devices have been selected</string>
+   </property>
   </widget>
  </widget>
  <resources/>

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'buildConfigUi.ui'
 #
-# Created: Fri Aug 15 17:48:18 2014
+# Created: Fri Aug 15 20:37:36 2014
 #      by: PyQt4 UI code generator 4.11.1
 #
 # WARNING! All changes made in this file will be lost!

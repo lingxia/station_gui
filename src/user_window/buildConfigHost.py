@@ -43,8 +43,22 @@ class buildStationConfig(QtGui.QMainWindow):
         self.quitMessage.setStandardButtons(self.quitMessage.Yes | self.quitMessage.No)
         self.quitMessage.setDefaultButton(self.quitMessage.No)
         
+                
+        self.whatMessage = QtGui.QMessageBox()
+        self.whatMessage.setWindowTitle("What's this")
+        self.whatMessage.setIcon(self.whatMessage.Information)
+        self.whatMessage.setText("This is a GUI to configurate the environment of your Build Stations !")
+        
+        
+        self.howMessage = QtGui.QMessageBox()
+        self.howMessage.setWindowTitle("How to Use")
+        self.howMessage.setIcon(self.howMessage.Information)
+        self.howMessage.setText("Configurate your Build Station to be private or not, give a token if private!"
+                                + "  Then give the right path or version of each IDE that you need!"
+                                + " Don't forget to Save the configuration !")
+        
 #********************* Actions **********************        
-        self.saveAct = QtGui.QAction(QtGui.QIcon(pic_path + "/save.png"),"&Save",self)
+        self.saveAct = QtGui.QAction(QtGui.QIcon(pic_path + "/save.png"),"Save",self)
         self.saveAct.setShortcut("Ctrl+S")
         self.saveAct.setStatusTip("Save the Configuration File and Quit the Configuration")
         self.saveAct.whatsThis()
@@ -53,14 +67,30 @@ class buildStationConfig(QtGui.QMainWindow):
         self.quitAct = QtGui.QAction(QtGui.QIcon(pic_path + "/quit.png"),"Quit",self)
         self.quitAct.setShortcut("Ctrl+Q")
         self.quitAct.setStatusTip("Quit the Configuration without saving the File")
-        self.saveAct.whatsThis()
+        self.quitAct.whatsThis()
         self.connect(self.quitAct, QtCore.SIGNAL("triggered()"),self.quitMessage.exec_)
+        
+        self.whatAct = QtGui.QAction(QtGui.QIcon(pic_path + "/what.png"),"What's this?",self)
+        self.whatAct.setShortcut("Ctrl+W")
+        self.whatAct.setStatusTip("Brief Introdution of this GUI")
+        self.whatAct.whatsThis()
+        self.connect(self.whatAct, QtCore.SIGNAL("triggered()"),self.whatMessage.exec_)
+        
+        self.howAct = QtGui.QAction(QtGui.QIcon(pic_path + "/use.png"),"How to use?",self)
+        self.howAct.setShortcut("Ctrl+U")
+        self.howAct.setStatusTip("Brief Usage of this GUI")
+        self.howAct.whatsThis()
+        self.connect(self.howAct, QtCore.SIGNAL("triggered()"),self.howMessage.exec_)
         
         
 #****************add Menus and Actions**************
         self.fileMenu = self.menuBar.addMenu("File")
         self.fileMenu.addAction(self.saveAct)
         self.fileMenu.addAction(self.quitAct)
+        
+        self.helpMenu = self.menuBar.addMenu("Help")
+        self.helpMenu.addAction(self.whatAct)
+        self.helpMenu.addAction(self.howAct)
         
         self.toolBar.addAction(self.saveAct)
         self.toolBar.addAction(self.quitAct)
