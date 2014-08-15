@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'buildConfigUi.ui'
 #
-# Created: Fri Aug 15 10:51:24 2014
+# Created: Fri Aug 15 14:41:03 2014
 #      by: PyQt4 UI code generator 4.11.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_buildConfig(object):
     def setupUi(self, buildConfig):
         buildConfig.setObjectName(_fromUtf8("buildConfig"))
-        buildConfig.resize(397, 471)
+        buildConfig.resize(418, 471)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8("pics/dapeng.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         buildConfig.setWindowIcon(icon)
@@ -39,7 +39,7 @@ class Ui_buildConfig(object):
         self.privateCheckBox = QtGui.QCheckBox(self.horizontalLayoutWidget)
         self.privateCheckBox.setText(_fromUtf8(""))
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(_fromUtf8("pics/private.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(_fromUtf8("../pic/private.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.privateCheckBox.setIcon(icon1)
         self.privateCheckBox.setIconSize(QtCore.QSize(28, 28))
         self.privateCheckBox.setShortcut(_fromUtf8(""))
@@ -50,7 +50,7 @@ class Ui_buildConfig(object):
         self.tokenButton = QtGui.QPushButton(self.horizontalLayoutWidget)
         self.tokenButton.setText(_fromUtf8(""))
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(_fromUtf8("pics/token.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap(_fromUtf8("../pic/token.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.tokenButton.setIcon(icon2)
         self.tokenButton.setIconSize(QtCore.QSize(28, 28))
         self.tokenButton.setFlat(True)
@@ -75,7 +75,7 @@ class Ui_buildConfig(object):
         self.ideVLayout.setObjectName(_fromUtf8("ideVLayout"))
         self.iarButton = QtGui.QPushButton(self.verticalLayoutWidget)
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(_fromUtf8("pics/iar.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap(_fromUtf8("../pic/iar.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.iarButton.setIcon(icon3)
         self.iarButton.setIconSize(QtCore.QSize(32, 32))
         self.iarButton.setAutoDefault(False)
@@ -85,7 +85,7 @@ class Ui_buildConfig(object):
         self.ideVLayout.addWidget(self.iarButton)
         self.uv4Button = QtGui.QPushButton(self.verticalLayoutWidget)
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap(_fromUtf8("pics/uv4.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap(_fromUtf8("../pic/uv4.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.uv4Button.setIcon(icon4)
         self.uv4Button.setIconSize(QtCore.QSize(32, 32))
         self.uv4Button.setFlat(True)
@@ -93,7 +93,7 @@ class Ui_buildConfig(object):
         self.ideVLayout.addWidget(self.uv4Button)
         self.gccButton = QtGui.QPushButton(self.verticalLayoutWidget)
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap(_fromUtf8("pics/gcc.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon5.addPixmap(QtGui.QPixmap(_fromUtf8("../pic/gcc.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.gccButton.setIcon(icon5)
         self.gccButton.setIconSize(QtCore.QSize(32, 32))
         self.gccButton.setFlat(True)
@@ -101,7 +101,7 @@ class Ui_buildConfig(object):
         self.ideVLayout.addWidget(self.gccButton)
         self.kdsButton = QtGui.QPushButton(self.verticalLayoutWidget)
         icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap(_fromUtf8("pics/kds.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon6.addPixmap(QtGui.QPixmap(_fromUtf8("../pic/kds.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.kdsButton.setIcon(icon6)
         self.kdsButton.setIconSize(QtCore.QSize(32, 32))
         self.kdsButton.setFlat(True)
@@ -109,7 +109,7 @@ class Ui_buildConfig(object):
         self.ideVLayout.addWidget(self.kdsButton)
         self.cw10Button = QtGui.QPushButton(self.verticalLayoutWidget)
         icon7 = QtGui.QIcon()
-        icon7.addPixmap(QtGui.QPixmap(_fromUtf8("pics/codewarrior.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon7.addPixmap(QtGui.QPixmap(_fromUtf8("../pic/codewarrior.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.cw10Button.setIcon(icon7)
         self.cw10Button.setIconSize(QtCore.QSize(32, 32))
         self.cw10Button.setFlat(True)
@@ -117,7 +117,7 @@ class Ui_buildConfig(object):
         self.ideVLayout.addWidget(self.cw10Button)
         self.mingwButton = QtGui.QPushButton(self.verticalLayoutWidget)
         icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap(_fromUtf8("pics/mingw.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon8.addPixmap(QtGui.QPixmap(_fromUtf8("../pic/mingw.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.mingwButton.setIcon(icon8)
         self.mingwButton.setIconSize(QtCore.QSize(25, 25))
         self.mingwButton.setFlat(True)
@@ -148,7 +148,7 @@ class Ui_buildConfig(object):
         self.lineEdit.setObjectName(_fromUtf8("lineEdit"))
         self.ideLineEditVLayout.addWidget(self.lineEdit)
         self.verticalLayoutWidget_3 = QtGui.QWidget(buildConfig)
-        self.verticalLayoutWidget_3.setGeometry(QtCore.QRect(310, 150, 61, 311))
+        self.verticalLayoutWidget_3.setGeometry(QtCore.QRect(310, 150, 77, 311))
         self.verticalLayoutWidget_3.setObjectName(_fromUtf8("verticalLayoutWidget_3"))
         self.ideComboBoxVLayout = QtGui.QVBoxLayout(self.verticalLayoutWidget_3)
         self.ideComboBoxVLayout.setMargin(0)
@@ -212,7 +212,7 @@ class Ui_buildConfig(object):
         self.kdsButton.setStatusTip(_translate("buildConfig", "Configurate your KDS path", None))
         self.kdsButton.setText(_translate("buildConfig", "KDS", None))
         self.cw10Button.setStatusTip(_translate("buildConfig", "Configurate your Code Worrior path", None))
-        self.cw10Button.setText(_translate("buildConfig", "CW10", None))
+        self.cw10Button.setText(_translate("buildConfig", "CW", None))
         self.mingwButton.setStatusTip(_translate("buildConfig", "Configurate your MinGW path", None))
         self.mingwButton.setText(_translate("buildConfig", "MinGW", None))
         self.iarLineEdit.setStatusTip(_translate("buildConfig", "Configurate your IAR path", None))

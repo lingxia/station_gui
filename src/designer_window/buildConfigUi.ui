@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>397</width>
+    <width>418</width>
     <height>471</height>
    </rect>
   </property>
@@ -40,7 +40,7 @@
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>pics/private.png</normaloff>pics/private.png</iconset>
+        <normaloff>../pic/private.png</normaloff>../pic/private.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -76,7 +76,7 @@
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>pics/token.png</normaloff>pics/token.png</iconset>
+        <normaloff>../pic/token.png</normaloff>../pic/token.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -147,7 +147,7 @@
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>pics/iar.png</normaloff>pics/iar.png</iconset>
+        <normaloff>../pic/iar.png</normaloff>../pic/iar.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -176,7 +176,7 @@
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>pics/uv4.png</normaloff>pics/uv4.png</iconset>
+        <normaloff>../pic/uv4.png</normaloff>../pic/uv4.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -199,7 +199,7 @@
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>pics/gcc.png</normaloff>pics/gcc.png</iconset>
+        <normaloff>../pic/gcc.png</normaloff>../pic/gcc.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -222,7 +222,7 @@
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>pics/kds.png</normaloff>pics/kds.png</iconset>
+        <normaloff>../pic/kds.png</normaloff>../pic/kds.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -241,11 +241,11 @@
        <string>Configurate your Code Worrior path</string>
       </property>
       <property name="text">
-       <string>CW10</string>
+       <string>CW</string>
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>pics/codewarrior.png</normaloff>pics/codewarrior.png</iconset>
+        <normaloff>../pic/codewarrior.png</normaloff>../pic/codewarrior.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -268,7 +268,7 @@
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>pics/mingw.png</normaloff>pics/mingw.png</iconset>
+        <normaloff>../pic/mingw.png</normaloff>../pic/mingw.png</iconset>
       </property>
       <property name="iconSize">
        <size>
