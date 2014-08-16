@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'runConfigUi.ui'
 #
-# Created: Fri Aug 15 23:55:38 2014
+# Created: Sat Aug 16 15:37:41 2014
 #      by: PyQt4 UI code generator 4.11.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_runConfig(object):
     def setupUi(self, runConfig):
         runConfig.setObjectName(_fromUtf8("runConfig"))
-        runConfig.resize(417, 470)
+        runConfig.resize(417, 471)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8("../pic/dapeng.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         runConfig.setWindowIcon(icon)
@@ -118,11 +118,11 @@ class Ui_runConfig(object):
         self.line2.setFrameShape(QtGui.QFrame.HLine)
         self.line2.setFrameShadow(QtGui.QFrame.Sunken)
         self.line2.setObjectName(_fromUtf8("line2"))
-        self.debuggerLabel_2 = QtGui.QLabel(runConfig)
-        self.debuggerLabel_2.setGeometry(QtCore.QRect(90, 250, 251, 31))
-        self.debuggerLabel_2.setObjectName(_fromUtf8("debuggerLabel_2"))
+        self.platformLabel = QtGui.QLabel(runConfig)
+        self.platformLabel.setGeometry(QtCore.QRect(90, 250, 251, 31))
+        self.platformLabel.setObjectName(_fromUtf8("platformLabel"))
         self.platformComboBox = QtGui.QComboBox(runConfig)
-        self.platformComboBox.setGeometry(QtCore.QRect(20, 340, 131, 21))
+        self.platformComboBox.setGeometry(QtCore.QRect(10, 340, 121, 21))
         self.platformComboBox.setObjectName(_fromUtf8("platformComboBox"))
         self.platformButton = QtGui.QPushButton(runConfig)
         self.platformButton.setGeometry(QtCore.QRect(30, 290, 101, 51))
@@ -132,15 +132,34 @@ class Ui_runConfig(object):
         self.platformButton.setIconSize(QtCore.QSize(40, 40))
         self.platformButton.setFlat(True)
         self.platformButton.setObjectName(_fromUtf8("platformButton"))
-        self.platformListView = QtGui.QListView(runConfig)
-        self.platformListView.setGeometry(QtCore.QRect(170, 290, 111, 151))
-        self.platformListView.setObjectName(_fromUtf8("platformListView"))
-        self.deviceListView = QtGui.QListView(runConfig)
-        self.deviceListView.setGeometry(QtCore.QRect(290, 290, 111, 151))
-        self.deviceListView.setObjectName(_fromUtf8("deviceListView"))
+        self.platformTextEdit = QtGui.QTextEdit(runConfig)
+        self.platformTextEdit.setGeometry(QtCore.QRect(140, 330, 131, 121))
+        self.platformTextEdit.setObjectName(_fromUtf8("platformTextEdit"))
+        self.deviceTextEdit = QtGui.QTextEdit(runConfig)
+        self.deviceTextEdit.setGeometry(QtCore.QRect(280, 330, 131, 121))
+        self.deviceTextEdit.setObjectName(_fromUtf8("deviceTextEdit"))
+        self.platformListLabel = QtGui.QLabel(runConfig)
+        self.platformListLabel.setGeometry(QtCore.QRect(190, 310, 46, 13))
+        self.platformListLabel.setObjectName(_fromUtf8("platformListLabel"))
+        self.DeviceListLabel = QtGui.QLabel(runConfig)
+        self.DeviceListLabel.setGeometry(QtCore.QRect(320, 310, 46, 13))
+        self.DeviceListLabel.setObjectName(_fromUtf8("DeviceListLabel"))
+        self.addButton = QtGui.QPushButton(runConfig)
+        self.addButton.setGeometry(QtCore.QRect(30, 400, 75, 23))
+        self.addButton.setObjectName(_fromUtf8("addButton"))
 
         self.retranslateUi(runConfig)
         QtCore.QMetaObject.connectSlotsByName(runConfig)
+        runConfig.setTabOrder(self.privateCheckBox, self.tokenButton)
+        runConfig.setTabOrder(self.tokenButton, self.tokenLineEdit)
+        runConfig.setTabOrder(self.tokenLineEdit, self.jlinkButton)
+        runConfig.setTabOrder(self.jlinkButton, self.jlinkLineEdit)
+        runConfig.setTabOrder(self.jlinkLineEdit, self.jlinkButton_2)
+        runConfig.setTabOrder(self.jlinkButton_2, self.trace32Button)
+        runConfig.setTabOrder(self.trace32Button, self.trace32LineEdit)
+        runConfig.setTabOrder(self.trace32LineEdit, self.trace32Button_2)
+        runConfig.setTabOrder(self.trace32Button_2, self.platformButton)
+        runConfig.setTabOrder(self.platformButton, self.platformComboBox)
 
     def retranslateUi(self, runConfig):
         runConfig.setWindowTitle(_translate("runConfig", "Run Configuration", None))
@@ -160,11 +179,17 @@ class Ui_runConfig(object):
         self.trace32Button_2.setText(_translate("runConfig", "Open", None))
         self.debuggerLabel.setStatusTip(_translate("runConfig", "Configurate the Debuggers that needed", None))
         self.debuggerLabel.setText(_translate("runConfig", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-weight:600;\">Debugger Configuration</span></p></body></html>", None))
-        self.debuggerLabel_2.setStatusTip(_translate("runConfig", "Configurate the Platforms that needed", None))
-        self.debuggerLabel_2.setText(_translate("runConfig", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-weight:600;\">Platform Configuration</span></p></body></html>", None))
+        self.platformLabel.setStatusTip(_translate("runConfig", "Configurate the Platforms that needed", None))
+        self.platformLabel.setText(_translate("runConfig", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-weight:600;\">Platform Configuration</span></p></body></html>", None))
         self.platformComboBox.setStatusTip(_translate("runConfig", "Select the platforms that you need", None))
         self.platformButton.setStatusTip(_translate("runConfig", "Select the platforms you need", None))
         self.platformButton.setText(_translate("runConfig", "Platform", None))
-        self.platformListView.setStatusTip(_translate("runConfig", "Platforms have been selected", None))
-        self.deviceListView.setStatusTip(_translate("runConfig", "Devices have been selected", None))
+        self.platformTextEdit.setStatusTip(_translate("runConfig", "Platforms have been selected", None))
+        self.deviceTextEdit.setStatusTip(_translate("runConfig", "Devices have been selected", None))
+        self.platformListLabel.setStatusTip(_translate("runConfig", "Platforms have been selected", None))
+        self.platformListLabel.setText(_translate("runConfig", "Platforms", None))
+        self.DeviceListLabel.setStatusTip(_translate("runConfig", "Devices have been selected", None))
+        self.DeviceListLabel.setText(_translate("runConfig", "Devices", None))
+        self.addButton.setStatusTip(_translate("runConfig", "Add the platforms and devices", None))
+        self.addButton.setText(_translate("runConfig", "Add All", None))
 

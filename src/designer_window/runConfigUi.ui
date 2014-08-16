@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>417</width>
-    <height>470</height>
+    <height>471</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -256,7 +256,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="debuggerLabel_2">
+  <widget class="QLabel" name="platformLabel">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -275,9 +275,9 @@
   <widget class="QComboBox" name="platformComboBox">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>10</x>
      <y>340</y>
-     <width>131</width>
+     <width>121</width>
      <height>21</height>
     </rect>
    </property>
@@ -314,33 +314,94 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QListView" name="platformListView">
+  <widget class="QTextEdit" name="platformTextEdit">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>290</y>
-     <width>111</width>
-     <height>151</height>
+     <x>140</x>
+     <y>330</y>
+     <width>131</width>
+     <height>121</height>
     </rect>
    </property>
    <property name="statusTip">
     <string>Platforms have been selected</string>
    </property>
   </widget>
-  <widget class="QListView" name="deviceListView">
+  <widget class="QTextEdit" name="deviceTextEdit">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>290</y>
-     <width>111</width>
-     <height>151</height>
+     <x>280</x>
+     <y>330</y>
+     <width>131</width>
+     <height>121</height>
     </rect>
    </property>
    <property name="statusTip">
     <string>Devices have been selected</string>
    </property>
   </widget>
+  <widget class="QLabel" name="platformListLabel">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>310</y>
+     <width>46</width>
+     <height>13</height>
+    </rect>
+   </property>
+   <property name="statusTip">
+    <string>Platforms have been selected</string>
+   </property>
+   <property name="text">
+    <string>Platforms</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="DeviceListLabel">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>310</y>
+     <width>46</width>
+     <height>13</height>
+    </rect>
+   </property>
+   <property name="statusTip">
+    <string>Devices have been selected</string>
+   </property>
+   <property name="text">
+    <string>Devices</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="addButton">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>270</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="statusTip">
+    <string>Add the platforms and devices</string>
+   </property>
+   <property name="text">
+    <string>Add All</string>
+   </property>
+  </widget>
  </widget>
+ <tabstops>
+  <tabstop>privateCheckBox</tabstop>
+  <tabstop>tokenButton</tabstop>
+  <tabstop>tokenLineEdit</tabstop>
+  <tabstop>jlinkButton</tabstop>
+  <tabstop>jlinkLineEdit</tabstop>
+  <tabstop>jlinkButton_2</tabstop>
+  <tabstop>trace32Button</tabstop>
+  <tabstop>trace32LineEdit</tabstop>
+  <tabstop>trace32Button_2</tabstop>
+  <tabstop>platformButton</tabstop>
+  <tabstop>platformComboBox</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

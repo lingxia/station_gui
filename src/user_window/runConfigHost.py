@@ -24,13 +24,19 @@ class runStationConfig(QtGui.QMainWindow):
         self.runConfigWin = Ui_runConfig()
         self.runConfigWin.setupUi(self)
         self.setFixedSize(self.width(), self.height())
-        
-#*********** MenuBar, ToolBar, StatusBar ************         
+        self.bars()
+        self.addPlaforms()
+
+#*********** MenuBar, ToolBar, StatusBar ************
+    def bars(self):         
         self.menuBar = self.menuBar()
         self.toolBar = self.addToolBar("ToolBar")
         self.statuBar = self.statusBar()
+        self.actions()
+        self.addActions()
 
-#**********************MessageBox********************       
+#**********************MessageBox********************
+    def messageBox(self):       
         self.quitMessage = QtGui.QMessageBox()
         self.quitMessage.setWindowTitle("Warning")
         self.quitMessage.setIcon(self.quitMessage.Warning)
@@ -50,7 +56,9 @@ class runStationConfig(QtGui.QMainWindow):
                                 + "  Then give the right path of each Debugger that you need and add the Platforms you need !"
                                 + " Don't forget to Save the configuration !")
 
-#********************* Actions **********************        
+#********************* Actions ********************** 
+    def actions(self):
+        self.messageBox()      
         self.saveAct = QtGui.QAction(QtGui.QIcon(pic_path + "/save.png"),"Save",self)
         self.saveAct.setShortcut("Ctrl+S")
         self.saveAct.setStatusTip("Save the Configuration File and Quit the Configuration")
@@ -77,6 +85,7 @@ class runStationConfig(QtGui.QMainWindow):
         
         
 #****************add Menus and Actions**************
+    def addActions(self):
         self.fileMenu = self.menuBar.addMenu("File")
         self.fileMenu.addAction(self.saveAct)
         self.fileMenu.addAction(self.quitAct)
@@ -89,15 +98,27 @@ class runStationConfig(QtGui.QMainWindow):
         self.toolBar.addAction(self.quitAct)
         
         
-#***************add Platform and Type_device********
+#***************add Platform and Device_Type********
+    def addPlaforms(self):
         self.device = platform_list.device_type
         self.platform = platform_list.platform_list
-        global length
+        self.platform_existed = []
+#        global length
         length = len(self.platform)
         
         for num in range(0,length):
             self.runConfigWin.platformComboBox.addItem("")
             self.runConfigWin.platformComboBox.setItemText(num,self.platform[num])
+        
+        self.connect(self.runConfigWin.platformComboBox, QtCore.SIGNAL("activated(int)"),self.platform_fill)
+ 
+            
+    def platform_fill(self):
+        seq = self.runConfigWin.platformComboBox.currentIndex()
+        if (self.runConfigWin.platformComboBox.itemText(seq) == self.platform[seq]) and seq not in self.platform_existed:
+            self.platform_existed.append(seq)
+            self.runConfigWin.platformTextEdit.insertPlainText(self.platform[seq] + '\r')
+            self.runConfigWin.deviceTextEdit.insertPlainText(self.device[seq] + '\r')
         
         
 if __name__ == "__main__":
