@@ -103,7 +103,6 @@ class runStationConfig(QtGui.QMainWindow):
         self.device = platform_list.device_type
         self.platform = platform_list.platform_list
         self.platform_existed = []
-#        global length
         length = len(self.platform)
         
         for num in range(0,length):
@@ -115,10 +114,12 @@ class runStationConfig(QtGui.QMainWindow):
             
     def platform_fill(self):
         seq = self.runConfigWin.platformComboBox.currentIndex()
-        if (self.runConfigWin.platformComboBox.itemText(seq) == self.platform[seq]) and seq not in self.platform_existed:
-            self.platform_existed.append(seq)
-            self.runConfigWin.platformTextEdit.insertPlainText(self.platform[seq] + '\r')
-            self.runConfigWin.deviceTextEdit.insertPlainText(self.device[seq] + '\r')
+#        if (self.runConfigWin.platformComboBox.itemText(seq) == self.platform[seq]) and seq not in self.platform_existed:
+#            self.platform_existed.append(seq)
+#            self.currentPlatformItem = self.runConfigWin.platformListWidget.insertItem(0, self.platform[seq])
+#            print self.currentPlatformItem
+#            self.currentDeviceItem = self.runConfigWin.deviceListWidget.insertItem(0, self.device[seq])
+#            print self.currentDeviceItem
         
         
 if __name__ == "__main__":
