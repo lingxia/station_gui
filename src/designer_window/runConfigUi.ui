@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>417</width>
-    <height>471</height>
+    <width>550</width>
+    <height>498</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,6 +22,9 @@
   </property>
   <property name="statusTip">
    <string>GUI of Run Station Configuration</string>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::LeftToRight</enum>
   </property>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
@@ -101,62 +104,92 @@
     </item>
    </layout>
   </widget>
-  <widget class="QTabWidget" name="debuggerTabWidget">
+  <widget class="QListWidget" name="debuggerListWidget">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>120</y>
-     <width>421</width>
+     <width>91</width>
      <height>121</height>
     </rect>
    </property>
    <property name="statusTip">
-    <string>Configurate your Debugger that needed</string>
+    <string>Configurate of Debugger -- Jlink or Lauterbach</string>
    </property>
-   <property name="autoFillBackground">
-    <bool>true</bool>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
    </property>
-   <property name="tabPosition">
-    <enum>QTabWidget::North</enum>
+   <property name="flow">
+    <enum>QListView::TopToBottom</enum>
    </property>
-   <property name="tabShape">
-    <enum>QTabWidget::Rounded</enum>
-   </property>
-   <property name="currentIndex">
-    <number>1</number>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>16</width>
-     <height>16</height>
-    </size>
-   </property>
-   <widget class="QWidget" name="jlinkTable">
-    <attribute name="icon">
+   <item>
+    <property name="text">
+     <string>Jlink</string>
+    </property>
+    <property name="icon">
      <iconset>
       <normaloff>../pic/jlink.png</normaloff>../pic/jlink.png</iconset>
-    </attribute>
-    <attribute name="title">
-     <string>Jlink Configuration</string>
-    </attribute>
-    <widget class="QLineEdit" name="jlinkLineEdit">
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Lauterbach</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../pic/trace32.png</normaloff>../pic/trace32.png</iconset>
+    </property>
+   </item>
+  </widget>
+  <widget class="QStackedWidget" name="debuggerStackedWidget">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>120</y>
+     <width>451</width>
+     <height>361</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Box</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Sunken</enum>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="jlinkPage">
+    <widget class="QPushButton" name="jlinkButton">
      <property name="geometry">
       <rect>
-       <x>100</x>
-       <y>40</y>
-       <width>189</width>
-       <height>20</height>
+       <x>10</x>
+       <y>20</y>
+       <width>41</width>
+       <height>21</height>
       </rect>
      </property>
      <property name="statusTip">
-      <string>Configurate your Jlink path</string>
+      <string>Jlink is required when use gdb(e.g. C:/SEGGER/JLinkARM_V480g)</string>
+     </property>
+     <property name="text">
+      <string>Jlink</string>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>40</width>
+       <height>32</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="jlinkButton_2">
+    <widget class="QPushButton" name="jlinkOpenButton">
      <property name="geometry">
       <rect>
-       <x>310</x>
-       <y>40</y>
+       <x>240</x>
+       <y>20</y>
        <width>75</width>
        <height>23</height>
       </rect>
@@ -168,24 +201,24 @@
       <string>Open</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="platformComboBox">
+    <widget class="QLineEdit" name="jlinkLineEdit">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>180</y>
-       <width>189</width>
+       <x>50</x>
+       <y>20</y>
+       <width>181</width>
        <height>20</height>
       </rect>
      </property>
      <property name="statusTip">
-      <string>Select the platforms that you need</string>
+      <string>Configurate your Jlink path</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="platformButton">
+    <widget class="QPushButton" name="jlinkPlatformButton">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>90</y>
+       <y>40</y>
        <width>101</width>
        <height>51</height>
       </rect>
@@ -210,50 +243,94 @@
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="jlinkButton">
+    <widget class="QTreeWidget" name="treeWidget">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>20</y>
-       <width>89</width>
-       <height>40</height>
+       <x>10</x>
+       <y>110</y>
+       <width>411</width>
+       <height>251</height>
+      </rect>
+     </property>
+     <property name="contextMenuPolicy">
+      <enum>Qt::DefaultContextMenu</enum>
+     </property>
+     <column>
+      <property name="text">
+       <string>Platform</string>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Value</string>
+      </property>
+     </column>
+     <item>
+      <property name="text">
+       <string>Platform</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Device_Type</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Serial_Port</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Debug_Port</string>
+      </property>
+     </item>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="lauterbachPage">
+    <widget class="QPushButton" name="lauterbachPlatformButton">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>70</y>
+       <width>101</width>
+       <height>51</height>
       </rect>
      </property>
      <property name="statusTip">
-      <string>Jlink is required when use gdb(e.g. C:/SEGGER/JLinkARM_V480g)</string>
+      <string>Select the platforms you need</string>
      </property>
      <property name="text">
-      <string>Jlink</string>
+      <string>Platform</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../pic/jlink.png</normaloff>../pic/jlink.png</iconset>
+       <normaloff>../pic/platform.png</normaloff>../pic/platform.png</iconset>
      </property>
      <property name="iconSize">
       <size>
        <width>40</width>
-       <height>32</height>
+       <height>40</height>
       </size>
      </property>
      <property name="flat">
       <bool>true</bool>
      </property>
     </widget>
-   </widget>
-   <widget class="QWidget" name="lauterbach">
-    <attribute name="icon">
-     <iconset>
-      <normaloff>../pic/trace32.png</normaloff>../pic/trace32.png</iconset>
-    </attribute>
-    <attribute name="title">
-     <string>Lauterbach Configuration</string>
-    </attribute>
     <widget class="QLineEdit" name="trace32LineEdit">
      <property name="geometry">
       <rect>
-       <x>110</x>
-       <y>30</y>
-       <width>189</width>
+       <x>50</x>
+       <y>20</y>
+       <width>181</width>
        <height>20</height>
       </rect>
      </property>
@@ -261,11 +338,11 @@
       <string>Configurate your Trace32 path</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="trace32Button_2">
+    <widget class="QPushButton" name="trace32OpenButton">
      <property name="geometry">
       <rect>
-       <x>310</x>
-       <y>30</y>
+       <x>240</x>
+       <y>20</y>
        <width>75</width>
        <height>23</height>
       </rect>
@@ -280,10 +357,10 @@
     <widget class="QPushButton" name="trace32Button">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>0</x>
        <y>20</y>
-       <width>89</width>
-       <height>40</height>
+       <width>51</width>
+       <height>21</height>
       </rect>
      </property>
      <property name="statusTip">
@@ -291,10 +368,6 @@
      </property>
      <property name="text">
       <string>Trace32</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../pic/trace32.png</normaloff>../pic/trace32.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -313,7 +386,7 @@
   <tabstop>privateCheckBox</tabstop>
   <tabstop>tokenButton</tabstop>
   <tabstop>tokenLineEdit</tabstop>
-  <tabstop>platformButton</tabstop>
+  <tabstop>jlinkPlatformButton</tabstop>
  </tabstops>
  <resources/>
  <connections/>

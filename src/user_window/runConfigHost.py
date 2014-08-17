@@ -25,7 +25,7 @@ class runStationConfig(QtGui.QMainWindow):
         self.runConfigWin.setupUi(self)
         self.setFixedSize(self.width(), self.height())
         self.bars()
-        self.addPlaforms()
+        self.debuggerSelect()
 
 #*********** MenuBar, ToolBar, StatusBar ************
     def bars(self):         
@@ -105,22 +105,41 @@ class runStationConfig(QtGui.QMainWindow):
         self.platform_existed = []
         length = len(self.platform)
         
-        for num in range(0,length):
-            self.runConfigWin.platformComboBox.addItem("")
-            self.runConfigWin.platformComboBox.setItemText(num,self.platform[num])
-        
-        self.connect(self.runConfigWin.platformComboBox, QtCore.SIGNAL("activated(int)"),self.platform_fill)
- 
-            
-    def platform_fill(self):
-        seq = self.runConfigWin.platformComboBox.currentIndex()
+#        for num in range(0,length):
+#            self.runConfigWin.platformComboBox.addItem("")
+#            self.runConfigWin.platformComboBox.setItemText(num,self.platform[num])
+#        
+#        self.connect(self.runConfigWin.platformComboBox, QtCore.SIGNAL("activated(int)"),self.platform_fill)
+# 
+#            
+#    def platform_fill(self):
+#        seq = self.runConfigWin.platformComboBox.currentIndex()
 #        if (self.runConfigWin.platformComboBox.itemText(seq) == self.platform[seq]) and seq not in self.platform_existed:
 #            self.platform_existed.append(seq)
 #            self.currentPlatformItem = self.runConfigWin.platformListWidget.insertItem(0, self.platform[seq])
 #            print self.currentPlatformItem
 #            self.currentDeviceItem = self.runConfigWin.deviceListWidget.insertItem(0, self.device[seq])
 #            print self.currentDeviceItem
+
+
+#*************Debugger configurate *****************
+    def debuggerSelect(self):
+        self.jlinkItem = self.runConfigWin.debuggerListWidget.item(0)
+        self.lauterbachItem = self.runConfigWin.debuggerListWidget.item(1)
+        self.connect(self.runConfigWin.debuggerListWidget, QtCore.SIGNAL("itemClicked(QListWidgetItem*)"),self.debuggerPageShow)        
+
+  
+#***********Different debugger configurate page*******    
+    def debuggerPageShow(self):
+        if self.runConfigWin.debuggerListWidget.isItemSelected(self.jlinkItem):
+            self.runConfigWin.jlinkPage.show()
+            self.runConfigWin.lauterbachPage.hide()
+        elif self.runConfigWin.debuggerListWidget.isItemSelected(self.lauterbachItem):
+            self.runConfigWin.lauterbachPage.show()
+            self.runConfigWin.jlinkPage.hide()
         
+
+
         
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>418</width>
-    <height>471</height>
+    <width>427</width>
+    <height>497</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -133,10 +133,10 @@
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>160</y>
-     <width>84</width>
-     <height>281</height>
+     <x>50</x>
+     <y>150</y>
+     <width>81</width>
+     <height>301</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="ideVLayout">
@@ -289,7 +289,7 @@
   <widget class="QWidget" name="verticalLayoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>130</x>
      <y>150</y>
      <width>181</width>
      <height>311</height>
@@ -343,7 +343,7 @@
   <widget class="QWidget" name="verticalLayoutWidget_3">
    <property name="geometry">
     <rect>
-     <x>310</x>
+     <x>320</x>
      <y>150</y>
      <width>77</width>
      <height>311</height>
@@ -406,12 +406,18 @@
     </item>
    </layout>
   </widget>
+  <zorder>horizontalLayoutWidget</zorder>
+  <zorder>line1</zorder>
+  <zorder>ideLabel</zorder>
+  <zorder>verticalLayoutWidget</zorder>
+  <zorder>verticalLayoutWidget_2</zorder>
+  <zorder>verticalLayoutWidget_3</zorder>
+  <zorder>iarButton</zorder>
  </widget>
  <tabstops>
   <tabstop>privateCheckBox</tabstop>
   <tabstop>tokenButton</tabstop>
   <tabstop>tokenLineEdit</tabstop>
-  <tabstop>iarButton</tabstop>
   <tabstop>iarLineEdit</tabstop>
   <tabstop>iarComboBox</tabstop>
   <tabstop>uv4Button</tabstop>
