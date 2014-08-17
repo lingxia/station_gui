@@ -26,7 +26,15 @@ class runStationConfig(QtGui.QMainWindow):
         self.setFixedSize(self.width(), self.height())
         self.bars()
         self.debuggerSelect()
+        self.addPlaforms()
 
+
+#*******************some attributes******************
+        self.device = platform_list.device_type
+        self.platform_select = platform_list.platform_list
+        self.jlink_platform_existed = []
+        self.lauterbach_platform_existed = []
+        
 #*********** MenuBar, ToolBar, StatusBar ************
     def bars(self):         
         self.menuBar = self.menuBar()
@@ -100,16 +108,17 @@ class runStationConfig(QtGui.QMainWindow):
         
 #***************add Platform and Device_Type********
     def addPlaforms(self):
-        self.device = platform_list.device_type
-        self.platform = platform_list.platform_list
-        self.platform_existed = []
-        length = len(self.platform)
+        self.platform_select = platform_list.platform_list
+        length = len(self.platform_select)
         
-#        for num in range(0,length):
-#            self.runConfigWin.platformComboBox.addItem("")
-#            self.runConfigWin.platformComboBox.setItemText(num,self.platform[num])
+        for num in range(0,length):
+            self.runConfigWin.jlinkPlatformComboBox.addItem("")
+#            self.runConfigWin.lauterbachPlatformComboBox.addItem("")
+            self.runConfigWin.jlinkPlatformComboBox.setItemText(num,self.platform_select[num])
+#            self.runConfigWin.lauterbachPlatformComboBox.setItemText(num,self.platform_select[num])
 #        
-#        self.connect(self.runConfigWin.platformComboBox, QtCore.SIGNAL("activated(int)"),self.platform_fill)
+        self.connect(self.runConfigWin.jlinkPlatformComboBox,QtCore.SIGNAL("activated(int)"),self.jlinkPlatformFill)
+        print "thanks"
 # 
 #            
 #    def platform_fill(self):
@@ -121,6 +130,11 @@ class runStationConfig(QtGui.QMainWindow):
 #            self.currentDeviceItem = self.runConfigWin.deviceListWidget.insertItem(0, self.device[seq])
 #            print self.currentDeviceItem
 
+    def jlinkPlatformFill(self):
+        seq = self.runConfigWin.jlinkPlatformComboBox.currentIndex()
+        self.Platform = QtGui.QTreeWidgetItem(self.runConfigWin.jlinkTreeWidget)
+        self.Platform.setText(0,self.platform_select[seq])
+        self.Platform.setText(1,self.device[seq])
 
 #*************Debugger configurate *****************
     def debuggerSelect(self):

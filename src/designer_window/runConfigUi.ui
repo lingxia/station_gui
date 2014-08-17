@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>550</width>
-    <height>498</height>
+    <width>588</width>
+    <height>496</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -146,8 +146,8 @@
     <rect>
      <x>90</x>
      <y>120</y>
-     <width>451</width>
-     <height>361</height>
+     <width>501</width>
+     <height>351</height>
     </rect>
    </property>
    <property name="frameShape">
@@ -155,6 +155,9 @@
    </property>
    <property name="frameShadow">
     <enum>QFrame::Sunken</enum>
+   </property>
+   <property name="midLineWidth">
+    <number>0</number>
    </property>
    <property name="currentIndex">
     <number>0</number>
@@ -218,9 +221,9 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>40</y>
-       <width>101</width>
-       <height>51</height>
+       <y>60</y>
+       <width>61</width>
+       <height>21</height>
       </rect>
      </property>
      <property name="statusTip">
@@ -228,10 +231,6 @@
      </property>
      <property name="text">
       <string>Platform</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../pic/platform.png</normaloff>../pic/platform.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -243,66 +242,94 @@
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QTreeWidget" name="treeWidget">
+    <widget class="QComboBox" name="jlinkPlatformComboBox">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>110</y>
-       <width>411</width>
-       <height>251</height>
+       <x>80</x>
+       <y>60</y>
+       <width>141</width>
+       <height>22</height>
       </rect>
      </property>
-     <property name="contextMenuPolicy">
-      <enum>Qt::DefaultContextMenu</enum>
+    </widget>
+    <widget class="QTreeWidget" name="jlinkTreeWidget">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>120</y>
+       <width>501</width>
+       <height>221</height>
+      </rect>
      </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="lineWidth">
+      <number>1</number>
+     </property>
+     <property name="midLineWidth">
+      <number>0</number>
+     </property>
+     <property name="autoScroll">
+      <bool>true</bool>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
+     </property>
+     <property name="textElideMode">
+      <enum>Qt::ElideLeft</enum>
+     </property>
+     <attribute name="headerVisible">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="headerCascadingSectionResizes">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="headerDefaultSectionSize">
+      <number>125</number>
+     </attribute>
+     <attribute name="headerHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="headerMinimumSectionSize">
+      <number>27</number>
+     </attribute>
+     <attribute name="headerStretchLastSection">
+      <bool>false</bool>
+     </attribute>
      <column>
       <property name="text">
        <string>Platform</string>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>9</pointsize>
-       </font>
-      </property>
      </column>
      <column>
-      <property name="text">
-       <string>Value</string>
-      </property>
-     </column>
-     <item>
-      <property name="text">
-       <string>Platform</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </item>
-     <item>
       <property name="text">
        <string>Device_Type</string>
       </property>
-     </item>
-     <item>
+     </column>
+     <column>
       <property name="text">
        <string>Serial_Port</string>
       </property>
-     </item>
-     <item>
+     </column>
+     <column>
       <property name="text">
        <string>Debug_Port</string>
       </property>
-     </item>
+     </column>
     </widget>
    </widget>
    <widget class="QWidget" name="lauterbachPage">
     <widget class="QPushButton" name="lauterbachPlatformButton">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>70</y>
-       <width>101</width>
-       <height>51</height>
+       <x>0</x>
+       <y>60</y>
+       <width>61</width>
+       <height>21</height>
       </rect>
      </property>
      <property name="statusTip">
@@ -310,10 +337,6 @@
      </property>
      <property name="text">
       <string>Platform</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../pic/platform.png</normaloff>../pic/platform.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -377,6 +400,16 @@
      </property>
      <property name="flat">
       <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="lauterbachPlatformComboBox">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>60</y>
+       <width>141</width>
+       <height>22</height>
+      </rect>
      </property>
     </widget>
    </widget>
