@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'localConfigUi.ui'
 #
-# Created: Mon Aug 18 20:03:14 2014
+# Created: Mon Aug 18 22:53:23 2014
 #      by: PyQt4 UI code generator 4.11.1
 #
 # WARNING! All changes made in this file will be lost!
