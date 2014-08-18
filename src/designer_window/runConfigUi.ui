@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>588</width>
+    <width>678</width>
     <height>496</height>
    </rect>
   </property>
@@ -29,8 +29,8 @@
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>60</y>
+     <x>190</x>
+     <y>70</y>
      <width>291</width>
      <height>51</height>
     </rect>
@@ -108,9 +108,9 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>120</y>
-     <width>91</width>
-     <height>121</height>
+     <y>140</y>
+     <width>111</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="statusTip">
@@ -144,10 +144,10 @@
   <widget class="QStackedWidget" name="debuggerStackedWidget">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>120</y>
-     <width>501</width>
-     <height>351</height>
+     <x>110</x>
+     <y>140</y>
+     <width>551</width>
+     <height>331</height>
     </rect>
    </property>
    <property name="frameShape">
@@ -166,7 +166,7 @@
     <widget class="QPushButton" name="jlinkButton">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>20</x>
        <y>20</y>
        <width>41</width>
        <height>21</height>
@@ -191,7 +191,7 @@
     <widget class="QPushButton" name="jlinkOpenButton">
      <property name="geometry">
       <rect>
-       <x>240</x>
+       <x>290</x>
        <y>20</y>
        <width>75</width>
        <height>23</height>
@@ -207,7 +207,7 @@
     <widget class="QLineEdit" name="jlinkLineEdit">
      <property name="geometry">
       <rect>
-       <x>50</x>
+       <x>90</x>
        <y>20</y>
        <width>181</width>
        <height>20</height>
@@ -220,7 +220,7 @@
     <widget class="QPushButton" name="jlinkPlatformButton">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>20</x>
        <y>60</y>
        <width>61</width>
        <height>21</height>
@@ -245,7 +245,7 @@
     <widget class="QComboBox" name="jlinkPlatformComboBox">
      <property name="geometry">
       <rect>
-       <x>80</x>
+       <x>90</x>
        <y>60</y>
        <width>141</width>
        <height>22</height>
@@ -255,14 +255,17 @@
     <widget class="QTreeWidget" name="jlinkTreeWidget">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>120</y>
-       <width>501</width>
-       <height>221</height>
+       <x>20</x>
+       <y>100</y>
+       <width>511</width>
+       <height>211</height>
       </rect>
      </property>
      <property name="mouseTracking">
       <bool>true</bool>
+     </property>
+     <property name="statusTip">
+      <string>Configurate your Platforms with Jlink</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
@@ -283,13 +286,176 @@
       <enum>Qt::ElideLeft</enum>
      </property>
      <attribute name="headerVisible">
-      <bool>true</bool>
+      <bool>false</bool>
      </attribute>
      <attribute name="headerCascadingSectionResizes">
       <bool>false</bool>
      </attribute>
      <attribute name="headerDefaultSectionSize">
-      <number>125</number>
+      <number>127</number>
+     </attribute>
+     <attribute name="headerHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="headerMinimumSectionSize">
+      <number>27</number>
+     </attribute>
+     <attribute name="headerStretchLastSection">
+      <bool>false</bool>
+     </attribute>
+     <column>
+      <property name="text">
+       <string>Platform</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Device_Type</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Debug_Port</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Serial_Port</string>
+      </property>
+     </column>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="lauterbachPage">
+    <widget class="QPushButton" name="lauterbachPlatformButton">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>60</y>
+       <width>61</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>Select the platforms you need</string>
+     </property>
+     <property name="text">
+      <string>Platform</string>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>40</width>
+       <height>40</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="trace32LineEdit">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>20</y>
+       <width>181</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>Configurate your Trace32 path</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="trace32OpenButton">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>20</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>Configurate your Trace32 path</string>
+     </property>
+     <property name="text">
+      <string>Open</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="trace32Button">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>51</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>Trace32 is required when use lauterbach(e.g. C:/T32)</string>
+     </property>
+     <property name="text">
+      <string>Trace32</string>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="lauterbachPlatformComboBox">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>60</y>
+       <width>141</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QTreeWidget" name="lauterbachTreeWidget">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>100</y>
+       <width>511</width>
+       <height>211</height>
+      </rect>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="statusTip">
+      <string>Configurate your Platforms with Lauterbach</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="lineWidth">
+      <number>1</number>
+     </property>
+     <property name="midLineWidth">
+      <number>0</number>
+     </property>
+     <property name="autoScroll">
+      <bool>true</bool>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
+     </property>
+     <property name="textElideMode">
+      <enum>Qt::ElideLeft</enum>
+     </property>
+     <attribute name="headerVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="headerCascadingSectionResizes">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="headerDefaultSectionSize">
+      <number>169</number>
      </attribute>
      <attribute name="headerHighlightSections">
       <bool>false</bool>
@@ -315,104 +481,59 @@
        <string>Serial_Port</string>
       </property>
      </column>
-     <column>
-      <property name="text">
-       <string>Debug_Port</string>
-      </property>
-     </column>
     </widget>
    </widget>
-   <widget class="QWidget" name="lauterbachPage">
-    <widget class="QPushButton" name="lauterbachPlatformButton">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>60</y>
-       <width>61</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="statusTip">
-      <string>Select the platforms you need</string>
-     </property>
-     <property name="text">
-      <string>Platform</string>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>40</width>
-       <height>40</height>
-      </size>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="trace32LineEdit">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>20</y>
-       <width>181</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="statusTip">
-      <string>Configurate your Trace32 path</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="trace32OpenButton">
-     <property name="geometry">
-      <rect>
-       <x>240</x>
-       <y>20</y>
-       <width>75</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="statusTip">
-      <string>Configurate your Trace32 path</string>
-     </property>
-     <property name="text">
-      <string>Open</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="trace32Button">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>20</y>
-       <width>51</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="statusTip">
-      <string>Trace32 is required when use lauterbach(e.g. C:/T32)</string>
-     </property>
-     <property name="text">
-      <string>Trace32</string>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>32</width>
-       <height>32</height>
-      </size>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="lauterbachPlatformComboBox">
-     <property name="geometry">
-      <rect>
-       <x>70</x>
-       <y>60</y>
-       <width>141</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
+  </widget>
+  <widget class="QPushButton" name="removeButton">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>300</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="statusTip">
+    <string>Remove the platform that do not need</string>
+   </property>
+   <property name="text">
+    <string>Remove</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>20</width>
+     <height>20</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="addButton">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>340</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="statusTip">
+    <string>Add all the platforms that you selected</string>
+   </property>
+   <property name="text">
+    <string>Add</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>120</y>
+     <width>681</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
   </widget>
  </widget>
  <tabstops>

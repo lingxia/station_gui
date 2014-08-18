@@ -26,15 +26,17 @@ class runStationConfig(QtGui.QMainWindow):
         self.setFixedSize(self.width(), self.height())
         self.bars()
         self.debuggerSelect()
-        self.addPlaforms()
+        self.addOrRemovePlaforms()
 
 
 #*******************some attributes******************
         self.device = platform_list.device_type
         self.platform_select = platform_list.platform_list
-        self.jlink_platform_existed = []
-        self.lauterbach_platform_existed = []
-        
+        self.jlink_platform_existed_seq = []
+        self.jlink_platform_existed_name = []
+        self.lauterbach_platform_existed_seq = []
+        self.lauterbach_platform_existed_name = []
+                
 #*********** MenuBar, ToolBar, StatusBar ************
     def bars(self):         
         self.menuBar = self.menuBar()
@@ -107,58 +109,117 @@ class runStationConfig(QtGui.QMainWindow):
         
         
 #***************add Platform and Device_Type********
-    def addPlaforms(self):
+    def addOrRemovePlaforms(self):
         self.platform_select = platform_list.platform_list
         length = len(self.platform_select)
         
         for num in range(0,length):
             self.runConfigWin.jlinkPlatformComboBox.addItem("")
-#            self.runConfigWin.lauterbachPlatformComboBox.addItem("")
+            self.runConfigWin.lauterbachPlatformComboBox.addItem("")
             self.runConfigWin.jlinkPlatformComboBox.setItemText(num,self.platform_select[num])
-#            self.runConfigWin.lauterbachPlatformComboBox.setItemText(num,self.platform_select[num])
-#        
-        self.connect(self.runConfigWin.jlinkPlatformComboBox,QtCore.SIGNAL("activated(int)"),self.jlinkPlatformFill)
-        print "thanks"
-# 
-#            
-#    def platform_fill(self):
-#        seq = self.runConfigWin.platformComboBox.currentIndex()
-#        if (self.runConfigWin.platformComboBox.itemText(seq) == self.platform[seq]) and seq not in self.platform_existed:
-#            self.platform_existed.append(seq)
-#            self.currentPlatformItem = self.runConfigWin.platformListWidget.insertItem(0, self.platform[seq])
-#            print self.currentPlatformItem
-#            self.currentDeviceItem = self.runConfigWin.deviceListWidget.insertItem(0, self.device[seq])
-#            print self.currentDeviceItem
-
-    def jlinkPlatformFill(self):
+            self.runConfigWin.lauterbachPlatformComboBox.setItemText(num,self.platform_select[num])
+        self.connect(self.runConfigWin.jlinkPlatformComboBox,QtCore.SIGNAL("activated(int)"),self.jlinkPlatformAdd)
+        self.connect(self.runConfigWin.jlinkTreeWidget, QtCore.SIGNAL("itemActivated(QTreeWidgetItem*,int)"),self.jlinkGetCurrentItem)
+        self.connect(self.runConfigWin.removeButton,QtCore.SIGNAL("clicked()"),self.jlinkPlatformRemove)
+        self.connect(self.runConfigWin.lauterbachPlatformComboBox,QtCore.SIGNAL("activated(int)"),self.lauterbachPlatformAdd)           
+        self.connect(self.runConfigWin.lauterbachTreeWidget, QtCore.SIGNAL("itemActivated(QTreeWidgetItem*,int)"),self.lauterbachGetCurrentItem)
+        self.connect(self.runConfigWin.removeButton,QtCore.SIGNAL("clicked()"),self.lauterbachPlatformRemove)
+        
+#*****************add platforms with jlink*******************
+    def jlinkPlatformAdd(self):
         seq = self.runConfigWin.jlinkPlatformComboBox.currentIndex()
-        self.Platform = QtGui.QTreeWidgetItem(self.runConfigWin.jlinkTreeWidget)
-        self.Platform.setText(0,self.platform_select[seq])
-        self.Platform.setText(1,self.device[seq])
+        if (self.runConfigWin.jlinkPlatformComboBox.itemText(seq) == self.platform_select[seq]) and seq not in self.jlink_platform_existed_seq:
+            self.jlink_platform_existed_seq.append(seq)
+            self.jlink_platform_existed_name.append(self.platform_select[seq])
+            self.Platform = QtGui.QTreeWidgetItem(self.runConfigWin.jlinkTreeWidget)
+            editableFlag = self.Platform.flags() 
+            self.Platform.setFlags(editableFlag | QtCore.Qt.ItemIsEditable)
+            self.Platform.setText(0,self.platform_select[seq])
+            self.Platform.setText(1,self.device[seq])
+            
+#************************get current Item****************************
+    def jlinkGetCurrentItem(self):
+        self.currentItem = self.runConfigWin.jlinkTreeWidget.currentItem()
+        if self.currentItem == None:
+            return
+        else:
+            return self.currentItem
+             
+#*****************remove a platform of jlink*************************    
+    def jlinkPlatformRemove(self):
+        self.currentItemGot = self.jlinkGetCurrentItem()
+        if self.currentItemGot == None:
+            return
+        else:
+            self.platformName = self.currentItemGot.text(0)
+        if self.platformName in self.jlink_platform_existed_name:
+            self.runConfigWin.jlinkTreeWidget.takeTopLevelItem(self.runConfigWin.jlinkTreeWidget.indexOfTopLevelItem(self.currentItemGot))
+            self.jlink_platform_existed_name.remove(self.platformName)
+            self.jlink_platform_existed_seq.remove(self.platform_select.index(self.platformName))
+
+
+#*****************add platforms with lauterbach*******************
+    def lauterbachPlatformAdd(self):
+        seq = self.runConfigWin.lauterbachPlatformComboBox.currentIndex()
+        if (self.runConfigWin.lauterbachPlatformComboBox.itemText(seq) == self.platform_select[seq]) and seq not in self.lauterbach_platform_existed_seq:
+            self.lauterbach_platform_existed_seq.append(seq)
+            self.lauterbach_platform_existed_name.append(self.platform_select[seq])
+            self.Platform = QtGui.QTreeWidgetItem(self.runConfigWin.lauterbachTreeWidget)
+            editableFlag = self.Platform.flags() 
+            self.Platform.setFlags(editableFlag | QtCore.Qt.ItemIsEditable)
+            self.Platform.setText(0,self.platform_select[seq])
+            self.Platform.setText(1,self.device[seq])
+            
+            
+            
+#************************get current Item****************************
+    def lauterbachGetCurrentItem(self):
+        self.currentItem = self.runConfigWin.lauterbachTreeWidget.currentItem()
+        if self.currentItem == None:
+            return
+        else:
+            return self.currentItem
+        
+        
+             
+#*****************remove a platform of lauterbach*************************    
+    def lauterbachPlatformRemove(self):
+        self.currentItemGot = self.lauterbachGetCurrentItem()
+        if self.currentItemGot == None:
+            return
+        else:
+            self.platformName = self.currentItemGot.text(0)
+        if self.platformName in self.lauterbach_platform_existed_name:
+            self.runConfigWin.lauterbachTreeWidget.takeTopLevelItem(self.runConfigWin.lauterbachTreeWidget.indexOfTopLevelItem(self.currentItemGot))
+            self.lauterbach_platform_existed_name.remove(self.platformName)
+            self.lauterbach_platform_existed_seq.remove(self.platform_select.index(self.platformName))
+
+
+            
 
 #*************Debugger configurate *****************
     def debuggerSelect(self):
         self.jlinkItem = self.runConfigWin.debuggerListWidget.item(0)
         self.lauterbachItem = self.runConfigWin.debuggerListWidget.item(1)
         self.connect(self.runConfigWin.debuggerListWidget, QtCore.SIGNAL("itemClicked(QListWidgetItem*)"),self.debuggerPageShow)        
+       
 
-  
+ 
+ 
 #***********Different debugger configurate page*******    
     def debuggerPageShow(self):
         if self.runConfigWin.debuggerListWidget.isItemSelected(self.jlinkItem):
             self.runConfigWin.jlinkPage.show()
             self.runConfigWin.lauterbachPage.hide()
+                        
         elif self.runConfigWin.debuggerListWidget.isItemSelected(self.lauterbachItem):
             self.runConfigWin.lauterbachPage.show()
             self.runConfigWin.jlinkPage.hide()
         
-
-
         
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
     runTestWin = runStationConfig()
     runTestWin.show()
     sys.exit(app.exec_())
-        
         

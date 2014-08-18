@@ -406,13 +406,6 @@
     </item>
    </layout>
   </widget>
-  <zorder>horizontalLayoutWidget</zorder>
-  <zorder>line1</zorder>
-  <zorder>ideLabel</zorder>
-  <zorder>verticalLayoutWidget</zorder>
-  <zorder>verticalLayoutWidget_2</zorder>
-  <zorder>verticalLayoutWidget_3</zorder>
-  <zorder>iarButton</zorder>
  </widget>
  <tabstops>
   <tabstop>privateCheckBox</tabstop>
