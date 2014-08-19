@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'buildConfigUi.ui'
 #
-# Created: Fri Aug 15 20:37:36 2014
+# Created: Tue Aug 19 19:42:50 2014
 #      by: PyQt4 UI code generator 4.11.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,12 +26,12 @@ except AttributeError:
 class Ui_buildConfig(object):
     def setupUi(self, buildConfig):
         buildConfig.setObjectName(_fromUtf8("buildConfig"))
-        buildConfig.resize(418, 471)
+        buildConfig.resize(476, 497)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8("../pic/dapeng.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         buildConfig.setWindowIcon(icon)
         self.horizontalLayoutWidget = QtGui.QWidget(buildConfig)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(70, 60, 291, 51))
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(110, 60, 291, 51))
         self.horizontalLayoutWidget.setObjectName(_fromUtf8("horizontalLayoutWidget"))
         self.privateHLayout = QtGui.QHBoxLayout(self.horizontalLayoutWidget)
         self.privateHLayout.setMargin(0)
@@ -65,10 +65,10 @@ class Ui_buildConfig(object):
         self.line1.setFrameShadow(QtGui.QFrame.Sunken)
         self.line1.setObjectName(_fromUtf8("line1"))
         self.ideLabel = QtGui.QLabel(buildConfig)
-        self.ideLabel.setGeometry(QtCore.QRect(110, 120, 201, 31))
+        self.ideLabel.setGeometry(QtCore.QRect(160, 120, 201, 31))
         self.ideLabel.setObjectName(_fromUtf8("ideLabel"))
         self.verticalLayoutWidget = QtGui.QWidget(buildConfig)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(30, 160, 84, 281))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(50, 150, 81, 301))
         self.verticalLayoutWidget.setObjectName(_fromUtf8("verticalLayoutWidget"))
         self.ideVLayout = QtGui.QVBoxLayout(self.verticalLayoutWidget)
         self.ideVLayout.setMargin(0)
@@ -124,7 +124,7 @@ class Ui_buildConfig(object):
         self.mingwButton.setObjectName(_fromUtf8("mingwButton"))
         self.ideVLayout.addWidget(self.mingwButton)
         self.verticalLayoutWidget_2 = QtGui.QWidget(buildConfig)
-        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(120, 150, 181, 311))
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(130, 150, 221, 311))
         self.verticalLayoutWidget_2.setObjectName(_fromUtf8("verticalLayoutWidget_2"))
         self.ideLineEditVLayout = QtGui.QVBoxLayout(self.verticalLayoutWidget_2)
         self.ideLineEditVLayout.setMargin(0)
@@ -144,11 +144,11 @@ class Ui_buildConfig(object):
         self.cw10LineEdit = QtGui.QLineEdit(self.verticalLayoutWidget_2)
         self.cw10LineEdit.setObjectName(_fromUtf8("cw10LineEdit"))
         self.ideLineEditVLayout.addWidget(self.cw10LineEdit)
-        self.lineEdit = QtGui.QLineEdit(self.verticalLayoutWidget_2)
-        self.lineEdit.setObjectName(_fromUtf8("lineEdit"))
-        self.ideLineEditVLayout.addWidget(self.lineEdit)
+        self.mingwLlineEdit = QtGui.QLineEdit(self.verticalLayoutWidget_2)
+        self.mingwLlineEdit.setObjectName(_fromUtf8("mingwLlineEdit"))
+        self.ideLineEditVLayout.addWidget(self.mingwLlineEdit)
         self.verticalLayoutWidget_3 = QtGui.QWidget(buildConfig)
-        self.verticalLayoutWidget_3.setGeometry(QtCore.QRect(310, 150, 77, 311))
+        self.verticalLayoutWidget_3.setGeometry(QtCore.QRect(360, 150, 77, 311))
         self.verticalLayoutWidget_3.setObjectName(_fromUtf8("verticalLayoutWidget_3"))
         self.ideComboBoxVLayout = QtGui.QVBoxLayout(self.verticalLayoutWidget_3)
         self.ideComboBoxVLayout.setMargin(0)
@@ -176,8 +176,7 @@ class Ui_buildConfig(object):
         QtCore.QMetaObject.connectSlotsByName(buildConfig)
         buildConfig.setTabOrder(self.privateCheckBox, self.tokenButton)
         buildConfig.setTabOrder(self.tokenButton, self.tokenLineEdit)
-        buildConfig.setTabOrder(self.tokenLineEdit, self.iarButton)
-        buildConfig.setTabOrder(self.iarButton, self.iarLineEdit)
+        buildConfig.setTabOrder(self.tokenLineEdit, self.iarLineEdit)
         buildConfig.setTabOrder(self.iarLineEdit, self.iarComboBox)
         buildConfig.setTabOrder(self.iarComboBox, self.uv4Button)
         buildConfig.setTabOrder(self.uv4Button, self.uv4LineEdit)
@@ -192,8 +191,8 @@ class Ui_buildConfig(object):
         buildConfig.setTabOrder(self.cw10Button, self.cw10LineEdit)
         buildConfig.setTabOrder(self.cw10LineEdit, self.cw10OpenButton)
         buildConfig.setTabOrder(self.cw10OpenButton, self.mingwButton)
-        buildConfig.setTabOrder(self.mingwButton, self.lineEdit)
-        buildConfig.setTabOrder(self.lineEdit, self.mingwOpenButton)
+        buildConfig.setTabOrder(self.mingwButton, self.mingwLlineEdit)
+        buildConfig.setTabOrder(self.mingwLlineEdit, self.mingwOpenButton)
 
     def retranslateUi(self, buildConfig):
         buildConfig.setWindowTitle(_translate("buildConfig", "Build Configuration", None))
@@ -221,7 +220,7 @@ class Ui_buildConfig(object):
         self.gccLineEdit.setStatusTip(_translate("buildConfig", "Configurate your GCC path", None))
         self.kdsLineEdit.setStatusTip(_translate("buildConfig", "Configurate your KDS path", None))
         self.cw10LineEdit.setStatusTip(_translate("buildConfig", "Configurate your Code Worrior path", None))
-        self.lineEdit.setStatusTip(_translate("buildConfig", "Configurate your MinGW path", None))
+        self.mingwLlineEdit.setStatusTip(_translate("buildConfig", "Configurate your MinGW path", None))
         self.iarComboBox.setStatusTip(_translate("buildConfig", "Select the lastest version of IAR", None))
         self.uv4ComboBox.setStatusTip(_translate("buildConfig", "Select the lastest version of UV4", None))
         self.gccOpenButton.setStatusTip(_translate("buildConfig", "Configurate your GCC path", None))

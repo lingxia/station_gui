@@ -6,7 +6,7 @@
 	<repo_list>
 	</repo_list>
 	<NEW_repo_dir>c:/mqx_cloud_repo</NEW_repo_dir>
-	<IDE cw10="no" cw10gcc="no" gcc_arm="no" iar="no" uv4="no" kds="no" >compilers which station support</IDE>
+	<IDE cw10="no" cw10gcc="no" gcc_arm="no" iar="no" kds="no" uv4="no">compilers which station support</IDE>
 	<IDE_dir>
 		<cw10 version="10.4">C:/Freescale/CWMCUv10.4</cw10>
 		<cw10gcc version="10.4">C:/Freescale/CWMCUv10.4</cw10gcc>
@@ -31,7 +31,7 @@
 		<pwd>ubuntu</pwd>
 	</FTP_server>
 	
-	<STAF_dir>c:/STAF</STAF_dir>
+	<STAF_dir>C:\Git</STAF_dir>
 	<mingw>C:/MinGW</mingw>
 	<Scheduler_IP>10.192.225.198</Scheduler_IP>
 	<cmd_generator_IP>10.192.225.198</cmd_generator_IP>
@@ -56,9 +56,9 @@
 	<default_app_value>1</default_app_value>
 
 
-	<local_ip>10.193.99.74</local_ip>
-	<local_mac>F0-1F-AF-00-5E-13</local_mac>
-	<machine_name>b46395-01</machine_name>
+	<local_ip>10.193.99.164</local_ip>
+	<local_mac>00-24-D6-8B-5F-22</local_mac>
+	<machine_name>b51448-12</machine_name>
 	<token private="no">123456</token>
 
 </MQX_CloudTest>

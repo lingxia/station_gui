@@ -8,12 +8,12 @@
 	<NEW_repo_dir>c:/mqx_cloud_repo</NEW_repo_dir>
 	<IDE cw10="no" cw10gcc="no" gcc_arm="no" iar="no" kds="no" uv4="no">compilers which station support</IDE>
 	<IDE_dir>
-		<cw10 version="unknown">C:/Freescale/CWMCUv10.4</cw10>
-		<cw10gcc version="unknown">C:/Freescale/CWMCUv10.4</cw10gcc>
-		<gcc_arm version="unknown">C:/GNUToolsARMEmbedded/4.72013q3</gcc_arm>
-		<iar version="unknown">C:/IARSystems/EmbeddedWorkbench6.5</iar>
-		<uv4 version="unknown">C:/Keil/UV4</uv4>
-		<kds version="unknown">C:/Freescale/KDS_1.0.1</kds>
+		<cw10 version="10.4">C:/Freescale/CWMCUv10.4</cw10>
+		<cw10gcc version="10.4">C:/Freescale/CWMCUv10.4</cw10gcc>
+		<gcc_arm version="4.7">C:/GNUToolsARMEmbedded/4.72013q3</gcc_arm>
+		<iar version="7.1"></iar>
+		<uv4 version="v5.00">C:/Keil/UV4</uv4>
+		<kds version="1.0.1">C:/Freescale/KDS_1.0.1</kds>
 	</IDE_dir>
 	<software_debugger>
 		<trace32>C:/T32</trace32>
@@ -31,7 +31,7 @@
 		<pwd>ubuntu</pwd>
 	</FTP_server>
 	
-	<STAF_dir>C:/STAF</STAF_dir>
+	<STAF_dir>C:\Git</STAF_dir>
 	<mingw>C:/MinGW</mingw>
 	<Scheduler_IP>10.192.225.198</Scheduler_IP>
 	<cmd_generator_IP>10.192.225.198</cmd_generator_IP>
@@ -46,12 +46,12 @@
 		
 	</tools>
 	
-	<FreeMV enable="no">C:\Dpc/FREEMV~1</FreeMV>
-	<FreeKV enable="no">C:\Dpc/FREEKV~1</FreeKV>
-	<FreeKV_demo enable="no">C:\Dpc/FREEKV~3</FreeKV_demo>
-	<FreeMV_ksdk enable="no">C:\Dpc/FREEMV~1</FreeMV_ksdk>
-	<FreeKV_usb enable="no">C:\Dpc/FREEKV~3</FreeKV_usb>
-	<FreeKV_unit_test enable="no">C:\Dpc/FREEKV~3</FreeKV_unit_test>
+	<FreeMV enable="yes">c:/FreeMV/</FreeMV>
+	<FreeKV enable="yes">c:/FreeKV/</FreeKV>
+	<FreeKV_demo enable="yes">c:/FreeKV_demo/</FreeKV_demo>
+	<FreeMV_ksdk enable="yes">c:/FreeMV/</FreeMV_ksdk>
+	<FreeKV_usb enable="yes">c:/FreeKV_demo</FreeKV_usb>
+	<FreeKV_unit_test enable="yes">c:/FreeKV_demo</FreeKV_unit_test>
 	<default_app_scope>auto</default_app_scope>
 	<default_app_value>1</default_app_value>
 
@@ -59,6 +59,6 @@
 	<local_ip>10.193.99.164</local_ip>
 	<local_mac>00-24-D6-8B-5F-22</local_mac>
 	<machine_name>b51448-12</machine_name>
-	<token private="no">123456</token>
+	<token private="yes">123456</token>
 
 </MQX_CloudTest>

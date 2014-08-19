@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>427</width>
+    <width>476</width>
     <height>497</height>
    </rect>
   </property>
@@ -26,7 +26,7 @@
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>70</x>
+     <x>110</x>
      <y>60</y>
      <width>291</width>
      <height>51</height>
@@ -117,7 +117,7 @@
   <widget class="QLabel" name="ideLabel">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>160</x>
      <y>120</y>
      <width>201</width>
      <height>31</height>
@@ -291,7 +291,7 @@
     <rect>
      <x>130</x>
      <y>150</y>
-     <width>181</width>
+     <width>221</width>
      <height>311</height>
     </rect>
    </property>
@@ -332,7 +332,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QLineEdit" name="mingwLlineEdit">
       <property name="statusTip">
        <string>Configurate your MinGW path</string>
       </property>
@@ -343,7 +343,7 @@
   <widget class="QWidget" name="verticalLayoutWidget_3">
    <property name="geometry">
     <rect>
-     <x>320</x>
+     <x>360</x>
      <y>150</y>
      <width>77</width>
      <height>311</height>
@@ -426,7 +426,7 @@
   <tabstop>cw10LineEdit</tabstop>
   <tabstop>cw10OpenButton</tabstop>
   <tabstop>mingwButton</tabstop>
-  <tabstop>lineEdit</tabstop>
+  <tabstop>mingwLlineEdit</tabstop>
   <tabstop>mingwOpenButton</tabstop>
  </tabstops>
  <resources/>

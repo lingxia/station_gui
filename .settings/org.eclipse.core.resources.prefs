@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/Build_station/lib/getconfig.py=utf-8
 encoding//src/designer_window/buildConfigUi.py=utf-8
 encoding//src/designer_window/localConfigUi.py=utf-8
 encoding//src/designer_window/runConfigUi.py=utf-8

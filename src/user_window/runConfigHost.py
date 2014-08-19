@@ -9,6 +9,7 @@ config_path = runStation_path + '/config/'
 lib_path = runStation_path + '/lib/'
 pic_path = main_path + '/pic/'
 
+
 sys.path.append(lib_path)
 sys.path.append(designer_path)
 sys.path.append(config_path)
@@ -17,6 +18,8 @@ sys.path.append(runStation_path)
 from getconfig import Getconfig
 from runConfigUi import Ui_runConfig
 import platform_list
+
+config_file_run = config_path + 'config.xml'
 
 class runStationConfig(QtGui.QMainWindow):
     def __init__(self,parent = None):         
@@ -50,9 +53,15 @@ class runStationConfig(QtGui.QMainWindow):
         self.quitMessage = QtGui.QMessageBox()
         self.quitMessage.setWindowTitle("Warning")
         self.quitMessage.setIcon(self.quitMessage.Warning)
-        self.quitMessage.setText("The Configuration File has not been Saved ! Are you sure to Quit ?")
-        self.quitMessage.setStandardButtons(self.quitMessage.Yes | self.quitMessage.No)
-        self.quitMessage.setDefaultButton(self.quitMessage.No)
+        self.quitMessage.setText("Are you sure to Quit ? Please make sure your Configurations had been Saved !")
+        self.quitMessage.Yes = self.quitMessage.addButton("Yes", QtGui.QMessageBox.ActionRole)
+        self.quitMessage.No = self.quitMessage.addButton("No", QtGui.QMessageBox.ActionRole)
+        self.connect(self.quitMessage.Yes, QtCore.SIGNAL("clicked()"),self.close)
+        
+        self.saveMessage = QtGui.QMessageBox()
+        self.saveMessage.setWindowTitle("Information")
+        self.saveMessage.setIcon(self.quitMessage.Information)
+        self.saveMessage.setText("The Configuration File has been Saved Successfully !") 
         
         self.whatMessage = QtGui.QMessageBox()
         self.whatMessage.setWindowTitle("What's this")
@@ -71,9 +80,9 @@ class runStationConfig(QtGui.QMainWindow):
         self.messageBox()      
         self.saveAct = QtGui.QAction(QtGui.QIcon(pic_path + "/save.png"),"Save",self)
         self.saveAct.setShortcut("Ctrl+S")
-        self.saveAct.setStatusTip("Save the Configuration File and Quit the Configuration")
+        self.saveAct.setStatusTip("Save the Configuration File !")
         self.saveAct.whatsThis()
-        self.connect(self.saveAct, QtCore.SIGNAL("triggered()"),self.close)
+        self.connect(self.saveAct, QtCore.SIGNAL("triggered()"),self.saveMessage.exec_)
         
         self.quitAct = QtGui.QAction(QtGui.QIcon(pic_path + "/quit.png"),"Quit",self)
         self.quitAct.setShortcut("Ctrl+Q")

@@ -14,13 +14,12 @@ sys.path.append(designer_path)
 sys.path.append(config_path)
 sys.path.append(buildStation_path)
 
+config_file_build = config_path + 'config.xml'
+
 from getconfig import Getconfig
 from buildConfigUi import Ui_buildConfig
 
-config_file_backup = config_path + 'config.xml'
-config_file = config_path + 'config_operate.xml'
-shutil.copyfile(config_file_backup,config_file)
-
+config_build_file = Getconfig(config_file_build)
 
 class buildStationConfig(QtGui.QMainWindow):
     def __init__(self, parent = None):
@@ -28,7 +27,6 @@ class buildStationConfig(QtGui.QMainWindow):
         self.buildConfigWin = Ui_buildConfig()
         self.buildConfigWin.setupUi(self)
         self.setFixedSize(self.width(),self.height())
-
 
 #*********** MenuBar, ToolBar, StatusBar ************         
         self.menuBar = self.menuBar()
@@ -39,11 +37,16 @@ class buildStationConfig(QtGui.QMainWindow):
         self.quitMessage = QtGui.QMessageBox()
         self.quitMessage.setWindowTitle("Warning")
         self.quitMessage.setIcon(self.quitMessage.Warning)
-        self.quitMessage.setText("The Configuration File has not been Saved ! Are you sure to Quit ?")
-        self.quitMessage.setStandardButtons(self.quitMessage.Yes | self.quitMessage.No)
-        self.quitMessage.setDefaultButton(self.quitMessage.No)
+        self.quitMessage.setText("Are you sure to Quit ? Please make sure your Configurations had been Saved !")
+        self.quitMessage.Yes = self.quitMessage.addButton("Yes", QtGui.QMessageBox.ActionRole)
+        self.quitMessage.No = self.quitMessage.addButton("No", QtGui.QMessageBox.ActionRole)
+        self.connect(self.quitMessage.Yes, QtCore.SIGNAL("clicked()"),self.close)
         
-                
+        self.saveMessage = QtGui.QMessageBox()
+        self.saveMessage.setWindowTitle("Information")
+        self.saveMessage.setIcon(self.quitMessage.Information)
+        self.saveMessage.setText("The Configuration File has been Saved Successfully !") 
+                        
         self.whatMessage = QtGui.QMessageBox()
         self.whatMessage.setWindowTitle("What's this")
         self.whatMessage.setIcon(self.whatMessage.Information)
@@ -60,13 +63,13 @@ class buildStationConfig(QtGui.QMainWindow):
 #********************* Actions **********************        
         self.saveAct = QtGui.QAction(QtGui.QIcon(pic_path + "/save.png"),"Save",self)
         self.saveAct.setShortcut("Ctrl+S")
-        self.saveAct.setStatusTip("Save the Configuration File and Quit the Configuration")
+        self.saveAct.setStatusTip("Save the Configuration File !")
         self.saveAct.whatsThis()
-        self.connect(self.saveAct, QtCore.SIGNAL("triggered()"),self.close)
+        self.connect(self.saveAct, QtCore.SIGNAL("triggered()"),self.saveMessage.exec_)
         
         self.quitAct = QtGui.QAction(QtGui.QIcon(pic_path + "/quit.png"),"Quit",self)
         self.quitAct.setShortcut("Ctrl+Q")
-        self.quitAct.setStatusTip("Quit the Configuration without saving the File")
+        self.quitAct.setStatusTip("Quit the Configuration without saving the File !")
         self.quitAct.whatsThis()
         self.connect(self.quitAct, QtCore.SIGNAL("triggered()"),self.quitMessage.exec_)
         
@@ -81,8 +84,7 @@ class buildStationConfig(QtGui.QMainWindow):
         self.howAct.setStatusTip("Brief Usage of this GUI")
         self.howAct.whatsThis()
         self.connect(self.howAct, QtCore.SIGNAL("triggered()"),self.howMessage.exec_)
-        
-        
+                
 #****************add Menus and Actions**************
         self.fileMenu = self.menuBar.addMenu("File")
         self.fileMenu.addAction(self.saveAct)
@@ -94,6 +96,82 @@ class buildStationConfig(QtGui.QMainWindow):
         
         self.toolBar.addAction(self.saveAct)
         self.toolBar.addAction(self.quitAct)
+        
+        self.getPreConfig()
+        
+        self.connect(self.buildConfigWin.gccOpenButton, QtCore.SIGNAL("clicked()"),self.openGcc)
+        self.connect(self.buildConfigWin.kdsOpenButton, QtCore.SIGNAL("clicked()"),self.openKds)
+        self.connect(self.buildConfigWin.cw10OpenButton, QtCore.SIGNAL("clicked()"),self.openCw)
+        self.connect(self.buildConfigWin.mingwOpenButton, QtCore.SIGNAL("clicked()"),self.openMingw)
+                             
+#*********get ide configuration that before********
+    def getPreConfig(self):
+        iarPre = config_build_file.getValue("iar")
+        uv4Pre = config_build_file.getValue("uv4")
+        kdsPre = config_build_file.getValue("kds")
+        gccPre = config_build_file.getValue("gcc_arm")
+        cwPre = config_build_file.getValue("cw10")
+        mingwPre = config_build_file.getValue("mingw")
+        if iarPre == None:
+            self.buildConfigWin.iarLineEdit.setText("")
+        else:
+            self.buildConfigWin.iarLineEdit.setText(iarPre)
+            
+        if uv4Pre == None:
+            self.buildConfigWin.uv4LineEdit.setText("")
+        else:
+            self.buildConfigWin.uv4LineEdit.setText(uv4Pre)
+            
+        if kdsPre == None:
+            self.buildConfigWin.kdsLineEdit.setText("")
+        else:
+            self.buildConfigWin.kdsLineEdit.setText(kdsPre)
+        
+        if gccPre == None:
+            self.buildConfigWin.gccLineEdit.setText("")
+        else:
+            self.buildConfigWin.gccLineEdit.setText(gccPre)
+        
+        if cwPre == None:
+            self.buildConfigWin.cw10LineEdit.setText("")
+        else:
+            self.buildConfigWin.cw10LineEdit.setText(cwPre)
+        
+        if mingwPre == None:
+            self.buildConfigWin.mingwLlineEdit.setText("")
+        else:
+            self.buildConfigWin.mingwLlineEdit.setText(mingwPre)
+        
+        tokenPre = config_build_file.getValue("token")
+        privatePre = config_build_file.getAttr("token","private")
+        
+        if privatePre == "yes":
+            self.buildConfigWin.tokenLineEdit.setText(tokenPre)
+            self.buildConfigWin.privateCheckBox.setCheckState(QtCore.Qt.Checked)
+        elif privatePre == "no":
+            return
+        
+    def openGcc(self): 
+        gccDir = QtGui.QFileDialog.getExistingDirectory(self, QtCore.QString(),\
+                                                          "C:/",QtGui.QFileDialog.ShowDirsOnly | QtGui.QFileDialog.DontResolveSymlinks)
+        self.buildConfigWin.gccLineEdit.setText(gccDir)
+        
+    def openKds(self): 
+        kdsDir = QtGui.QFileDialog.getExistingDirectory(self, QtCore.QString(),\
+                                                          "C:/",QtGui.QFileDialog.ShowDirsOnly | QtGui.QFileDialog.DontResolveSymlinks)
+        self.buildConfigWin.kdsLineEdit.setText(kdsDir)
+        
+    def openCw(self): 
+        cwDir = QtGui.QFileDialog.getExistingDirectory(self, QtCore.QString(),\
+                                                          "C:/",QtGui.QFileDialog.ShowDirsOnly | QtGui.QFileDialog.DontResolveSymlinks)
+        self.buildConfigWin.cw10LineEdit.setText(cwDir)
+        
+    def openMingw(self): 
+        mingwDir = QtGui.QFileDialog.getExistingDirectory(self, QtCore.QString(),\
+                                                          "C:/",QtGui.QFileDialog.ShowDirsOnly | QtGui.QFileDialog.DontResolveSymlinks)
+        self.buildConfigWin.mingwLlineEdit.setText(mingwDir)
+
+
 
 
 if __name__ == "__main__":
