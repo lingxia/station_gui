@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'buildConfigUi.ui'
 #
-# Created: Tue Aug 19 19:42:50 2014
+# Created: Wed Aug 20 20:21:24 2014
 #      by: PyQt4 UI code generator 4.11.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_buildConfig(object):
     def setupUi(self, buildConfig):
         buildConfig.setObjectName(_fromUtf8("buildConfig"))
-        buildConfig.resize(476, 497)
+        buildConfig.resize(477, 578)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8("../pic/dapeng.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         buildConfig.setWindowIcon(icon)
@@ -65,10 +65,10 @@ class Ui_buildConfig(object):
         self.line1.setFrameShadow(QtGui.QFrame.Sunken)
         self.line1.setObjectName(_fromUtf8("line1"))
         self.ideLabel = QtGui.QLabel(buildConfig)
-        self.ideLabel.setGeometry(QtCore.QRect(160, 120, 201, 31))
+        self.ideLabel.setGeometry(QtCore.QRect(140, 220, 201, 31))
         self.ideLabel.setObjectName(_fromUtf8("ideLabel"))
         self.verticalLayoutWidget = QtGui.QWidget(buildConfig)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(50, 150, 81, 301))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(50, 250, 81, 301))
         self.verticalLayoutWidget.setObjectName(_fromUtf8("verticalLayoutWidget"))
         self.ideVLayout = QtGui.QVBoxLayout(self.verticalLayoutWidget)
         self.ideVLayout.setMargin(0)
@@ -124,7 +124,7 @@ class Ui_buildConfig(object):
         self.mingwButton.setObjectName(_fromUtf8("mingwButton"))
         self.ideVLayout.addWidget(self.mingwButton)
         self.verticalLayoutWidget_2 = QtGui.QWidget(buildConfig)
-        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(130, 150, 221, 311))
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(130, 250, 221, 311))
         self.verticalLayoutWidget_2.setObjectName(_fromUtf8("verticalLayoutWidget_2"))
         self.ideLineEditVLayout = QtGui.QVBoxLayout(self.verticalLayoutWidget_2)
         self.ideLineEditVLayout.setMargin(0)
@@ -148,7 +148,7 @@ class Ui_buildConfig(object):
         self.mingwLlineEdit.setObjectName(_fromUtf8("mingwLlineEdit"))
         self.ideLineEditVLayout.addWidget(self.mingwLlineEdit)
         self.verticalLayoutWidget_3 = QtGui.QWidget(buildConfig)
-        self.verticalLayoutWidget_3.setGeometry(QtCore.QRect(360, 150, 77, 311))
+        self.verticalLayoutWidget_3.setGeometry(QtCore.QRect(360, 250, 77, 311))
         self.verticalLayoutWidget_3.setObjectName(_fromUtf8("verticalLayoutWidget_3"))
         self.ideComboBoxVLayout = QtGui.QVBoxLayout(self.verticalLayoutWidget_3)
         self.ideComboBoxVLayout.setMargin(0)
@@ -171,6 +171,32 @@ class Ui_buildConfig(object):
         self.mingwOpenButton = QtGui.QPushButton(self.verticalLayoutWidget_3)
         self.mingwOpenButton.setObjectName(_fromUtf8("mingwOpenButton"))
         self.ideComboBoxVLayout.addWidget(self.mingwOpenButton)
+        self.line = QtGui.QFrame(buildConfig)
+        self.line.setGeometry(QtCore.QRect(0, 210, 481, 16))
+        self.line.setFrameShape(QtGui.QFrame.HLine)
+        self.line.setFrameShadow(QtGui.QFrame.Sunken)
+        self.line.setObjectName(_fromUtf8("line"))
+        self.suiteLabel = QtGui.QLabel(buildConfig)
+        self.suiteLabel.setGeometry(QtCore.QRect(190, 120, 81, 31))
+        self.suiteLabel.setObjectName(_fromUtf8("suiteLabel"))
+        self.oobeCheckBox = QtGui.QCheckBox(buildConfig)
+        self.oobeCheckBox.setGeometry(QtCore.QRect(30, 150, 81, 17))
+        self.oobeCheckBox.setObjectName(_fromUtf8("oobeCheckBox"))
+        self.ksvCheckBox = QtGui.QCheckBox(buildConfig)
+        self.ksvCheckBox.setGeometry(QtCore.QRect(350, 150, 81, 17))
+        self.ksvCheckBox.setObjectName(_fromUtf8("ksvCheckBox"))
+        self.ksdkoobeCheckBox = QtGui.QCheckBox(buildConfig)
+        self.ksdkoobeCheckBox.setGeometry(QtCore.QRect(190, 150, 111, 17))
+        self.ksdkoobeCheckBox.setObjectName(_fromUtf8("ksdkoobeCheckBox"))
+        self.unittestCheckBox = QtGui.QCheckBox(buildConfig)
+        self.unittestCheckBox.setGeometry(QtCore.QRect(350, 180, 101, 17))
+        self.unittestCheckBox.setObjectName(_fromUtf8("unittestCheckBox"))
+        self.usbCheckBox = QtGui.QCheckBox(buildConfig)
+        self.usbCheckBox.setGeometry(QtCore.QRect(190, 180, 81, 17))
+        self.usbCheckBox.setObjectName(_fromUtf8("usbCheckBox"))
+        self.demoCheckBox = QtGui.QCheckBox(buildConfig)
+        self.demoCheckBox.setGeometry(QtCore.QRect(30, 180, 81, 17))
+        self.demoCheckBox.setObjectName(_fromUtf8("demoCheckBox"))
 
         self.retranslateUi(buildConfig)
         QtCore.QMetaObject.connectSlotsByName(buildConfig)
@@ -202,7 +228,7 @@ class Ui_buildConfig(object):
         self.tokenButton.setStatusTip(_translate("buildConfig", "If the station is private, please set a token", None))
         self.tokenLineEdit.setStatusTip(_translate("buildConfig", "If the station is private, please set a token", None))
         self.ideLabel.setStatusTip(_translate("buildConfig", "Configurate the IDEs that needed", None))
-        self.ideLabel.setText(_translate("buildConfig", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-weight:600;\">IDE Configuration</span></p></body></html>", None))
+        self.ideLabel.setText(_translate("buildConfig", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-weight:600;\">IDE Configuration</span></p></body></html>", None))
         self.iarButton.setStatusTip(_translate("buildConfig", "Configurate your IAR path", None))
         self.iarButton.setText(_translate("buildConfig", "IAR", None))
         self.uv4Button.setStatusTip(_translate("buildConfig", "Configurate your UV4 path", None))
@@ -231,4 +257,12 @@ class Ui_buildConfig(object):
         self.cw10OpenButton.setText(_translate("buildConfig", "Open", None))
         self.mingwOpenButton.setStatusTip(_translate("buildConfig", "Configurate your MinGW path", None))
         self.mingwOpenButton.setText(_translate("buildConfig", "Open", None))
+        self.suiteLabel.setStatusTip(_translate("buildConfig", "Select the test suites that you need", None))
+        self.suiteLabel.setText(_translate("buildConfig", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-weight:600;\">Test Suites</span></p></body></html>", None))
+        self.oobeCheckBox.setText(_translate("buildConfig", "MQX-OOBE", None))
+        self.ksvCheckBox.setText(_translate("buildConfig", "KSV", None))
+        self.ksdkoobeCheckBox.setText(_translate("buildConfig", "KSDK-MQX-OOBE", None))
+        self.unittestCheckBox.setText(_translate("buildConfig", "KSDK-UnitTest", None))
+        self.usbCheckBox.setText(_translate("buildConfig", "KSDK-USB", None))
+        self.demoCheckBox.setText(_translate("buildConfig", "KSDK-DEMO", None))
 

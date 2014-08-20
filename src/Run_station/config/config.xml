@@ -31,7 +31,7 @@
 		<pwd>ubuntu</pwd>
 	</FTP_server>
 	
-	<STAF_dir>C:\Git</STAF_dir>
+	<STAF_dir />
 	<mingw>C:/MinGW</mingw>
 	<Scheduler_IP>10.192.225.198</Scheduler_IP>
 	<cmd_generator_IP>10.192.225.198</cmd_generator_IP>
