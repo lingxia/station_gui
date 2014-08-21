@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>477</width>
-    <height>578</height>
+    <width>443</width>
+    <height>535</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,7 +26,7 @@
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>80</x>
      <y>60</y>
      <width>291</width>
      <height>51</height>
@@ -117,26 +117,26 @@
   <widget class="QLabel" name="ideLabel">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>220</y>
-     <width>201</width>
-     <height>31</height>
+     <x>50</x>
+     <y>260</y>
+     <width>91</width>
+     <height>16</height>
     </rect>
    </property>
    <property name="statusTip">
     <string>Configurate the IDEs that needed</string>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;IDE Configuration&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;IDE Configuration&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>250</y>
+     <x>30</x>
+     <y>290</y>
      <width>81</width>
-     <height>301</height>
+     <height>211</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="ideVLayout">
@@ -289,10 +289,10 @@
   <widget class="QWidget" name="verticalLayoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>250</y>
-     <width>221</width>
-     <height>311</height>
+     <x>110</x>
+     <y>290</y>
+     <width>211</width>
+     <height>221</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="ideLineEditVLayout">
@@ -343,10 +343,10 @@
   <widget class="QWidget" name="verticalLayoutWidget_3">
    <property name="geometry">
     <rect>
-     <x>360</x>
-     <y>250</y>
+     <x>330</x>
+     <y>290</y>
      <width>77</width>
-     <height>311</height>
+     <height>221</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="ideComboBoxVLayout">
@@ -409,8 +409,8 @@
   <widget class="Line" name="line">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>210</y>
+     <x>-10</x>
+     <y>250</y>
      <width>481</width>
      <height>16</height>
     </rect>
@@ -422,96 +422,81 @@
   <widget class="QLabel" name="suiteLabel">
    <property name="geometry">
     <rect>
-     <x>190</x>
+     <x>50</x>
      <y>120</y>
-     <width>81</width>
-     <height>31</height>
+     <width>61</width>
+     <height>16</height>
     </rect>
    </property>
    <property name="statusTip">
     <string>Select the test suites that you need</string>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Test Suites&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Test Suites&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="oobeCheckBox">
+  <widget class="QTreeWidget" name="testsuiteTreeWidget">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>150</y>
-     <width>81</width>
-     <height>17</height>
+     <x>90</x>
+     <y>140</y>
+     <width>151</width>
+     <height>101</height>
     </rect>
    </property>
-   <property name="text">
-    <string>MQX-OOBE</string>
+   <property name="statusTip">
+    <string>Test Suite you have selected</string>
    </property>
+   <property name="textElideMode">
+    <enum>Qt::ElideLeft</enum>
+   </property>
+   <attribute name="headerVisible">
+    <bool>false</bool>
+   </attribute>
+   <column>
+    <property name="text">
+     <string>Test Suite</string>
+    </property>
+   </column>
   </widget>
-  <widget class="QCheckBox" name="ksvCheckBox">
+  <widget class="QWidget" name="verticalLayoutWidget_4">
    <property name="geometry">
     <rect>
-     <x>350</x>
-     <y>150</y>
-     <width>81</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>KSV</string>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="ksdkoobeCheckBox">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>150</y>
-     <width>111</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>KSDK-MQX-OOBE</string>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="unittestCheckBox">
-   <property name="geometry">
-    <rect>
-     <x>350</x>
-     <y>180</y>
+     <x>260</x>
+     <y>140</y>
      <width>101</width>
-     <height>17</height>
+     <height>101</height>
     </rect>
    </property>
-   <property name="text">
-    <string>KSDK-UnitTest</string>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="usbCheckBox">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>180</y>
-     <width>81</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>KSDK-USB</string>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="demoCheckBox">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>180</y>
-     <width>81</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>KSDK-DEMO</string>
-   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QPushButton" name="testSuiteAddButton">
+      <property name="statusTip">
+       <string>Add the test suites you have selected</string>
+      </property>
+      <property name="text">
+       <string>Add</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="testSuiteRemoveButton">
+      <property name="statusTip">
+       <string>Remove the test suite you have selected</string>
+      </property>
+      <property name="text">
+       <string>Remove</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QComboBox" name="testSuiteComboBox">
+      <property name="statusTip">
+       <string>Select test suite you need</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <tabstops>

@@ -17,6 +17,8 @@ sys.path.append(buildStation_path)
 from getconfig import Getconfig
 from buildConfigUi import Ui_buildConfig
 from get_local_config import Get_IDE_info, Get_DP_info
+import platform_list
+import win32api
 
 config_file_build = config_path + 'config.xml'
 config_build_file = Getconfig(config_file_build)
@@ -27,6 +29,10 @@ class buildStationConfig(QtGui.QMainWindow):
         self.buildConfigWin = Ui_buildConfig()
         self.buildConfigWin.setupUi(self)
         self.setFixedSize(self.width(),self.height())
+        
+        self.testsuite_select =  platform_list.test_suite
+        self.testsuite_existed_seq = []
+        self.testsuite_existed_name = []
 
 #*********** MenuBar, ToolBar, StatusBar ************         
         self.menuBar = self.menuBar()
@@ -74,8 +80,10 @@ class buildStationConfig(QtGui.QMainWindow):
         self.tokenFlag = True
         self.ide_info = Get_IDE_info()
         self.dapeng_info = Get_DP_info()
+
         
         self.getPreConfig()
+        self.addOrRemoveTestsuite()
         
         self.selectIarAndUv4()
         self.connect(self.buildConfigWin.iarComboBox, QtCore.SIGNAL("activated(int)"),self.addIar)
@@ -102,7 +110,7 @@ class buildStationConfig(QtGui.QMainWindow):
             QtGui.QMessageBox.information(self,"Information",\
                                             "The Configuration File has been Saved Successfully !", QtGui.QMessageBox.Ok)
         elif self.tokenFlag == False:
-            return
+            pass
     
     def whatEvent(self):
         QtGui.QMessageBox.information(self,"What is this",\
@@ -134,8 +142,10 @@ class buildStationConfig(QtGui.QMainWindow):
         ksvPre = config_build_file.getAttr("FreeKV", "enable")
         demoPre = config_build_file.getAttr("FreeKV_demo", "enable")
         usbPre = config_build_file.getAttr("FreeKV_usb", "enable")
-        unitTestPre = config_build_file.getAttr("FreeKV_unit_test", "enable")
-        
+        unittestPre = config_build_file.getAttr("FreeKV_unit_test", "enable")
+        tokenPre = config_build_file.getValue("token")
+        privatePre = config_build_file.getAttr("token","private")
+                
         if iarPre == None:
             self.buildConfigWin.iarLineEdit.setText("")
         else:
@@ -166,42 +176,70 @@ class buildStationConfig(QtGui.QMainWindow):
         else:
             self.buildConfigWin.mingwLlineEdit.setText(mingwPre)
         
-        tokenPre = config_build_file.getValue("token")
-        privatePre = config_build_file.getAttr("token","private")
-        
         if privatePre == "yes":
             self.buildConfigWin.tokenLineEdit.setText(tokenPre)
             self.buildConfigWin.privateCheckBox.setCheckState(QtCore.Qt.Checked)
         else:
             pass
-        
+
+                        
         if oobePre == "yes":
-            self.buildConfigWin.oobeCheckBox.setCheckState(QtCore.Qt.Checked)
+            self.testsuite_existed_name.append(self.testsuite_select[0])
+            self.testsuite_existed_seq.append(0)
+            oobeTestsuite = QtGui.QTreeWidgetItem(self.buildConfigWin.testsuiteTreeWidget)
+            editableFlag = oobeTestsuite.flags() 
+            oobeTestsuite.setFlags(editableFlag | QtCore.Qt.ItemIsEditable)
+            oobeTestsuite.setText(0,self.testsuite_select[0])
         else:
             pass
         
         if ksdkoobePre == "yes":
-            self.buildConfigWin.ksdkoobeCheckBox.setCheckState(QtCore.Qt.Checked)
+            self.testsuite_existed_name.append(self.testsuite_select[1])
+            self.testsuite_existed_seq.append(1)
+            kskdoobeTestsuite = QtGui.QTreeWidgetItem(self.buildConfigWin.testsuiteTreeWidget)
+            editableFlag = kskdoobeTestsuite.flags() 
+            kskdoobeTestsuite.setFlags(editableFlag | QtCore.Qt.ItemIsEditable)
+            kskdoobeTestsuite.setText(0,self.testsuite_select[1])
         else:
             pass
         
         if ksvPre == "yes":
-            self.buildConfigWin.ksvCheckBox.setCheckState(QtCore.Qt.Checked)
+            self.testsuite_existed_name.append(self.testsuite_select[2])
+            self.testsuite_existed_seq.append(2)
+            ksvTestsuite = QtGui.QTreeWidgetItem(self.buildConfigWin.testsuiteTreeWidget)
+            editableFlag = ksvTestsuite.flags() 
+            ksvTestsuite.setFlags(editableFlag | QtCore.Qt.ItemIsEditable)
+            ksvTestsuite.setText(0,self.testsuite_select[2])
         else:
             pass
         
         if demoPre == "yes":
-            self.buildConfigWin.demoCheckBox.setCheckState(QtCore.Qt.Checked)
+            self.testsuite_existed_name.append(self.testsuite_select[3])
+            self.testsuite_existed_seq.append(3)
+            demoTestsuite = QtGui.QTreeWidgetItem(self.buildConfigWin.testsuiteTreeWidget)
+            editableFlag = demoTestsuite.flags() 
+            demoTestsuite.setFlags(editableFlag | QtCore.Qt.ItemIsEditable)
+            demoTestsuite.setText(0,self.testsuite_select[3])
         else:
             pass
         
         if usbPre == "yes":
-            self.buildConfigWin.usbCheckBox.setCheckState(QtCore.Qt.Checked)
+            self.testsuite_existed_name.append(self.testsuite_select[4])
+            self.testsuite_existed_seq.append(4)
+            usbTestsuite = QtGui.QTreeWidgetItem(self.buildConfigWin.testsuiteTreeWidget)
+            editableFlag = usbTestsuite.flags() 
+            usbTestsuite.setFlags(editableFlag | QtCore.Qt.ItemIsEditable)
+            usbTestsuite.setText(0,self.testsuite_select[4])
         else:
             pass
         
-        if unitTestPre == "yes":
-            self.buildConfigWin.unittestCheckBox.setCheckState(QtCore.Qt.Checked)
+        if unittestPre == "yes":
+            self.testsuite_existed_name.append(self.testsuite_select[5])
+            self.testsuite_existed_seq.append(5)
+            unittestTestsuite = QtGui.QTreeWidgetItem(self.buildConfigWin.testsuiteTreeWidget)
+            editableFlag = unittestTestsuite.flags() 
+            unittestTestsuite.setFlags(editableFlag | QtCore.Qt.ItemIsEditable)
+            unittestTestsuite.setText(0,self.testsuite_select[5])
         else:
             pass
             
@@ -258,56 +296,208 @@ class buildStationConfig(QtGui.QMainWindow):
         
 
 
+    def addOrRemoveTestsuite(self):
+        length = len(self.testsuite_select)
+        
+        for num in range(0,length):
+            self.buildConfigWin.testSuiteComboBox.addItem("")
+            self.buildConfigWin.testSuiteComboBox.setItemText(num,self.testsuite_select[num])
+        self.connect(self.buildConfigWin.testSuiteComboBox,QtCore.SIGNAL("activated(int)"),self.testsuiteFill)
+        self.connect(self.buildConfigWin.testsuiteTreeWidget, QtCore.SIGNAL("itemActivated(QTreeWidgetItem*,int)"),self.testsuiteGetCurrentItem)
+        self.connect(self.buildConfigWin.testSuiteRemoveButton,QtCore.SIGNAL("clicked()"),self.testsuitePlatformRemove)
+        self.connect(self.buildConfigWin.testSuiteAddButton, QtCore.SIGNAL("clicked()"),self.testsuiteAdd)
+        
+    def testsuiteFill(self):
+        seq = self.buildConfigWin.testSuiteComboBox.currentIndex()
+        if (self.buildConfigWin.testSuiteComboBox.itemText(seq) == self.testsuite_select[seq]) and seq not in self.testsuite_existed_seq:
+            self.testsuite_existed_seq.append(seq)
+            self.testsuite_existed_name.append(self.testsuite_select[seq])
+            self.Testsuite = QtGui.QTreeWidgetItem(self.buildConfigWin.testsuiteTreeWidget)
+            editableFlag = self.Testsuite.flags() 
+            self.Testsuite.setFlags(editableFlag | QtCore.Qt.ItemIsEditable)
+            self.Testsuite.setText(0,self.testsuite_select[seq])
+            
+    def testsuiteGetCurrentItem(self):
+        self.currentItem = self.buildConfigWin.testsuiteTreeWidget.currentItem()
+        if self.currentItem == None:
+            pass
+        else:
+            return self.currentItem
+        
+    def testsuitePlatformRemove(self):
+        self.currentItemGot = self.testsuiteGetCurrentItem()
+        if self.currentItemGot == None:
+            pass
+        else:
+            self.testsuiteName = self.currentItemGot.text(0)
+        if self.testsuiteName in self.testsuite_existed_name:
+            self.buildConfigWin.testsuiteTreeWidget.takeTopLevelItem(self.buildConfigWin.testsuiteTreeWidget.indexOfTopLevelItem(self.currentItemGot))
+            self.testsuite_existed_name.remove(self.testsuiteName)
+            self.testsuite_existed_seq.remove(self.testsuite_select.index(self.testsuiteName))
+            
+    def testsuiteAdd(self):
+        flag = True
+        length = len(self.testsuite_select)
+        if self.dapeng_info["exist"] == "no":
+            pass
+        else:
+            freemv_build_path_long = self.dapeng_info['path'] + '/freemvbuild'
+            freekv_build_path_long = self.dapeng_info['path'] + '/freekvbuild'
+            freekv_demo_build_path_long = self.dapeng_info['path'] + '/freekv_demobuild'
+            freemv_build_path = win32api.GetShortPathName(freemv_build_path_long)
+            freekv_build_path = win32api.GetShortPathName(freekv_build_path_long)
+            freekv_demo_build_path = win32api.GetShortPathName(freekv_demo_build_path_long)
+        
+        for num in range(0,length):
+            try:
+                testsuiteIn = self.buildConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
+                if testsuiteIn == "KSDK-DEMO":
+                    config_build_file.setAttr("FreeKV_demo", "enable", "yes")
+                    config_build_file.setValue("FreeKV_demo", freekv_demo_build_path)
+                    break
+                else:
+                    config_build_file.setAttr("FreeKV_demo", "enable", "no")                   
+            except Exception:
+                pass
+            
+        for num in range(0,length):
+            try:
+                testsuiteIn = self.buildConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
+                if testsuiteIn == "KSDK-USB":
+                    config_build_file.setAttr("FreeKV_usb", "enable", "yes")
+                    config_build_file.setValue("FreeKV_usb", freekv_demo_build_path)
+                    break
+                else:
+                    config_build_file.setAttr("FreeKV_usb", "enable", "no")                   
+            except Exception:
+                pass
+
+        for num in range(0,length):
+            try:
+                testsuiteIn = self.buildConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
+                if testsuiteIn == "KSDK-UnitTest":
+                    config_build_file.setAttr("FreeKV_unit_test", "enable", "yes")
+                    config_build_file.setValue("FreeKV_unit_test", freekv_demo_build_path)
+                    break
+                else:
+                    config_build_file.setAttr("FreeKV_unit_test", "enable", "no")                   
+            except Exception:
+                pass
+            
+        for num in range(0,length):
+            try:
+                testsuiteIn = self.buildConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
+                if testsuiteIn == "MQX-OOBE":
+                    config_build_file.setAttr("FreeMV", "enable", "yes")
+                    config_build_file.setValue("FreeMV", freemv_build_path)
+                    break
+                else:
+                    config_build_file.setAttr("FreeMV", "enable", "no")                   
+            except Exception:
+                pass               
+
+        for num in range(0,length):
+            try:
+                testsuiteIn = self.buildConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
+                if testsuiteIn == "KSDK-MQX-OOBE":
+                    config_build_file.setAttr("FreeMV_ksdk", "enable", "yes")
+                    config_build_file.setValue("FreeMV_ksdk", freemv_build_path)
+                    break
+                else:
+                    config_build_file.setAttr("FreeMV_ksdk", "enable", "no")                   
+            except Exception:
+                pass    
+
+        for num in range(0,length):
+            try:
+                testsuiteIn = self.buildConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
+                if testsuiteIn == "KSV":
+                    config_build_file.setAttr("FreeKV", "enable", "yes")
+                    config_build_file.setValue("FreeKV", freekv_build_path)
+                    break
+                else:
+                    config_build_file.setAttr("FreeKV", "enable", "no")                   
+            except Exception:
+                pass 
+
+        if self.buildConfigWin.testsuiteTreeWidget.topLevelItem(0) == None and flag == True:
+            flag = False
+            QtGui.QMessageBox.information(self,"Warning","You have not select any Test Suite, please select at least one !",QtGui.QMessageBox.Ok)
+        else:
+            pass    
+
+        if flag == True:
+            QtGui.QMessageBox.information(self,"Information","Add the Test Suites successful !",QtGui.QMessageBox.Ok)           
+
+
 
 #****************save configurations of build station***********    
     def saveBuild(self):
+
+#**********************config ides***************************
         iarSet = self.buildConfigWin.iarLineEdit.text()
         if  iarSet.__str__() == "":
             config_build_file.setAttr("IDE", "iar", "no")
+            config_build_file.setValue("iar", "")
         else:
+            iarShort = win32api.GetShortPathName(iarSet.__str__())
             config_build_file.setAttr("IDE", "iar", "yes")
-        config_build_file.setValue("iar", iarSet.__str__())
+            config_build_file.setValue("iar", iarShort)
 
         
         uv4Set = self.buildConfigWin.uv4LineEdit.text()
         if uv4Set.__str__() == "":
             config_build_file.setAttr("IDE", "uv4", "no")
+            config_build_file.setValue("uv4", "")
         else:
+            uv4Short = win32api.GetShortPathName(uv4Set.__str__())
             config_build_file.setAttr("IDE", "uv4", "yes")
-        config_build_file.setValue("uv4", uv4Set.__str__())
+            config_build_file.setValue("uv4", uv4Short)
 
         
         kdsSet = self.buildConfigWin.kdsLineEdit.text()
         if kdsSet.__str__() == "":
             config_build_file.setAttr("IDE", "kds", "no")
+            config_build_file.setValue("kds", "")
         else:
+            kdsShort = win32api.GetShortPathName(kdsSet.__str__())
             config_build_file.setAttr("IDE", "kds", "yes")
-        config_build_file.setValue("kds", kdsSet.__str__())
+            config_build_file.setValue("kds", kdsShort)
 
         
         gccSet = self.buildConfigWin.gccLineEdit.text()
         if gccSet.__str__() == "":
             config_build_file.setAttr("IDE", "gcc_arm", "no")
+            config_build_file.setValue("gcc_arm", "")
         else:
+            gccShort = win32api.GetShortPathName(gccSet.__str__())
             config_build_file.setAttr("IDE", "gcc_arm", "yes")
-        config_build_file.setValue("gcc_arm", gccSet.__str__())
+            config_build_file.setValue("gcc_arm", gccShort)
         
         
         cwSet = self.buildConfigWin.cw10LineEdit.text()
         if cwSet.__str__() == "":
             config_build_file.setAttr("IDE", "cw10", "no")
             config_build_file.setAttr("IDE", "cw10gcc", "no")
+            config_build_file.setValue("cw10", "")
+            config_build_file.setValue("cw10gcc", "")
         else:
+            cwShort = win32api.GetShortPathName(cwSet.__str__())
             config_build_file.setAttr("IDE", "cw10", "yes")
             config_build_file.setAttr("IDE", "cw10gcc", "yes")
-        config_build_file.setValue("cw10", cwSet.__str__())
-        config_build_file.setValue("cw10gcc",cwSet.__str__())
+            config_build_file.setValue("cw10", cwShort)
+            config_build_file.setValue("cw10gcc", cwShort)
 
         
         mingwSet = self.buildConfigWin.mingwLlineEdit.text()
-        config_build_file.setValue("mingw", mingwSet.__str__())
+        if mingwSet.__str__() == "":
+            config_build_file.setValue("mingw", "")
+        else:
+            mingwShort = win32api.GetShortPathName(mingwSet.__str__())
+            config_build_file.setValue("mingw", mingwShort)
           
-        
+
+#**********************config private and token*******************        
         tokenSet = self.buildConfigWin.tokenLineEdit.text()        
         if self.buildConfigWin.privateCheckBox.checkState() == QtCore.Qt.Checked and tokenSet != "":
             self.tokenFlag = True
@@ -319,52 +509,6 @@ class buildStationConfig(QtGui.QMainWindow):
         else:
             self.tokenFlag = True
             config_build_file.setAttr("token", "private", "no")
-            
-            
-#*********************config Test Suites*****************
-        if self.dapeng_info["exist"] == "no":
-            pass
-        else:
-            freemv_build_path = self.dapeng_info['path'] + '/freemvbuild'
-            freekv_build_path = self.dapeng_info['path'] + '/freekvbuild'
-            freekv_demo_build_path = self.dapeng_info['path'] + '/freekv_demobuild'
-
-        
-        if self.buildConfigWin.demoCheckBox.checkState() == QtCore.Qt.Checked:
-            config_build_file.setAttr("FreeKV_demo", "enable", "yes")
-            config_build_file.setValue("FreeKV_demo", freekv_demo_build_path)
-        else:
-            config_build_file.setAttr("FreeKV_demo", "enable", "no")
-                        
-        if self.buildConfigWin.usbCheckBox.checkState() == QtCore.Qt.Checked:
-            config_build_file.setAttr("FreeKV_usb", "enable", "yes")
-            config_build_file.setValue("FreeKV_usb", freekv_demo_build_path)
-        else:
-            config_build_file.setAttr("FreeKV_usb", "enable", "no")  
-            
-        if self.buildConfigWin.unittestCheckBox.checkState() == QtCore.Qt.Checked:
-            config_build_file.setAttr("FreeKV_unit_test", "enable", "yes")
-            config_build_file.setValue("FreeKV_unit_test", freekv_demo_build_path)
-        else:
-            config_build_file.setAttr("FreeKV_unit_test", "enable", "no")
-        
-        if self.buildConfigWin.oobeCheckBox.checkState() == QtCore.Qt.Checked:
-            config_build_file.setAttr("FreeMV", "enable", "yes")
-            config_build_file.setValue("FreeMV", freemv_build_path)  
-        else:
-            config_build_file.setAttr("FreeMV", "enable", "no")
-            
-        if self.buildConfigWin.ksdkoobeCheckBox.checkState() == QtCore.Qt.Checked:
-            config_build_file.setAttr("FreeMV_ksdk", "enable", "yes")
-            config_build_file.setValue("FreeMV_ksdk", freemv_build_path)
-        else:
-            config_build_file.setAttr("FreeMV_ksdk", "enable", "no") 
-        
-        if self.buildConfigWin.ksvCheckBox.checkState() == QtCore.Qt.Checked:
-            config_build_file.setAttr("FreeKV", "enable", "yes")
-            config_build_file.setValue("FreeKV", freekv_build_path) 
-        else:
-            config_build_file.setAttr("FreeKV", "enable", "no") 
             
         
 

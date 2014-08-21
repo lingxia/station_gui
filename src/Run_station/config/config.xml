@@ -16,12 +16,14 @@
 		<kds version="1.0.1">C:/Freescale/KDS_1.0.1</kds>
 	</IDE_dir>
 	<software_debugger>
-		<trace32>C:/T32</trace32>
+		<trace32>C:\DOUJIA~1</trace32>
 	</software_debugger>
-	<hardware_debugger jlink="no" lauterbach="no" pne="no">
-		<jlink>C:/Program Files/SEGGER/JLinkARM_V462b</jlink>
+	<hardware_debugger jlink="yes" lauterbach="yes" pne="no">
+		<jlink>C:\SEGGER\JLINKA~1</jlink>
 	</hardware_debugger>
 	<device>Tower Boards of station
+	<twrk22f120m debug_port="2842592277" device_type="MK22FN512xxx12" serial_port="6">yes</twrk22f120m>
+	<twrk22f120m256r debug_port="493716501" device_type="MK22FN256xxx12" serial_port="24">yes</twrk22f120m256r>
 	</device>
 	<executor_timeout>10</executor_timeout>
 	
@@ -31,7 +33,7 @@
 		<pwd>ubuntu</pwd>
 	</FTP_server>
 	
-	<STAF_dir />
+	<STAF_dir>c:/STAF</STAF_dir>
 	<mingw>C:/MinGW</mingw>
 	<Scheduler_IP>10.192.225.198</Scheduler_IP>
 	<cmd_generator_IP>10.192.225.198</cmd_generator_IP>
@@ -46,19 +48,19 @@
 		
 	</tools>
 	
-	<FreeMV enable="yes">c:/FreeMV/</FreeMV>
-	<FreeKV enable="yes">c:/FreeKV/</FreeKV>
-	<FreeKV_demo enable="yes">c:/FreeKV_demo/</FreeKV_demo>
-	<FreeMV_ksdk enable="yes">c:/FreeMV/</FreeMV_ksdk>
-	<FreeKV_usb enable="yes">c:/FreeKV_demo</FreeKV_usb>
-	<FreeKV_unit_test enable="yes">c:/FreeKV_demo</FreeKV_unit_test>
+	<FreeMV enable="no">C:\Dpc/FREEMV~2</FreeMV>
+	<FreeKV enable="yes">C:\Dpc/FREEKV~2</FreeKV>
+	<FreeKV_demo enable="yes">C:\Dpc/FREEKV~4</FreeKV_demo>
+	<FreeMV_ksdk enable="yes">C:\Dpc/FREEMV~2</FreeMV_ksdk>
+	<FreeKV_usb enable="no">C:\Dpc/FREEKV~4</FreeKV_usb>
+	<FreeKV_unit_test enable="no">C:\Dpc/FREEKV~4</FreeKV_unit_test>
 	<default_app_scope>auto</default_app_scope>
 	<default_app_value>1</default_app_value>
 
 
-	<local_ip>10.193.99.164</local_ip>
-	<local_mac>00-24-D6-8B-5F-22</local_mac>
-	<machine_name>b51448-12</machine_name>
-	<token private="no">123456</token>
+	<local_ip>10.193.99.74</local_ip>
+	<local_mac>F0-1F-AF-00-5E-13</local_mac>
+	<machine_name>b46395-01</machine_name>
+	<token private="no">1111</token>
 
 </MQX_CloudTest>

@@ -72,3 +72,12 @@ device_type = [
 'MK02FN128xx10',
 'MKV30F128xxx10',
 ]
+
+test_suite = [
+'MQX-OOBE',
+'KSDK-MQX-OOBE',
+'KSV',
+'KSDK-DEMO',
+'KSDK-USB',
+'KSDK-UnitTest',
+]

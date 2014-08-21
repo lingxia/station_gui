@@ -8,12 +8,12 @@
 	<NEW_repo_dir>c:/mqx_cloud_repo</NEW_repo_dir>
 	<IDE cw10="yes" cw10gcc="yes" gcc_arm="yes" iar="yes" kds="yes" uv4="yes">compilers which station support</IDE>
 	<IDE_dir>
-		<cw10 version="10.4">C:\Intel</cw10>
-		<cw10gcc version="10.4">C:\Intel</cw10gcc>
-		<gcc_arm version="4.7">C:\GNUToolsARMEmbedded\4.82014q2</gcc_arm>
-		<iar version="7.1">C:/IARSystems/EmbeddedWorkbench72</iar>
+		<cw10 version="10.4">C:\gitlearn</cw10>
+		<cw10gcc version="10.4">C:\gitlearn</cw10gcc>
+		<gcc_arm version="4.7">C:\GNUTOO~1\44068~1.820</gcc_arm>
+		<iar version="7.1">C:/IARSYS~1/EMBEDD~1</iar>
 		<uv4 version="v5.00">C:/Keil_v5/UV4</uv4>
-		<kds version="1.0.1">C:\Freescale\KDS_1.1.0</kds>
+		<kds version="1.0.1">C:\FREESC~1\KDS_11~1.0</kds>
 	</IDE_dir>
 	<software_debugger>
 		<trace32>C:/T32</trace32>
@@ -31,7 +31,7 @@
 		<pwd>ubuntu</pwd>
 	</FTP_server>
 	
-	<STAF_dir>c:/STAF</STAF_dir>
+	<STAF_dir>C:\STAF</STAF_dir>
 	<mingw>C:\MinGW</mingw>
 	<Scheduler_IP>10.192.225.198</Scheduler_IP>
 	<cmd_generator_IP>10.192.225.198</cmd_generator_IP>
@@ -46,19 +46,19 @@
 		
 	</tools>
 	
-	<FreeMV enable="yes">C:\Dpc/freemvbuild</FreeMV>
-	<FreeKV enable="yes">C:\Dpc/freekvbuild</FreeKV>
-	<FreeKV_demo enable="yes">C:\Dpc/freekv_demobuild</FreeKV_demo>
-	<FreeMV_ksdk enable="yes">C:\Dpc/freemvbuild</FreeMV_ksdk>
-	<FreeKV_usb enable="yes">C:\Dpc/freekv_demobuild</FreeKV_usb>
-	<FreeKV_unit_test enable="yes">C:\Dpc/freekv_demobuild</FreeKV_unit_test>
+	<FreeMV enable="no">C:\Dpc/FREEMV~1</FreeMV>
+	<FreeKV enable="no">C:\Dpc/FREEKV~1</FreeKV>
+	<FreeKV_demo enable="yes">C:\Dpc/FREEKV~3</FreeKV_demo>
+	<FreeMV_ksdk enable="no">C:\Dpc/FREEMV~1</FreeMV_ksdk>
+	<FreeKV_usb enable="yes">C:\Dpc/FREEKV~3</FreeKV_usb>
+	<FreeKV_unit_test enable="yes">C:\Dpc/FREEKV~3</FreeKV_unit_test>
 	<default_app_scope>auto</default_app_scope>
 	<default_app_value>1</default_app_value>
 
 
-	<local_ip>10.193.99.74</local_ip>
-	<local_mac>F0-1F-AF-00-5E-13</local_mac>
-	<machine_name>b46395-01</machine_name>
-	<token private="no">555</token>
+	<local_ip>10.193.99.164</local_ip>
+	<local_mac>00-24-D6-8B-5F-22</local_mac>
+	<machine_name>b51448-12</machine_name>
+	<token private="no">ddd</token>
 
 </MQX_CloudTest>

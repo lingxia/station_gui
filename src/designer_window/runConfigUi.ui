@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>678</width>
-    <height>496</height>
+    <height>486</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,7 +30,7 @@
    <property name="geometry">
     <rect>
      <x>190</x>
-     <y>70</y>
+     <y>60</y>
      <width>291</width>
      <height>51</height>
     </rect>
@@ -107,9 +107,9 @@
   <widget class="QListWidget" name="debuggerListWidget">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>140</y>
-     <width>111</width>
+     <x>10</x>
+     <y>130</y>
+     <width>141</width>
      <height>41</height>
     </rect>
    </property>
@@ -144,9 +144,9 @@
   <widget class="QStackedWidget" name="debuggerStackedWidget">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>140</y>
-     <width>551</width>
+     <x>150</x>
+     <y>130</y>
+     <width>511</width>
      <height>331</height>
     </rect>
    </property>
@@ -191,7 +191,7 @@
     <widget class="QPushButton" name="jlinkOpenButton">
      <property name="geometry">
       <rect>
-       <x>290</x>
+       <x>370</x>
        <y>20</y>
        <width>75</width>
        <height>23</height>
@@ -209,7 +209,7 @@
       <rect>
        <x>90</x>
        <y>20</y>
-       <width>181</width>
+       <width>261</width>
        <height>20</height>
       </rect>
      </property>
@@ -257,7 +257,7 @@
       <rect>
        <x>20</x>
        <y>100</y>
-       <width>511</width>
+       <width>471</width>
        <height>211</height>
       </rect>
      </property>
@@ -286,7 +286,7 @@
       <enum>Qt::ElideLeft</enum>
      </property>
      <attribute name="headerVisible">
-      <bool>false</bool>
+      <bool>true</bool>
      </attribute>
      <attribute name="headerCascadingSectionResizes">
       <bool>false</bool>
@@ -324,6 +324,28 @@
       </property>
      </column>
     </widget>
+    <widget class="QPushButton" name="jlinkRemoveButton">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>60</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>Remove the platform that do not need</string>
+     </property>
+     <property name="text">
+      <string>Remove</string>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="lauterbachPage">
     <widget class="QPushButton" name="lauterbachPlatformButton">
@@ -356,7 +378,7 @@
       <rect>
        <x>90</x>
        <y>20</y>
-       <width>181</width>
+       <width>261</width>
        <height>20</height>
       </rect>
      </property>
@@ -367,7 +389,7 @@
     <widget class="QPushButton" name="trace32OpenButton">
      <property name="geometry">
       <rect>
-       <x>290</x>
+       <x>370</x>
        <y>20</y>
        <width>75</width>
        <height>23</height>
@@ -420,7 +442,7 @@
       <rect>
        <x>20</x>
        <y>100</y>
-       <width>511</width>
+       <width>471</width>
        <height>211</height>
       </rect>
      </property>
@@ -482,51 +504,35 @@
       </property>
      </column>
     </widget>
+    <widget class="QPushButton" name="lauterbachRemoveButton">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>60</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>Remove the platform that do not need</string>
+     </property>
+     <property name="text">
+      <string>Remove</string>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
    </widget>
-  </widget>
-  <widget class="QPushButton" name="removeButton">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>300</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="statusTip">
-    <string>Remove the platform that do not need</string>
-   </property>
-   <property name="text">
-    <string>Remove</string>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>20</width>
-     <height>20</height>
-    </size>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="addButton">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>340</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="statusTip">
-    <string>Add all the platforms that you selected</string>
-   </property>
-   <property name="text">
-    <string>Add</string>
-   </property>
   </widget>
   <widget class="Line" name="line">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>120</y>
+     <y>110</y>
      <width>681</width>
      <height>16</height>
     </rect>
@@ -534,6 +540,85 @@
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
    </property>
+  </widget>
+  <widget class="QLabel" name="testSuiteLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>180</y>
+     <width>51</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="statusTip">
+    <string>Select the test suites that you need</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Test Suites&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QTreeWidget" name="testsuiteTreeWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>200</y>
+     <width>131</width>
+     <height>131</height>
+    </rect>
+   </property>
+   <property name="statusTip">
+    <string>Test Suite you have selected</string>
+   </property>
+   <property name="textElideMode">
+    <enum>Qt::ElideLeft</enum>
+   </property>
+   <attribute name="headerVisible">
+    <bool>false</bool>
+   </attribute>
+   <column>
+    <property name="text">
+     <string>Test Suite</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QWidget" name="verticalLayoutWidget_4">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>340</y>
+     <width>111</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QComboBox" name="testSuiteComboBox">
+      <property name="statusTip">
+       <string>Select test suite you need</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="testSuiteAddButton">
+      <property name="statusTip">
+       <string>Add the test suites you have selected</string>
+      </property>
+      <property name="text">
+       <string>Add</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="testSuiteRemoveButton">
+      <property name="statusTip">
+       <string>Remove the test suite you have selected</string>
+      </property>
+      <property name="text">
+       <string>Remove</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <tabstops>

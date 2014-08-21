@@ -18,6 +18,8 @@ sys.path.append(runStation_path)
 from getconfig import Getconfig
 from runConfigUi import Ui_runConfig
 import platform_list
+from get_local_config import Get_DP_info
+import win32api
 
 config_file_run = config_path + 'config.xml'
 config_run_file = Getconfig(config_file_run)
@@ -30,11 +32,15 @@ class runStationConfig(QtGui.QMainWindow):
         self.setFixedSize(self.width(), self.height())
         self.debuggerSelect()
         self.addOrRemovePlaforms()
-
+        self.dapeng_info = Get_DP_info()
+        self.tokenFlag = True
 
 #*******************some attributes******************
         self.device = platform_list.device_type
         self.platform_select = platform_list.platform_list
+        self.testsuite_select = platform_list.test_suite
+        self.testsuite_existed_seq = []
+        self.testsuite_existed_name = []
         self.jlink_platform_existed_seq = []
         self.jlink_platform_existed_name = []
         self.lauterbach_platform_existed_seq = []
@@ -50,6 +56,7 @@ class runStationConfig(QtGui.QMainWindow):
         self.saveAct.setShortcut("Ctrl+S")
         self.saveAct.setStatusTip("Save the Configuration File !")
         self.saveAct.whatsThis()
+        self.connect(self.saveAct, QtCore.SIGNAL("triggered()"),self.saveRun)
         self.connect(self.saveAct, QtCore.SIGNAL("triggered()"),self.saveEvent)
         
         self.quitAct = QtGui.QAction(QtGui.QIcon(pic_path + "/quit.png"),"Quit",self)
@@ -83,8 +90,15 @@ class runStationConfig(QtGui.QMainWindow):
         self.toolBar.addAction(self.saveAct)
         self.toolBar.addAction(self.quitAct)
         
+
+        self.addOrRemoveTestsuite()
+        self.getPreConfig()
         
-#***************some event with messagebox        
+        self.connect(self.runConfigWin.jlinkOpenButton, QtCore.SIGNAL("clicked()"),self.openJlink)
+        self.connect(self.runConfigWin.trace32OpenButton, QtCore.SIGNAL("clicked()"),self.openTrace)
+        
+        
+#***************some event with messagebox***************        
     def closeEvent(self,event):
         reply = QtGui.QMessageBox.warning(self, 'Warning', \
                                            'Are you sure to Quit ? Please make sure your Configurations had been Saved !',\
@@ -95,8 +109,11 @@ class runStationConfig(QtGui.QMainWindow):
             event.ignore()
     
     def saveEvent(self):
-        QtGui.QMessageBox.information(self,"Information",\
+        if self.tokenFlag == True:
+            QtGui.QMessageBox.information(self,"Information",\
                                           "The Configuration File has been Saved Successfully !", QtGui.QMessageBox.Ok)
+        elif self.tokenFlag == False:
+            pass
     
     def whatEvent(self):
         QtGui.QMessageBox.information(self,"What is this",\
@@ -123,10 +140,10 @@ class runStationConfig(QtGui.QMainWindow):
             self.runConfigWin.lauterbachPlatformComboBox.setItemText(num,self.platform_select[num])
         self.connect(self.runConfigWin.jlinkPlatformComboBox,QtCore.SIGNAL("activated(int)"),self.jlinkPlatformAdd)
         self.connect(self.runConfigWin.jlinkTreeWidget, QtCore.SIGNAL("itemActivated(QTreeWidgetItem*,int)"),self.jlinkGetCurrentItem)
-        self.connect(self.runConfigWin.removeButton,QtCore.SIGNAL("clicked()"),self.jlinkPlatformRemove)
+        self.connect(self.runConfigWin.jlinkRemoveButton,QtCore.SIGNAL("clicked()"),self.jlinkPlatformRemove)
         self.connect(self.runConfigWin.lauterbachPlatformComboBox,QtCore.SIGNAL("activated(int)"),self.lauterbachPlatformAdd)           
         self.connect(self.runConfigWin.lauterbachTreeWidget, QtCore.SIGNAL("itemActivated(QTreeWidgetItem*,int)"),self.lauterbachGetCurrentItem)
-        self.connect(self.runConfigWin.removeButton,QtCore.SIGNAL("clicked()"),self.lauterbachPlatformRemove)
+        self.connect(self.runConfigWin.lauterbachRemoveButton,QtCore.SIGNAL("clicked()"),self.lauterbachPlatformRemove)
         
 #*****************add platforms with jlink*******************
     def jlinkPlatformAdd(self):
@@ -144,7 +161,7 @@ class runStationConfig(QtGui.QMainWindow):
     def jlinkGetCurrentItem(self):
         self.currentItem = self.runConfigWin.jlinkTreeWidget.currentItem()
         if self.currentItem == None:
-            return
+            pass
         else:
             return self.currentItem
              
@@ -152,11 +169,11 @@ class runStationConfig(QtGui.QMainWindow):
     def jlinkPlatformRemove(self):
         self.currentItemGot = self.jlinkGetCurrentItem()
         if self.currentItemGot == None:
-            return
+            pass
         else:
             self.platformName = self.currentItemGot.text(0)
         if self.platformName in self.jlink_platform_existed_name:
-            self.runConfigWin.jlinkTreeWidget.takeTopLevelItem(self.runConfigWin.jlinkTreeWidget.indexOfTopLevelItem(self.currentItemGot))
+            self.runConfigWin.jlinkTreeWidget.takeTopLevelItem(self.runConfigWin.jlinkTreeWidget.indexOfTopLevelItem(self.currentItemGot))            
             self.jlink_platform_existed_name.remove(self.platformName)
             self.jlink_platform_existed_seq.remove(self.platform_select.index(self.platformName))
 
@@ -183,7 +200,6 @@ class runStationConfig(QtGui.QMainWindow):
         else:
             return self.currentItem
         
-        
              
 #*****************remove a platform of lauterbach*************************    
     def lauterbachPlatformRemove(self):
@@ -197,7 +213,6 @@ class runStationConfig(QtGui.QMainWindow):
             self.lauterbach_platform_existed_name.remove(self.platformName)
             self.lauterbach_platform_existed_seq.remove(self.platform_select.index(self.platformName))
 
-
             
 
 #*************Debugger configurate *****************
@@ -208,7 +223,7 @@ class runStationConfig(QtGui.QMainWindow):
        
 
  
- 
+
 #***********Different debugger configurate page*******    
     def debuggerPageShow(self):
         if self.runConfigWin.debuggerListWidget.isItemSelected(self.jlinkItem):
@@ -218,8 +233,335 @@ class runStationConfig(QtGui.QMainWindow):
         elif self.runConfigWin.debuggerListWidget.isItemSelected(self.lauterbachItem):
             self.runConfigWin.lauterbachPage.show()
             self.runConfigWin.jlinkPage.hide()
+
+#**********private station without set token, show the warning   
+    def tokenWarning(self):
+        QtGui.QMessageBox.warning(self, "Warning","Set a token please !", QtGui.QMessageBox.Ok)
+        
+    def getPreConfig(self):
+        tokenPre = config_run_file.getValue("token")
+        privatePre = config_run_file.getAttr("token","private")
+        
+        oobePre = config_run_file.getAttr("FreeMV", "enable")
+        ksdkoobePre = config_run_file.getAttr("FreeMV_ksdk", "enable")
+        ksvPre = config_run_file.getAttr("FreeKV", "enable")
+        demoPre = config_run_file.getAttr("FreeKV_demo", "enable")
+        usbPre = config_run_file.getAttr("FreeKV_usb", "enable")
+        unittestPre = config_run_file.getAttr("FreeKV_unit_test", "enable")
+        
+        jlinkPre = config_run_file.getValue("jlink")
+        trace32Pre = config_run_file.getValue("trace32")
+        jlinkFlagPre = config_run_file.getAttr("hardware_debugger", "jlink")
+        trace32FlagPre = config_run_file.getAttr("hardware_debugger", "lauterbach")
+        
+        if jlinkFlagPre == "yes":
+            try:
+                self.runConfigWin.jlinkLineEdit.setText(jlinkPre)
+            except Exception:
+                pass
+        else:
+            pass
+        
+        if trace32FlagPre == "yes":
+            try:
+                self.runConfigWin.trace32LineEdit.setText(trace32Pre)
+            except Exception:
+                pass
+        else:
+            pass
+        
+        if privatePre == "yes":
+            self.runConfigWin.tokenLineEdit.setText(tokenPre)
+            self.runConfigWin.privateCheckBox.setCheckState(QtCore.Qt.Checked)
+        else:
+            pass
         
         
+        if oobePre == "yes":
+            self.testsuite_existed_name.append(self.testsuite_select[0])
+            self.testsuite_existed_seq.append(0)
+            oobeTestsuite = QtGui.QTreeWidgetItem(self.runConfigWin.testsuiteTreeWidget)
+            editableFlag = oobeTestsuite.flags() 
+            oobeTestsuite.setFlags(editableFlag | QtCore.Qt.ItemIsEditable)
+            oobeTestsuite.setText(0,self.testsuite_select[0])
+        else:
+            pass
+        
+        if ksdkoobePre == "yes":
+            self.testsuite_existed_name.append(self.testsuite_select[1])
+            self.testsuite_existed_seq.append(1)
+            kskdoobeTestsuite = QtGui.QTreeWidgetItem(self.runConfigWin.testsuiteTreeWidget)
+            editableFlag = kskdoobeTestsuite.flags() 
+            kskdoobeTestsuite.setFlags(editableFlag | QtCore.Qt.ItemIsEditable)
+            kskdoobeTestsuite.setText(0,self.testsuite_select[1])
+        else:
+            pass
+        
+        if ksvPre == "yes":
+            self.testsuite_existed_name.append(self.testsuite_select[2])
+            self.testsuite_existed_seq.append(2)
+            ksvTestsuite = QtGui.QTreeWidgetItem(self.runConfigWin.testsuiteTreeWidget)
+            editableFlag = ksvTestsuite.flags() 
+            ksvTestsuite.setFlags(editableFlag | QtCore.Qt.ItemIsEditable)
+            ksvTestsuite.setText(0,self.testsuite_select[2])
+        else:
+            pass
+        
+        if demoPre == "yes":
+            self.testsuite_existed_name.append(self.testsuite_select[3])
+            self.testsuite_existed_seq.append(3)
+            demoTestsuite = QtGui.QTreeWidgetItem(self.runConfigWin.testsuiteTreeWidget)
+            editableFlag = demoTestsuite.flags() 
+            demoTestsuite.setFlags(editableFlag | QtCore.Qt.ItemIsEditable)
+            demoTestsuite.setText(0,self.testsuite_select[3])
+        else:
+            pass
+        
+        if usbPre == "yes":
+            self.testsuite_existed_name.append(self.testsuite_select[4])
+            self.testsuite_existed_seq.append(4)
+            usbTestsuite = QtGui.QTreeWidgetItem(self.runConfigWin.testsuiteTreeWidget)
+            editableFlag = usbTestsuite.flags() 
+            usbTestsuite.setFlags(editableFlag | QtCore.Qt.ItemIsEditable)
+            usbTestsuite.setText(0,self.testsuite_select[4])
+        else:
+            pass
+        
+        if unittestPre == "yes":
+            self.testsuite_existed_name.append(self.testsuite_select[5])
+            self.testsuite_existed_seq.append(5)
+            unittestTestsuite = QtGui.QTreeWidgetItem(self.runConfigWin.testsuiteTreeWidget)
+            editableFlag = unittestTestsuite.flags() 
+            unittestTestsuite.setFlags(editableFlag | QtCore.Qt.ItemIsEditable)
+            unittestTestsuite.setText(0,self.testsuite_select[5])
+        else:
+            pass
+        
+        
+#*********************get Pre platform********************        
+        platformPre = config_run_file.getChildTagList("device")
+        platformPreNum = len(platformPre)
+        if jlinkFlagPre == "yes":
+            for num in range(0,platformPreNum):
+                self.jlink_platform_existed_name.append(platformPre[num])
+                self.jlink_platform_existed_seq.append(self.platform_select.index(platformPre[num]))
+                device_type = config_run_file.getAttr(platformPre[num], "device_type")
+                debug_port = config_run_file.getAttr(platformPre[num], "debug_port")
+                serial_port = config_run_file.getAttr(platformPre[num], "serial_port")
+                jlinkPlatformPre = QtGui.QTreeWidgetItem(self.runConfigWin.jlinkTreeWidget)
+                jlinkEditableFlag = jlinkPlatformPre.flags() 
+                jlinkPlatformPre.setFlags(jlinkEditableFlag | QtCore.Qt.ItemIsEditable)
+                jlinkPlatformPre.setText(0,platformPre[num])
+                jlinkPlatformPre.setText(1,device_type)
+                jlinkPlatformPre.setText(2,debug_port)
+                jlinkPlatformPre.setText(3,serial_port)
+        else:
+            pass
+        
+        if trace32FlagPre == "yes":
+            for num in range(0,platformPreNum):
+                self.lauterbach_platform_existed_name.append(platformPre[num])
+                self.lauterbach_platform_existed_seq.append(self.platform_select.index(platformPre[num]))
+                device_type = config_run_file.getAttr(platformPre[num], "device_type")
+                serial_port = config_run_file.getAttr(platformPre[num], "serial_port")
+                lauterbachPlatformPre = QtGui.QTreeWidgetItem(self.runConfigWin.lauterbachTreeWidget)
+                lauterbachEditableFlag = lauterbachPlatformPre.flags() 
+                lauterbachPlatformPre.setFlags(lauterbachEditableFlag | QtCore.Qt.ItemIsEditable)
+                lauterbachPlatformPre.setText(0,platformPre[num])
+                lauterbachPlatformPre.setText(1,device_type)
+                lauterbachPlatformPre.setText(2,serial_port)
+        else:
+            pass            
+                            
+                
+            
+
+#******************open dir of jlink and trace32**********
+    def openJlink(self):
+        jlinkDir = QtGui.QFileDialog.getExistingDirectory(self, QtCore.QString(),\
+                                                          "C:/",QtGui.QFileDialog.ShowDirsOnly | QtGui.QFileDialog.DontResolveSymlinks)
+        self.runConfigWin.jlinkLineEdit.setText(jlinkDir)        
+    
+    def openTrace(self):
+        traceDir = QtGui.QFileDialog.getExistingDirectory(self, QtCore.QString(),\
+                                                          "C:/",QtGui.QFileDialog.ShowDirsOnly | QtGui.QFileDialog.DontResolveSymlinks)
+        self.runConfigWin.trace32LineEdit.setText(traceDir)
+        
+        
+#***********************save configuration***************
+    def saveRun(self):
+        
+#****************configurate jlink and trace32 path***************
+        jlinkSet = self.runConfigWin.jlinkLineEdit.text()
+        if jlinkSet.__str__() == "":
+            config_run_file.setAttr("hardware_debugger", "jlink", "no")
+            config_run_file.setValue("jlink", "")
+        else:
+            jlinkShort = win32api.GetShortPathName(jlinkSet.__str__())
+            config_run_file.setAttr("hardware_debugger", "jlink", "yes")
+            config_run_file.setValue("jlink", jlinkShort)
+            
+        traceSet = self.runConfigWin.trace32LineEdit.text()        
+        if traceSet.__str__() == "":
+            config_run_file.setAttr("hardware_debugger", "lauterbach", "no")
+            config_run_file.setValue("trace32", "")
+        else:
+            traceShort = win32api.GetShortPathName(traceSet.__str__())
+            config_run_file.setAttr("hardware_debugger", "lauterbach", "yes")
+            config_run_file.setValue("trace32", traceShort)            
+        
+        
+#**********************configurate private and token*******************        
+        tokenSet = self.runConfigWin.tokenLineEdit.text()        
+        if self.runConfigWin.privateCheckBox.checkState() == QtCore.Qt.Checked and tokenSet != "":
+            self.tokenFlag = True
+            config_run_file.setAttr("token", "private", "yes")
+            config_run_file.setValue("token", tokenSet.__str__())
+        elif self.runConfigWin.privateCheckBox.checkState() == QtCore.Qt.Checked and tokenSet == "":
+            self.tokenFlag = False
+            self.tokenWarning()     
+        else:
+            self.tokenFlag = True
+            config_run_file.setAttr("token", "private", "no")
+
+
+#*****************following functions are about testsuite*************
+    def addOrRemoveTestsuite(self):
+        length = len(self.testsuite_select)
+        
+        for num in range(0,length):
+            self.runConfigWin.testSuiteComboBox.addItem("")
+            self.runConfigWin.testSuiteComboBox.setItemText(num,self.testsuite_select[num])
+        self.connect(self.runConfigWin.testSuiteComboBox,QtCore.SIGNAL("activated(int)"),self.testsuiteFill)
+        self.connect(self.runConfigWin.testsuiteTreeWidget, QtCore.SIGNAL("itemActivated(QTreeWidgetItem*,int)"),self.testsuiteGetCurrentItem)
+        self.connect(self.runConfigWin.testSuiteRemoveButton,QtCore.SIGNAL("clicked()"),self.testsuitePlatformRemove)
+        self.connect(self.runConfigWin.testSuiteAddButton, QtCore.SIGNAL("clicked()"),self.testsuiteAdd)
+
+    def testsuiteFill(self):
+        seq = self.runConfigWin.testSuiteComboBox.currentIndex()
+        if (self.runConfigWin.testSuiteComboBox.itemText(seq) == self.testsuite_select[seq]) and seq not in self.testsuite_existed_seq:
+            self.testsuite_existed_seq.append(seq)
+            self.testsuite_existed_name.append(self.testsuite_select[seq])
+            self.Testsuite = QtGui.QTreeWidgetItem(self.runConfigWin.testsuiteTreeWidget)
+            editableFlag = self.Testsuite.flags() 
+            self.Testsuite.setFlags(editableFlag | QtCore.Qt.ItemIsEditable)
+            self.Testsuite.setText(0,self.testsuite_select[seq])
+            
+    def testsuiteGetCurrentItem(self):
+        self.currentItem = self.runConfigWin.testsuiteTreeWidget.currentItem()
+        if self.currentItem == None:
+            pass
+        else:
+            return self.currentItem
+        
+    def testsuitePlatformRemove(self):
+        self.currentItemGot = self.testsuiteGetCurrentItem()
+        if self.currentItemGot == None:
+            pass
+        else:
+            self.testsuiteName = self.currentItemGot.text(0)
+        if self.testsuiteName in self.testsuite_existed_name:
+            self.runConfigWin.testsuiteTreeWidget.takeTopLevelItem(self.runConfigWin.testsuiteTreeWidget.indexOfTopLevelItem(self.currentItemGot))
+            self.testsuite_existed_name.remove(self.testsuiteName)
+            self.testsuite_existed_seq.remove(self.testsuite_select.index(self.testsuiteName))
+            
+    def testsuiteAdd(self):
+        flag = True
+        length = len(self.testsuite_select)
+        if self.dapeng_info["exist"] == "no":
+            pass
+        else:
+            freemv_run_path_long = self.dapeng_info['path'] + '/freemvrun'
+            freekv_run_path_long = self.dapeng_info['path'] + '/freekvrun'
+            freekv_demo_run_path_long = self.dapeng_info['path'] + '/freekv_demorun'
+            freemv_run_path = win32api.GetShortPathName(freemv_run_path_long)
+            freekv_run_path = win32api.GetShortPathName(freekv_run_path_long)
+            freekv_demo_run_path = win32api.GetShortPathName(freekv_demo_run_path_long)
+        
+        for num in range(0,length):
+            try:
+                testsuiteIn = self.runConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
+                if testsuiteIn == "KSDK-DEMO":
+                    config_run_file.setAttr("FreeKV_demo", "enable", "yes")
+                    config_run_file.setValue("FreeKV_demo", freekv_demo_run_path)
+                    break
+                else:
+                    config_run_file.setAttr("FreeKV_demo", "enable", "no")                   
+            except Exception:
+                pass
+            
+        for num in range(0,length):
+            try:
+                testsuiteIn = self.runConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
+                if testsuiteIn == "KSDK-USB":
+                    config_run_file.setAttr("FreeKV_usb", "enable", "yes")
+                    config_run_file.setValue("FreeKV_usb", freekv_demo_run_path)
+                    break
+                else:
+                    config_run_file.setAttr("FreeKV_usb", "enable", "no")                   
+            except Exception:
+                pass
+
+        for num in range(0,length):
+            try:
+                testsuiteIn = self.runConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
+                if testsuiteIn == "KSDK-UnitTest":
+                    config_run_file.setAttr("FreeKV_unit_test", "enable", "yes")
+                    config_run_file.setValue("FreeKV_unit_test", freekv_demo_run_path)
+                    break
+                else:
+                    config_run_file.setAttr("FreeKV_unit_test", "enable", "no")                   
+            except Exception:
+                pass
+            
+        for num in range(0,length):
+            try:
+                testsuiteIn = self.runConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
+                if testsuiteIn == "MQX-OOBE":
+                    config_run_file.setAttr("FreeMV", "enable", "yes")
+                    config_run_file.setValue("FreeMV", freemv_run_path)
+                    break
+                else:
+                    config_run_file.setAttr("FreeMV", "enable", "no")                   
+            except Exception:
+                pass               
+
+        for num in range(0,length):
+            try:
+                testsuiteIn = self.runConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
+                if testsuiteIn == "KSDK-MQX-OOBE":
+                    config_run_file.setAttr("FreeMV_ksdk", "enable", "yes")
+                    config_run_file.setValue("FreeMV_ksdk", freemv_run_path)
+                    break
+                else:
+                    config_run_file.setAttr("FreeMV_ksdk", "enable", "no")                   
+            except Exception:
+                pass    
+
+        for num in range(0,length):
+            try:
+                testsuiteIn = self.runConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
+                if testsuiteIn == "KSV":
+                    config_run_file.setAttr("FreeKV", "enable", "yes")
+                    config_run_file.setValue("FreeKV", freekv_run_path)
+                    break
+                else:
+                    config_run_file.setAttr("FreeKV", "enable", "no")                   
+            except Exception:
+                pass 
+
+        if self.runConfigWin.testsuiteTreeWidget.topLevelItem(0) == None and flag == True:
+            flag = False
+            QtGui.QMessageBox.information(self,"Warning","You have not select any Test Suite, please select at least one !",QtGui.QMessageBox.Ok)
+        else:
+            pass    
+
+        if flag == True:
+            QtGui.QMessageBox.information(self,"Information","Add the Test Suites successful !",QtGui.QMessageBox.Ok)           
+
+                
+    
+    
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
     runTestWin = runStationConfig()
