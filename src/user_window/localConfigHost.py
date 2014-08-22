@@ -78,21 +78,22 @@ class localEnvConfig(QtGui.QMainWindow):
         
         self.toolBar.addAction(self.saveAct)
         self.toolBar.addAction(self.quitAct)
-        #****************open staf dir************************
+        
+#****************open staf dir************************
         self.connect(self.localConfigWin.stafOpenButton, QtCore.SIGNAL("clicked()"), self.openStaf)
 
 #****************config the local environment*********
         self.configLocal()
         
-        self.processDialog = QtGui.QProgressDialog()
-        self.processDialog.setBar(QtGui.QProgressBar())
-        self.processDialog.setLabelText("ddddddd")
-        self.processDialog.setMaximum(100)
-        self.processDialog.setMinimum(0)
-        self.processDialog.setMinimumDuration(4)
-        self.processDialog.setMinimumDuration(10)
+#        self.processDialog = QtGui.QProgressDialog()
+#        self.processDialog.setBar(QtGui.QProgressBar())
+#        self.processDialog.setLabelText("ddddddd")
+#        self.processDialog.setMaximum(100)
+#        self.processDialog.setMinimum(0)
+#        self.processDialog.setMinimumDuration(4)
+#        self.processDialog.setMinimumDuration(10)
         
-        self.processbarThread = threading.Thread(name = 'worker',target = self.processBar)
+#        self.processbarThread = threading.Thread(name = 'worker',target = self.processBar)
 #        self.stafThread = threading.Thread(name = 'staf',target = self.stafReset)
         
 
@@ -182,8 +183,8 @@ class localEnvConfig(QtGui.QMainWindow):
         
 #*********************restart staf**********************       
         #self.stafThread.start()
-        self.processbarThread.start()
-        reset_staf()
+#        self.processbarThread.start()
+#        reset_staf()
            
         
     

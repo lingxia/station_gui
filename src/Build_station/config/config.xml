@@ -8,8 +8,8 @@
 	<NEW_repo_dir>c:/mqx_cloud_repo</NEW_repo_dir>
 	<IDE cw10="yes" cw10gcc="yes" gcc_arm="yes" iar="yes" kds="yes" uv4="yes">compilers which station support</IDE>
 	<IDE_dir>
-		<cw10 version="10.4">C:\gitlearn</cw10>
-		<cw10gcc version="10.4">C:\gitlearn</cw10gcc>
+		<cw10 version="10.4">C:\FREEKV~1\MAINTA~1\yaml</cw10>
+		<cw10gcc version="10.4">C:\FREEKV~1\MAINTA~1\yaml</cw10gcc>
 		<gcc_arm version="4.7">C:\GNUTOO~1\44068~1.820</gcc_arm>
 		<iar version="7.1">C:/IARSYS~1/EMBEDD~1</iar>
 		<uv4 version="v5.00">C:/Keil_v5/UV4</uv4>
@@ -46,12 +46,12 @@
 		
 	</tools>
 	
-	<FreeMV enable="no">C:\Dpc/FREEMV~1</FreeMV>
+	<FreeMV enable="yes">C:\Dpc/FREEMV~1</FreeMV>
 	<FreeKV enable="no">C:\Dpc/FREEKV~1</FreeKV>
-	<FreeKV_demo enable="yes">C:\Dpc/FREEKV~3</FreeKV_demo>
+	<FreeKV_demo enable="no">C:\Dpc/FREEKV~3</FreeKV_demo>
 	<FreeMV_ksdk enable="no">C:\Dpc/FREEMV~1</FreeMV_ksdk>
-	<FreeKV_usb enable="yes">C:\Dpc/FREEKV~3</FreeKV_usb>
-	<FreeKV_unit_test enable="yes">C:\Dpc/FREEKV~3</FreeKV_unit_test>
+	<FreeKV_usb enable="no">C:\Dpc/FREEKV~3</FreeKV_usb>
+	<FreeKV_unit_test enable="no">C:\Dpc/FREEKV~3</FreeKV_unit_test>
 	<default_app_scope>auto</default_app_scope>
 	<default_app_value>1</default_app_value>
 
@@ -59,6 +59,6 @@
 	<local_ip>10.193.99.164</local_ip>
 	<local_mac>00-24-D6-8B-5F-22</local_mac>
 	<machine_name>b51448-12</machine_name>
-	<token private="no">ddd</token>
+	<token private="yes">ffffffff</token>
 
 </MQX_CloudTest>

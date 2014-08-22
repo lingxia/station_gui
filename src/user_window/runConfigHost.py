@@ -56,7 +56,7 @@ class runStationConfig(QtGui.QMainWindow):
         self.saveAct.setShortcut("Ctrl+S")
         self.saveAct.setStatusTip("Save the Configuration File !")
         self.saveAct.whatsThis()
-        self.connect(self.saveAct, QtCore.SIGNAL("triggered()"),self.saveRun)
+        self.connect(self.saveAct, QtCore.SIGNAL("triggered()"),self.saveToken)
         self.connect(self.saveAct, QtCore.SIGNAL("triggered()"),self.saveEvent)
         
         self.quitAct = QtGui.QAction(QtGui.QIcon(pic_path + "/quit.png"),"Quit",self)
@@ -96,6 +96,8 @@ class runStationConfig(QtGui.QMainWindow):
         
         self.connect(self.runConfigWin.jlinkOpenButton, QtCore.SIGNAL("clicked()"),self.openJlink)
         self.connect(self.runConfigWin.trace32OpenButton, QtCore.SIGNAL("clicked()"),self.openTrace)
+        self.connect(self.runConfigWin.jlinkAddButton, QtCore.SIGNAL("clicked()"),self.saveJlinkPlatform)
+        self.connect(self.runConfigWin.traceAddButton, QtCore.SIGNAL("clicked()"),self.saveTracePlatform)
         
         
 #***************some event with messagebox***************        
@@ -343,33 +345,39 @@ class runStationConfig(QtGui.QMainWindow):
         platformPreNum = len(platformPre)
         if jlinkFlagPre == "yes":
             for num in range(0,platformPreNum):
-                self.jlink_platform_existed_name.append(platformPre[num])
-                self.jlink_platform_existed_seq.append(self.platform_select.index(platformPre[num]))
-                device_type = config_run_file.getAttr(platformPre[num], "device_type")
-                debug_port = config_run_file.getAttr(platformPre[num], "debug_port")
-                serial_port = config_run_file.getAttr(platformPre[num], "serial_port")
-                jlinkPlatformPre = QtGui.QTreeWidgetItem(self.runConfigWin.jlinkTreeWidget)
-                jlinkEditableFlag = jlinkPlatformPre.flags() 
-                jlinkPlatformPre.setFlags(jlinkEditableFlag | QtCore.Qt.ItemIsEditable)
-                jlinkPlatformPre.setText(0,platformPre[num])
-                jlinkPlatformPre.setText(1,device_type)
-                jlinkPlatformPre.setText(2,debug_port)
-                jlinkPlatformPre.setText(3,serial_port)
+                if config_run_file.getValue(platformPre[num]) == "yes":
+                    self.jlink_platform_existed_name.append(platformPre[num])
+                    self.jlink_platform_existed_seq.append(self.platform_select.index(platformPre[num]))
+                    device_type = config_run_file.getAttr(platformPre[num], "device_type")
+                    debug_port = config_run_file.getAttr(platformPre[num], "debug_port")
+                    serial_port = config_run_file.getAttr(platformPre[num], "serial_port")
+                    jlinkPlatformPre = QtGui.QTreeWidgetItem(self.runConfigWin.jlinkTreeWidget)
+                    jlinkEditableFlag = jlinkPlatformPre.flags() 
+                    jlinkPlatformPre.setFlags(jlinkEditableFlag | QtCore.Qt.ItemIsEditable)
+                    jlinkPlatformPre.setText(0,platformPre[num])
+                    jlinkPlatformPre.setText(1,device_type)
+                    jlinkPlatformPre.setText(2,debug_port)
+                    jlinkPlatformPre.setText(3,serial_port)
+                else:
+                    pass
         else:
             pass
         
         if trace32FlagPre == "yes":
             for num in range(0,platformPreNum):
-                self.lauterbach_platform_existed_name.append(platformPre[num])
-                self.lauterbach_platform_existed_seq.append(self.platform_select.index(platformPre[num]))
-                device_type = config_run_file.getAttr(platformPre[num], "device_type")
-                serial_port = config_run_file.getAttr(platformPre[num], "serial_port")
-                lauterbachPlatformPre = QtGui.QTreeWidgetItem(self.runConfigWin.lauterbachTreeWidget)
-                lauterbachEditableFlag = lauterbachPlatformPre.flags() 
-                lauterbachPlatformPre.setFlags(lauterbachEditableFlag | QtCore.Qt.ItemIsEditable)
-                lauterbachPlatformPre.setText(0,platformPre[num])
-                lauterbachPlatformPre.setText(1,device_type)
-                lauterbachPlatformPre.setText(2,serial_port)
+                if config_run_file.getValue(platformPre[num]) == "yes":
+                    self.lauterbach_platform_existed_name.append(platformPre[num])
+                    self.lauterbach_platform_existed_seq.append(self.platform_select.index(platformPre[num]))
+                    device_type = config_run_file.getAttr(platformPre[num], "device_type")
+                    serial_port = config_run_file.getAttr(platformPre[num], "serial_port")
+                    lauterbachPlatformPre = QtGui.QTreeWidgetItem(self.runConfigWin.lauterbachTreeWidget)
+                    lauterbachEditableFlag = lauterbachPlatformPre.flags() 
+                    lauterbachPlatformPre.setFlags(lauterbachEditableFlag | QtCore.Qt.ItemIsEditable)
+                    lauterbachPlatformPre.setText(0,platformPre[num])
+                    lauterbachPlatformPre.setText(1,device_type)
+                    lauterbachPlatformPre.setText(2,serial_port)
+                else:
+                    pass
         else:
             pass            
                             
@@ -386,43 +394,6 @@ class runStationConfig(QtGui.QMainWindow):
         traceDir = QtGui.QFileDialog.getExistingDirectory(self, QtCore.QString(),\
                                                           "C:/",QtGui.QFileDialog.ShowDirsOnly | QtGui.QFileDialog.DontResolveSymlinks)
         self.runConfigWin.trace32LineEdit.setText(traceDir)
-        
-        
-#***********************save configuration***************
-    def saveRun(self):
-        
-#****************configurate jlink and trace32 path***************
-        jlinkSet = self.runConfigWin.jlinkLineEdit.text()
-        if jlinkSet.__str__() == "":
-            config_run_file.setAttr("hardware_debugger", "jlink", "no")
-            config_run_file.setValue("jlink", "")
-        else:
-            jlinkShort = win32api.GetShortPathName(jlinkSet.__str__())
-            config_run_file.setAttr("hardware_debugger", "jlink", "yes")
-            config_run_file.setValue("jlink", jlinkShort)
-            
-        traceSet = self.runConfigWin.trace32LineEdit.text()        
-        if traceSet.__str__() == "":
-            config_run_file.setAttr("hardware_debugger", "lauterbach", "no")
-            config_run_file.setValue("trace32", "")
-        else:
-            traceShort = win32api.GetShortPathName(traceSet.__str__())
-            config_run_file.setAttr("hardware_debugger", "lauterbach", "yes")
-            config_run_file.setValue("trace32", traceShort)            
-        
-        
-#**********************configurate private and token*******************        
-        tokenSet = self.runConfigWin.tokenLineEdit.text()        
-        if self.runConfigWin.privateCheckBox.checkState() == QtCore.Qt.Checked and tokenSet != "":
-            self.tokenFlag = True
-            config_run_file.setAttr("token", "private", "yes")
-            config_run_file.setValue("token", tokenSet.__str__())
-        elif self.runConfigWin.privateCheckBox.checkState() == QtCore.Qt.Checked and tokenSet == "":
-            self.tokenFlag = False
-            self.tokenWarning()     
-        else:
-            self.tokenFlag = True
-            config_run_file.setAttr("token", "private", "no")
 
 
 #*****************following functions are about testsuite*************
@@ -559,8 +530,211 @@ class runStationConfig(QtGui.QMainWindow):
         if flag == True:
             QtGui.QMessageBox.information(self,"Information","Add the Test Suites successful !",QtGui.QMessageBox.Ok)           
 
+
+#***********************save configuration***************
+    def saveToken(self):
+        
+#***************configurate and save private and token*****************       
+        tokenSet = self.runConfigWin.tokenLineEdit.text()        
+        if self.runConfigWin.privateCheckBox.checkState() == QtCore.Qt.Checked and tokenSet != "":
+            self.tokenFlag = True
+            config_run_file.setAttr("token", "private", "yes")
+            config_run_file.setValue("token", tokenSet.__str__())
+        elif self.runConfigWin.privateCheckBox.checkState() == QtCore.Qt.Checked and tokenSet == "":
+            self.tokenFlag = False
+            self.tokenWarning()     
+        else:
+            self.tokenFlag = True
+            config_run_file.setAttr("token", "private", "no")
+
+
+#*******************save platform warning********************
+    def saveJlinkPlatform(self):
+        
+#****************configurate jlink and trace32 path***************
+        jlinkSet = self.runConfigWin.jlinkLineEdit.text()
+        if jlinkSet.__str__() == "":
+            config_run_file.setAttr("hardware_debugger", "jlink", "no")
+            config_run_file.setValue("jlink", "")
+        else:
+            jlinkShort = win32api.GetShortPathName(jlinkSet.__str__())
+            config_run_file.setAttr("hardware_debugger", "jlink", "yes")
+            config_run_file.setValue("jlink", jlinkShort)
+            
+        traceSet = self.runConfigWin.trace32LineEdit.text()        
+        if traceSet.__str__() == "":
+            config_run_file.setAttr("hardware_debugger", "lauterbach", "no")
+            config_run_file.setValue("trace32", "")
+        else:
+            traceShort = win32api.GetShortPathName(traceSet.__str__())
+            config_run_file.setAttr("hardware_debugger", "lauterbach", "yes")
+            config_run_file.setValue("trace32", traceShort)            
+
+        flagJlink = config_run_file.getAttr("hardware_debugger", "jlink")
+        flagTrace = config_run_file.getAttr("hardware_debugger", "lauterbach")
                 
-    
+        if flagJlink == "yes" and flagTrace == "no":
+            if self.runConfigWin.jlinkTreeWidget.topLevelItem(0) == None:
+                QtGui.QMessageBox.warning(self,"Warning","You have not add any Platform for Jlink, please add at least one !",QtGui.QMessageBox.Ok)
+            else:
+                self.savePlatform()
+                QtGui.QMessageBox.information(self,"Information","Add platforms for Jlink successful ! Save the configuration please !",QtGui.QMessageBox.Ok)
+
+
+        elif flagTrace == "no" and flagJlink == "no":
+                QtGui.QMessageBox.warning(self,"Warning","You have not chose any debugger, chose one please !",QtGui.QMessageBox.Ok)
+        
+        elif flagTrace == "yes" and flagJlink == "yes":
+                QtGui.QMessageBox.information(self,"Warning","Only one debugger is allowed !",QtGui.QMessageBox.Ok)
+                
+                
+    def saveTracePlatform(self):
+        
+#****************configurate jlink and trace32 path***************
+        jlinkSet = self.runConfigWin.jlinkLineEdit.text()
+        if jlinkSet.__str__() == "":
+            config_run_file.setAttr("hardware_debugger", "jlink", "no")
+            config_run_file.setValue("jlink", "")
+        else:
+            jlinkShort = win32api.GetShortPathName(jlinkSet.__str__())
+            config_run_file.setAttr("hardware_debugger", "jlink", "yes")
+            config_run_file.setValue("jlink", jlinkShort)
+            
+        traceSet = self.runConfigWin.trace32LineEdit.text()        
+        if traceSet.__str__() == "":
+            config_run_file.setAttr("hardware_debugger", "lauterbach", "no")
+            config_run_file.setValue("trace32", "")
+        else:
+            traceShort = win32api.GetShortPathName(traceSet.__str__())
+            config_run_file.setAttr("hardware_debugger", "lauterbach", "yes")
+            config_run_file.setValue("trace32", traceShort)            
+
+        flagJlink = config_run_file.getAttr("hardware_debugger", "jlink")
+        flagTrace = config_run_file.getAttr("hardware_debugger", "lauterbach")
+
+        if flagTrace == "yes" and flagJlink == "no":
+            if self.runConfigWin.lauterbachTreeWidget.topLevelItem(0) == None:
+                QtGui.QMessageBox.warning(self,"Warning","You have not add any Platform for Lauterbach, please add at least one !",QtGui.QMessageBox.Ok)
+            else:
+                self.savePlatform()
+                QtGui.QMessageBox.information(self,"Information","Add platforms for Lauterbach successful ! Save the configuration please !",QtGui.QMessageBox.Ok)
+        
+        elif flagTrace == "no" and flagJlink == "no":
+                QtGui.QMessageBox.warning(self,"Warning","You have not chose any debugger, chose one please !",QtGui.QMessageBox.Ok)
+        
+        elif flagTrace == "yes" and flagJlink == "yes":
+                QtGui.QMessageBox.information(self,"Warning","Only one debugger is allowed !",QtGui.QMessageBox.Ok)
+
+
+#*********************configurate and save platforms********************
+    def savePlatform(self):
+        platform_len = len(self.platform_select)
+        platform_in_config = config_run_file.getChildTagList("device")
+        platform_in_len = len(platform_in_config)
+        platform_set = []
+        platform_set_len = 0
+        jlinkFlag = config_run_file.getAttr("hardware_debugger", "jlink")
+        traceFlag = config_run_file.getAttr("hardware_debugger", "lauterbach")
+
+#***********************jlink platform configurate*********************
+        if jlinkFlag == "yes":
+            for num in range(0,platform_len):
+                try:
+                    platformAdd = self.runConfigWin.jlinkTreeWidget.topLevelItem(num).text(0)
+                    platform = platformAdd.__str__()
+                    if platform != "":
+                        platform_set.append(platform)
+                        platform_set_len += 1
+                    else:
+                            pass
+                except Exception:
+                    pass
+     
+            for num in range(0,platform_set_len):
+                try:
+                    platformSet = self.runConfigWin.jlinkTreeWidget.topLevelItem(num).text(0)       
+                    deviceSet = self.runConfigWin.jlinkTreeWidget.topLevelItem(num).text(1)
+                    debugSet = self.runConfigWin.jlinkTreeWidget.topLevelItem(num).text(2)
+                    serialSet = self.runConfigWin.jlinkTreeWidget.topLevelItem(num).text(3)
+                    platformStr = platformSet.__str__()
+                    deviceStr = deviceSet.__str__()
+                    debugStr = debugSet.__str__()
+                    serialStr = serialSet.__str__()
+                    platformFlag = config_run_file.getValue(platformStr)
+                except Exception:
+                    pass
+                if platformStr in platform_in_config and platformFlag == "yes":
+                    config_run_file.setAttr(platformStr, "debug_port", debugStr)
+                    config_run_file.setAttr(platformStr, "serial_port", serialStr)
+                    config_run_file.setAttr(platformStr, "device_type", deviceStr)
+                elif platformStr in platform_in_config and platformFlag != "yes":
+                    config_run_file.setValue(platformStr, "yes")
+                    config_run_file.setAttr(platformStr, "debug_port", debugStr)
+                    config_run_file.setAttr(platformStr, "serial_port", serialStr)
+                    config_run_file.setAttr(platformStr, "device_type", deviceStr)
+                elif platformStr not in platform_in_config:
+                    platformAttrDic = {"debug_port":debugStr, "device_type":deviceStr,"serial_port":serialStr}
+                    config_run_file.addChildAttr("device", platformStr, "yes", platformAttrDic)
+                else:
+                    pass
+            
+            for num in range(0,platform_in_len):
+                if platform_in_config[num] not in platform_set:
+                    config_run_file.setValue(platform_in_config[num], "no")
+                else:
+                    pass
+        else:
+            pass
+
+#***********************lauterbach platform configurate************
+        if traceFlag == "yes":
+            for num in range(0,platform_len):
+                try:
+                    platformAdd = self.runConfigWin.lauterbachTreeWidget.topLevelItem(num).text(0)
+                    platform = platformAdd.__str__()
+                    if platform != "":
+                        platform_set.append(platform)
+                        platform_set_len += 1
+                    else:
+                            pass
+                except Exception:
+                    pass
+     
+            for num in range(0,platform_set_len):
+                try:
+                    platformSet = self.runConfigWin.lauterbachTreeWidget.topLevelItem(num).text(0)       
+                    deviceSet = self.runConfigWin.lauterbachTreeWidget.topLevelItem(num).text(1)
+                    serialSet = self.runConfigWin.lauterbachTreeWidget.topLevelItem(num).text(2)
+                    platformStr = platformSet.__str__()
+                    deviceStr = deviceSet.__str__()
+                    debugStr = ""
+                    serialStr = serialSet.__str__()
+                    platformFlag = config_run_file.getValue(platformStr)
+                except Exception:
+                    pass
+                if platformStr in platform_in_config and platformFlag == "yes":
+                    config_run_file.setAttr(platformStr, "debug_port", debugStr)
+                    config_run_file.setAttr(platformStr, "serial_port", serialStr)
+                    config_run_file.setAttr(platformStr, "device_type", deviceStr)
+                elif platformStr in platform_in_config and platformFlag != "yes":
+                    config_run_file.setValue(platformStr, "yes")
+                    config_run_file.setAttr(platformStr, "debug_port", debugStr)
+                    config_run_file.setAttr(platformStr, "serial_port", serialStr)
+                    config_run_file.setAttr(platformStr, "device_type", deviceStr)
+                elif platformStr not in platform_in_config:
+                    platformAttrDic = {"debug_port":debugStr, "device_type":deviceStr,"serial_port":serialStr}
+                    config_run_file.addChildAttr("device", platformStr, "yes", platformAttrDic)
+                else:
+                    pass
+            
+            for num in range(0,platform_in_len):
+                if platform_in_config[num] not in platform_set:
+                    config_run_file.setValue(platform_in_config[num], "no")
+                else:
+                    pass
+        else:
+            pass
+                        
     
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)

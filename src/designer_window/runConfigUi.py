@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'runConfigUi.ui'
 #
-# Created: Thu Aug 21 23:07:17 2014
+# Created: Fri Aug 22 17:03:34 2014
 #      by: PyQt4 UI code generator 4.11.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -123,6 +123,9 @@ class Ui_runConfig(object):
         self.jlinkRemoveButton.setGeometry(QtCore.QRect(370, 60, 75, 23))
         self.jlinkRemoveButton.setIconSize(QtCore.QSize(20, 20))
         self.jlinkRemoveButton.setObjectName(_fromUtf8("jlinkRemoveButton"))
+        self.jlinkAddButton = QtGui.QPushButton(self.jlinkPage)
+        self.jlinkAddButton.setGeometry(QtCore.QRect(270, 60, 75, 23))
+        self.jlinkAddButton.setObjectName(_fromUtf8("jlinkAddButton"))
         self.debuggerStackedWidget.addWidget(self.jlinkPage)
         self.lauterbachPage = QtGui.QWidget()
         self.lauterbachPage.setObjectName(_fromUtf8("lauterbachPage"))
@@ -165,6 +168,9 @@ class Ui_runConfig(object):
         self.lauterbachRemoveButton.setGeometry(QtCore.QRect(370, 60, 75, 23))
         self.lauterbachRemoveButton.setIconSize(QtCore.QSize(20, 20))
         self.lauterbachRemoveButton.setObjectName(_fromUtf8("lauterbachRemoveButton"))
+        self.traceAddButton = QtGui.QPushButton(self.lauterbachPage)
+        self.traceAddButton.setGeometry(QtCore.QRect(270, 60, 75, 23))
+        self.traceAddButton.setObjectName(_fromUtf8("traceAddButton"))
         self.debuggerStackedWidget.addWidget(self.lauterbachPage)
         self.line = QtGui.QFrame(runConfig)
         self.line.setGeometry(QtCore.QRect(0, 110, 681, 16))
@@ -230,6 +236,7 @@ class Ui_runConfig(object):
         self.jlinkTreeWidget.headerItem().setText(3, _translate("runConfig", "Serial_Port", None))
         self.jlinkRemoveButton.setStatusTip(_translate("runConfig", "Remove the platform that do not need", None))
         self.jlinkRemoveButton.setText(_translate("runConfig", "Remove", None))
+        self.jlinkAddButton.setText(_translate("runConfig", "Add", None))
         self.lauterbachPlatformButton.setStatusTip(_translate("runConfig", "Select the platforms you need", None))
         self.lauterbachPlatformButton.setText(_translate("runConfig", "Platform", None))
         self.trace32LineEdit.setStatusTip(_translate("runConfig", "Configurate your Trace32 path", None))
@@ -243,6 +250,7 @@ class Ui_runConfig(object):
         self.lauterbachTreeWidget.headerItem().setText(2, _translate("runConfig", "Serial_Port", None))
         self.lauterbachRemoveButton.setStatusTip(_translate("runConfig", "Remove the platform that do not need", None))
         self.lauterbachRemoveButton.setText(_translate("runConfig", "Remove", None))
+        self.traceAddButton.setText(_translate("runConfig", "Add", None))
         self.testSuiteLabel.setStatusTip(_translate("runConfig", "Select the test suites that you need", None))
         self.testSuiteLabel.setText(_translate("runConfig", "<html><head/><body><p>Test Suites</p></body></html>", None))
         self.testsuiteTreeWidget.setStatusTip(_translate("runConfig", "Test Suite you have selected", None))
