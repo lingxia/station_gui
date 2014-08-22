@@ -78,6 +78,7 @@ class buildStationConfig(QtGui.QMainWindow):
         self.toolBar.addAction(self.quitAct)
         
         self.tokenFlag = True
+        self.testsuiteFlag = True
         self.ide_info = Get_IDE_info()
         self.dapeng_info = Get_DP_info()
 
@@ -107,10 +108,11 @@ class buildStationConfig(QtGui.QMainWindow):
             event.ignore()
     
     def saveEvent(self):
-        if self.tokenFlag == True:
+        if self.tokenFlag == True and self.testsuiteFlag == True:
             QtGui.QMessageBox.information(self,"Information",\
                                             "The Configuration File has been Saved Successfully !", QtGui.QMessageBox.Ok)
-        elif self.tokenFlag == False:
+
+        else:
             pass
     
     def whatEvent(self):
@@ -250,12 +252,15 @@ class buildStationConfig(QtGui.QMainWindow):
     def selectIarAndUv4(self):
         iarList = self.ide_info['iar']
         iarNum = len(iarList)
+#        self.buildConfigWin.iarComboBox.addItem("")
+#        self.buildConfigWin.iarComboBox.setItemText(0,"")       
         for num in range(0,iarNum):
-            self.buildConfigWin.iarComboBox.addItem("")
+            self.buildConfigWin.iarComboBox.addItem("")  
             self.buildConfigWin.iarComboBox.setItemText(num, iarList[num]['version'])
         
         uv4List = self.ide_info['keil']
         uv4Num = len(uv4List)
+#        self.buildConfigWin.uv4ComboBox.addItem("")
         for num in range(0,uv4Num):
             self.buildConfigWin.uv4ComboBox.addItem("")
             self.buildConfigWin.uv4ComboBox.setItemText(num, uv4List[num]['version'])
@@ -264,6 +269,9 @@ class buildStationConfig(QtGui.QMainWindow):
     def addIar(self):
         iarList = self.ide_info['iar']
         iarIndex = self.buildConfigWin.iarComboBox.currentIndex()
+#        if iarIndex == 0:
+#            self.buildConfigWin.iarLineEdit.setText("")
+#        else:
         self.buildConfigWin.iarLineEdit.setText(iarList[iarIndex]['path'])
         
 #***************************add uv4***********************
@@ -306,7 +314,6 @@ class buildStationConfig(QtGui.QMainWindow):
         self.connect(self.buildConfigWin.testSuiteComboBox,QtCore.SIGNAL("activated(int)"),self.testsuiteFill)
         self.connect(self.buildConfigWin.testsuiteTreeWidget, QtCore.SIGNAL("itemActivated(QTreeWidgetItem*,int)"),self.testsuiteGetCurrentItem)
         self.connect(self.buildConfigWin.testSuiteRemoveButton,QtCore.SIGNAL("clicked()"),self.testsuitePlatformRemove)
-        self.connect(self.buildConfigWin.testSuiteAddButton, QtCore.SIGNAL("clicked()"),self.testsuiteAdd)
         
     def testsuiteFill(self):
         seq = self.buildConfigWin.testSuiteComboBox.currentIndex()
@@ -336,103 +343,6 @@ class buildStationConfig(QtGui.QMainWindow):
             self.testsuite_existed_name.remove(self.testsuiteName)
             self.testsuite_existed_seq.remove(self.testsuite_select.index(self.testsuiteName))
             
-    def testsuiteAdd(self):
-        flag = True
-        length = len(self.testsuite_select)
-        if self.dapeng_info["exist"] == "no":
-            pass
-        else:
-            freemv_build_path_long = self.dapeng_info['path'] + '/freemvbuild'
-            freekv_build_path_long = self.dapeng_info['path'] + '/freekvbuild'
-            freekv_demo_build_path_long = self.dapeng_info['path'] + '/freekv_demobuild'
-            freemv_build_path = win32api.GetShortPathName(freemv_build_path_long)
-            freekv_build_path = win32api.GetShortPathName(freekv_build_path_long)
-            freekv_demo_build_path = win32api.GetShortPathName(freekv_demo_build_path_long)
-        
-        for num in range(0,length):
-            try:
-                testsuiteIn = self.buildConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
-                if testsuiteIn == "KSDK-DEMO":
-                    config_build_file.setAttr("FreeKV_demo", "enable", "yes")
-                    config_build_file.setValue("FreeKV_demo", freekv_demo_build_path)
-                    break
-                else:
-                    config_build_file.setAttr("FreeKV_demo", "enable", "no")                   
-            except Exception:
-                pass
-            
-        for num in range(0,length):
-            try:
-                testsuiteIn = self.buildConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
-                if testsuiteIn == "KSDK-USB":
-                    config_build_file.setAttr("FreeKV_usb", "enable", "yes")
-                    config_build_file.setValue("FreeKV_usb", freekv_demo_build_path)
-                    break
-                else:
-                    config_build_file.setAttr("FreeKV_usb", "enable", "no")                   
-            except Exception:
-                pass
-
-        for num in range(0,length):
-            try:
-                testsuiteIn = self.buildConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
-                if testsuiteIn == "KSDK-UnitTest":
-                    config_build_file.setAttr("FreeKV_unit_test", "enable", "yes")
-                    config_build_file.setValue("FreeKV_unit_test", freekv_demo_build_path)
-                    break
-                else:
-                    config_build_file.setAttr("FreeKV_unit_test", "enable", "no")                   
-            except Exception:
-                pass
-            
-        for num in range(0,length):
-            try:
-                testsuiteIn = self.buildConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
-                if testsuiteIn == "MQX-OOBE":
-                    config_build_file.setAttr("FreeMV", "enable", "yes")
-                    config_build_file.setValue("FreeMV", freemv_build_path)
-                    break
-                else:
-                    config_build_file.setAttr("FreeMV", "enable", "no")                   
-            except Exception:
-                pass               
-
-        for num in range(0,length):
-            try:
-                testsuiteIn = self.buildConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
-                if testsuiteIn == "KSDK-MQX-OOBE":
-                    config_build_file.setAttr("FreeMV_ksdk", "enable", "yes")
-                    config_build_file.setValue("FreeMV_ksdk", freemv_build_path)
-                    break
-                else:
-                    config_build_file.setAttr("FreeMV_ksdk", "enable", "no")                   
-            except Exception:
-                pass    
-
-        for num in range(0,length):
-            try:
-                testsuiteIn = self.buildConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
-                if testsuiteIn == "KSV":
-                    config_build_file.setAttr("FreeKV", "enable", "yes")
-                    config_build_file.setValue("FreeKV", freekv_build_path)
-                    break
-                else:
-                    config_build_file.setAttr("FreeKV", "enable", "no")                   
-            except Exception:
-                pass 
-
-        if self.buildConfigWin.testsuiteTreeWidget.topLevelItem(0) == None and flag == True:
-            flag = False
-            QtGui.QMessageBox.information(self,"Warning","You have not select any Test Suite, please select at least one !",QtGui.QMessageBox.Ok)
-        else:
-            pass    
-
-        if flag == True:
-            QtGui.QMessageBox.information(self,"Information","Add the Test Suites successful !",QtGui.QMessageBox.Ok)           
-
-
-
-
 #****************choose the ide for configurate****************
     def choseIde(self):
         ides = platform_list.ide_list
@@ -567,6 +477,100 @@ class buildStationConfig(QtGui.QMainWindow):
         else:
             self.tokenFlag = True
             config_build_file.setAttr("token", "private", "no")
+            
+            
+#**********************save test suites***************************
+        length = len(self.testsuite_select)
+        if self.dapeng_info["exist"] == "no":
+            pass
+        else:
+            freemv_build_path_long = self.dapeng_info['path'] + '/freemvbuild'
+            freekv_build_path_long = self.dapeng_info['path'] + '/freekvbuild'
+            freekv_demo_build_path_long = self.dapeng_info['path'] + '/freekv_demobuild'
+            freemv_build_path = win32api.GetShortPathName(freemv_build_path_long)
+            freekv_build_path = win32api.GetShortPathName(freekv_build_path_long)
+            freekv_demo_build_path = win32api.GetShortPathName(freekv_demo_build_path_long)
+        
+        for num in range(0,length):
+            try:
+                testsuiteIn = self.buildConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
+                if testsuiteIn == "KSDK-DEMO":
+                    config_build_file.setAttr("FreeKV_demo", "enable", "yes")
+                    config_build_file.setValue("FreeKV_demo", freekv_demo_build_path)
+                    break
+                else:
+                    config_build_file.setAttr("FreeKV_demo", "enable", "no")                   
+            except Exception:
+                pass
+            
+        for num in range(0,length):
+            try:
+                testsuiteIn = self.buildConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
+                if testsuiteIn == "KSDK-USB":
+                    config_build_file.setAttr("FreeKV_usb", "enable", "yes")
+                    config_build_file.setValue("FreeKV_usb", freekv_demo_build_path)
+                    break
+                else:
+                    config_build_file.setAttr("FreeKV_usb", "enable", "no")                   
+            except Exception:
+                pass
+
+        for num in range(0,length):
+            try:
+                testsuiteIn = self.buildConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
+                if testsuiteIn == "KSDK-UnitTest":
+                    config_build_file.setAttr("FreeKV_unit_test", "enable", "yes")
+                    config_build_file.setValue("FreeKV_unit_test", freekv_demo_build_path)
+                    break
+                else:
+                    config_build_file.setAttr("FreeKV_unit_test", "enable", "no")                   
+            except Exception:
+                pass
+            
+        for num in range(0,length):
+            try:
+                testsuiteIn = self.buildConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
+                if testsuiteIn == "MQX-OOBE":
+                    config_build_file.setAttr("FreeMV", "enable", "yes")
+                    config_build_file.setValue("FreeMV", freemv_build_path)
+                    break
+                else:
+                    config_build_file.setAttr("FreeMV", "enable", "no")                   
+            except Exception:
+                pass               
+
+        for num in range(0,length):
+            try:
+                testsuiteIn = self.buildConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
+                if testsuiteIn == "KSDK-MQX-OOBE":
+                    config_build_file.setAttr("FreeMV_ksdk", "enable", "yes")
+                    config_build_file.setValue("FreeMV_ksdk", freemv_build_path)
+                    break
+                else:
+                    config_build_file.setAttr("FreeMV_ksdk", "enable", "no")                   
+            except Exception:
+                pass    
+
+        for num in range(0,length):
+            try:
+                testsuiteIn = self.buildConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
+                if testsuiteIn == "KSV":
+                    config_build_file.setAttr("FreeKV", "enable", "yes")
+                    config_build_file.setValue("FreeKV", freekv_build_path)
+                    break
+                else:
+                    config_build_file.setAttr("FreeKV", "enable", "no")                   
+            except Exception:
+                pass 
+
+        if self.buildConfigWin.testsuiteTreeWidget.topLevelItem(0) == None:
+            self.testsuiteFlag = False
+            QtGui.QMessageBox.information(self,"Warning","You have not select any Test Suite, please select at least one !",QtGui.QMessageBox.Ok)
+        else:
+            self.testsuiteFlag = True    
+          
+
+
             
         
 

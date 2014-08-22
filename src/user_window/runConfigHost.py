@@ -56,7 +56,7 @@ class runStationConfig(QtGui.QMainWindow):
         self.saveAct.setShortcut("Ctrl+S")
         self.saveAct.setStatusTip("Save the Configuration File !")
         self.saveAct.whatsThis()
-        self.connect(self.saveAct, QtCore.SIGNAL("triggered()"),self.saveToken)
+        self.connect(self.saveAct, QtCore.SIGNAL("triggered()"),self.saveRun)
         self.connect(self.saveAct, QtCore.SIGNAL("triggered()"),self.saveEvent)
         
         self.quitAct = QtGui.QAction(QtGui.QIcon(pic_path + "/quit.png"),"Quit",self)
@@ -90,7 +90,7 @@ class runStationConfig(QtGui.QMainWindow):
         self.toolBar.addAction(self.saveAct)
         self.toolBar.addAction(self.quitAct)
         
-
+        self.testsuiteFlag = True
         self.addOrRemoveTestsuite()
         self.getPreConfig()
         
@@ -111,10 +111,10 @@ class runStationConfig(QtGui.QMainWindow):
             event.ignore()
     
     def saveEvent(self):
-        if self.tokenFlag == True:
+        if self.tokenFlag == True and self.testsuiteFlag == True:
             QtGui.QMessageBox.information(self,"Information",\
                                           "The Configuration File has been Saved Successfully !", QtGui.QMessageBox.Ok)
-        elif self.tokenFlag == False:
+        else:
             pass
     
     def whatEvent(self):
@@ -406,7 +406,7 @@ class runStationConfig(QtGui.QMainWindow):
         self.connect(self.runConfigWin.testSuiteComboBox,QtCore.SIGNAL("activated(int)"),self.testsuiteFill)
         self.connect(self.runConfigWin.testsuiteTreeWidget, QtCore.SIGNAL("itemActivated(QTreeWidgetItem*,int)"),self.testsuiteGetCurrentItem)
         self.connect(self.runConfigWin.testSuiteRemoveButton,QtCore.SIGNAL("clicked()"),self.testsuitePlatformRemove)
-        self.connect(self.runConfigWin.testSuiteAddButton, QtCore.SIGNAL("clicked()"),self.testsuiteAdd)
+#        self.connect(self.runConfigWin.testSuiteAddButton, QtCore.SIGNAL("clicked()"),self.testsuiteAdd)
 
     def testsuiteFill(self):
         seq = self.runConfigWin.testSuiteComboBox.currentIndex()
@@ -438,6 +438,117 @@ class runStationConfig(QtGui.QMainWindow):
             
     def testsuiteAdd(self):
         flag = True
+#        length = len(self.testsuite_select)
+#        if self.dapeng_info["exist"] == "no":
+#            pass
+#        else:
+#            freemv_run_path_long = self.dapeng_info['path'] + '/freemvrun'
+#            freekv_run_path_long = self.dapeng_info['path'] + '/freekvrun'
+#            freekv_demo_run_path_long = self.dapeng_info['path'] + '/freekv_demorun'
+#            freemv_run_path = win32api.GetShortPathName(freemv_run_path_long)
+#            freekv_run_path = win32api.GetShortPathName(freekv_run_path_long)
+#            freekv_demo_run_path = win32api.GetShortPathName(freekv_demo_run_path_long)
+#        
+#        for num in range(0,length):
+#            try:
+#                testsuiteIn = self.runConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
+#                if testsuiteIn == "KSDK-DEMO":
+#                    config_run_file.setAttr("FreeKV_demo", "enable", "yes")
+#                    config_run_file.setValue("FreeKV_demo", freekv_demo_run_path)
+#                    break
+#                else:
+#                    config_run_file.setAttr("FreeKV_demo", "enable", "no")                   
+#            except Exception:
+#                pass
+#            
+#        for num in range(0,length):
+#            try:
+#                testsuiteIn = self.runConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
+#                if testsuiteIn == "KSDK-USB":
+#                    config_run_file.setAttr("FreeKV_usb", "enable", "yes")
+#                    config_run_file.setValue("FreeKV_usb", freekv_demo_run_path)
+#                    break
+#                else:
+#                    config_run_file.setAttr("FreeKV_usb", "enable", "no")                   
+#            except Exception:
+#                pass
+#
+#        for num in range(0,length):
+#            try:
+#                testsuiteIn = self.runConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
+#                if testsuiteIn == "KSDK-UnitTest":
+#                    config_run_file.setAttr("FreeKV_unit_test", "enable", "yes")
+#                    config_run_file.setValue("FreeKV_unit_test", freekv_demo_run_path)
+#                    break
+#                else:
+#                    config_run_file.setAttr("FreeKV_unit_test", "enable", "no")                   
+#            except Exception:
+#                pass
+#            
+#        for num in range(0,length):
+#            try:
+#                testsuiteIn = self.runConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
+#                if testsuiteIn == "MQX-OOBE":
+#                    config_run_file.setAttr("FreeMV", "enable", "yes")
+#                    config_run_file.setValue("FreeMV", freemv_run_path)
+#                    break
+#                else:
+#                    config_run_file.setAttr("FreeMV", "enable", "no")                   
+#            except Exception:
+#                pass               
+#
+#        for num in range(0,length):
+#            try:
+#                testsuiteIn = self.runConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
+#                if testsuiteIn == "KSDK-MQX-OOBE":
+#                    config_run_file.setAttr("FreeMV_ksdk", "enable", "yes")
+#                    config_run_file.setValue("FreeMV_ksdk", freemv_run_path)
+#                    break
+#                else:
+#                    config_run_file.setAttr("FreeMV_ksdk", "enable", "no")                   
+#            except Exception:
+#                pass    
+#
+#        for num in range(0,length):
+#            try:
+#                testsuiteIn = self.runConfigWin.testsuiteTreeWidget.topLevelItem(num).text(0)
+#                if testsuiteIn == "KSV":
+#                    config_run_file.setAttr("FreeKV", "enable", "yes")
+#                    config_run_file.setValue("FreeKV", freekv_run_path)
+#                    break
+#                else:
+#                    config_run_file.setAttr("FreeKV", "enable", "no")                   
+#            except Exception:
+#                pass 
+#
+#        if self.runConfigWin.testsuiteTreeWidget.topLevelItem(0) == None and flag == True:
+#            flag = False
+#            QtGui.QMessageBox.information(self,"Warning","You have not select any Test Suite, please select at least one !",QtGui.QMessageBox.Ok)
+#        else:
+#            pass    
+#
+#        if flag == True:
+#            QtGui.QMessageBox.information(self,"Information","Add the Test Suites successful !",QtGui.QMessageBox.Ok)           
+
+
+#***********************save configuration***************
+    def saveRun(self):
+        
+#***************configurate and save private and token*****************       
+        tokenSet = self.runConfigWin.tokenLineEdit.text()        
+        if self.runConfigWin.privateCheckBox.checkState() == QtCore.Qt.Checked and tokenSet != "":
+            self.tokenFlag = True
+            config_run_file.setAttr("token", "private", "yes")
+            config_run_file.setValue("token", tokenSet.__str__())
+        elif self.runConfigWin.privateCheckBox.checkState() == QtCore.Qt.Checked and tokenSet == "":
+            self.tokenFlag = False
+            self.tokenWarning()     
+        else:
+            self.tokenFlag = True
+            config_run_file.setAttr("token", "private", "no")
+            
+            
+#*****************************save test suites**************************
         length = len(self.testsuite_select)
         if self.dapeng_info["exist"] == "no":
             pass
@@ -521,31 +632,12 @@ class runStationConfig(QtGui.QMainWindow):
             except Exception:
                 pass 
 
-        if self.runConfigWin.testsuiteTreeWidget.topLevelItem(0) == None and flag == True:
-            flag = False
+        if self.runConfigWin.testsuiteTreeWidget.topLevelItem(0) == None:
+            self.testsuiteFlag = False
             QtGui.QMessageBox.information(self,"Warning","You have not select any Test Suite, please select at least one !",QtGui.QMessageBox.Ok)
         else:
-            pass    
-
-        if flag == True:
-            QtGui.QMessageBox.information(self,"Information","Add the Test Suites successful !",QtGui.QMessageBox.Ok)           
-
-
-#***********************save configuration***************
-    def saveToken(self):
-        
-#***************configurate and save private and token*****************       
-        tokenSet = self.runConfigWin.tokenLineEdit.text()        
-        if self.runConfigWin.privateCheckBox.checkState() == QtCore.Qt.Checked and tokenSet != "":
-            self.tokenFlag = True
-            config_run_file.setAttr("token", "private", "yes")
-            config_run_file.setValue("token", tokenSet.__str__())
-        elif self.runConfigWin.privateCheckBox.checkState() == QtCore.Qt.Checked and tokenSet == "":
-            self.tokenFlag = False
-            self.tokenWarning()     
-        else:
-            self.tokenFlag = True
-            config_run_file.setAttr("token", "private", "no")
+            self.testsuiteFlag = True   
+  
 
 
 #*******************save platform warning********************

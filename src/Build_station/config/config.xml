@@ -6,12 +6,12 @@
 	<repo_list>
 	</repo_list>
 	<NEW_repo_dir>c:/mqx_cloud_repo</NEW_repo_dir>
-	<IDE cw10="no" cw10gcc="no" gcc_arm="yes" iar="no" kds="yes" uv4="no">compilers which station support</IDE>
+	<IDE cw10="no" cw10gcc="no" gcc_arm="yes" iar="yes" kds="yes" uv4="no">compilers which station support</IDE>
 	<IDE_dir>
 		<cw10 version="10.4" />
 		<cw10gcc version="10.4" />
 		<gcc_arm version="4.7">C:\GNUTOO~1\44068~1.820</gcc_arm>
-		<iar version="7.1" />
+		<iar version="7.1">C:/IARSYS~1/EMBEDD~1</iar>
 		<uv4 version="v5.00" />
 		<kds version="1.0.1">C:\FREESC~1\KDS_11~1.0</kds>
 	</IDE_dir>
@@ -47,9 +47,9 @@
 	</tools>
 	
 	<FreeMV enable="yes">C:\Dpc/FREEMV~1</FreeMV>
-	<FreeKV enable="no">C:\Dpc/FREEKV~1</FreeKV>
+	<FreeKV enable="yes">C:\Dpc/FREEKV~1</FreeKV>
 	<FreeKV_demo enable="no">C:\Dpc/FREEKV~3</FreeKV_demo>
-	<FreeMV_ksdk enable="no">C:\Dpc/FREEMV~1</FreeMV_ksdk>
+	<FreeMV_ksdk enable="yes">C:\Dpc/FREEMV~1</FreeMV_ksdk>
 	<FreeKV_usb enable="no">C:\Dpc/FREEKV~3</FreeKV_usb>
 	<FreeKV_unit_test enable="no">C:\Dpc/FREEKV~3</FreeKV_unit_test>
 	<default_app_scope>auto</default_app_scope>
@@ -59,6 +59,6 @@
 	<local_ip>10.193.99.164</local_ip>
 	<local_mac>00-24-D6-8B-5F-22</local_mac>
 	<machine_name>b51448-12</machine_name>
-	<token private="yes">ffffffff</token>
+	<token private="yes">ddd</token>
 
 </MQX_CloudTest>
