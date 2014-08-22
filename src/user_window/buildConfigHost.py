@@ -84,8 +84,9 @@ class buildStationConfig(QtGui.QMainWindow):
         
         self.getPreConfig()
         self.addOrRemoveTestsuite()
-        
+        self.choseIde()
         self.selectIarAndUv4()
+        
         self.connect(self.buildConfigWin.iarComboBox, QtCore.SIGNAL("activated(int)"),self.addIar)
         self.connect(self.buildConfigWin.uv4ComboBox, QtCore.SIGNAL("activated(int)"),self.addUv4)
         
@@ -431,6 +432,63 @@ class buildStationConfig(QtGui.QMainWindow):
 
 
 
+
+#****************choose the ide for configurate****************
+    def choseIde(self):
+        ides = platform_list.ide_list
+        ide_len = len(ides)
+        for num in range(0, ide_len):
+            self.buildConfigWin.ideComboBox.addItem("")
+            self.buildConfigWin.ideComboBox.setItemText(num,ides[num])
+        self.connect(self.buildConfigWin.ideComboBox, QtCore.SIGNAL("activated(int)"),self.selectIde)
+
+    
+    def selectIde(self):       
+        if self.buildConfigWin.ideComboBox.currentText() == "iar":
+            self.buildConfigWin.iarPage.show()
+            self.buildConfigWin.uv4Page.hide()
+            self.buildConfigWin.gccPage.hide()
+            self.buildConfigWin.mingwPage.hide()
+            self.buildConfigWin.kdsPage.hide()
+            self.buildConfigWin.cwPage.hide()
+        elif self.buildConfigWin.ideComboBox.currentText() == "uv4":
+            self.buildConfigWin.uv4Page.show()
+            self.buildConfigWin.iarPage.hide()
+            self.buildConfigWin.gccPage.hide()
+            self.buildConfigWin.mingwPage.hide()
+            self.buildConfigWin.kdsPage.hide()
+            self.buildConfigWin.cwPage.hide()
+        elif self.buildConfigWin.ideComboBox.currentText() == "gcc_arm":
+            self.buildConfigWin.gccPage.show()
+            self.buildConfigWin.mingwPage.hide()
+            self.buildConfigWin.kdsPage.hide()
+            self.buildConfigWin.cwPage.hide()
+            self.buildConfigWin.uv4Page.hide()
+            self.buildConfigWin.iarPage.hide()
+        elif self.buildConfigWin.ideComboBox.currentText() == "kds":
+            self.buildConfigWin.kdsPage.show()
+            self.buildConfigWin.cwPage.hide()
+            self.buildConfigWin.uv4Page.hide()
+            self.buildConfigWin.iarPage.hide()                       
+            self.buildConfigWin.mingwPage.hide()
+            self.buildConfigWin.gccPage.hide()
+        elif self.buildConfigWin.ideComboBox.currentText() == "cw10":
+            self.buildConfigWin.cwPage.show()
+            self.buildConfigWin.uv4Page.hide()
+            self.buildConfigWin.iarPage.hide()                       
+            self.buildConfigWin.mingwPage.hide()
+            self.buildConfigWin.gccPage.hide()
+            self.buildConfigWin.kdsPage.hide()
+        elif self.buildConfigWin.ideComboBox.currentText() == "mingw":
+            self.buildConfigWin.mingwPage.show()
+            self.buildConfigWin.kdsPage.hide()
+            self.buildConfigWin.cwPage.hide()
+            self.buildConfigWin.uv4Page.hide()
+            self.buildConfigWin.iarPage.hide()
+            self.buildConfigWin.gccPage.hide()
+        else:
+            pass
+            
 #****************save configurations of build station***********    
     def saveBuild(self):
 

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>443</width>
-    <height>535</height>
+    <width>457</width>
+    <height>354</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -106,7 +106,7 @@
     <rect>
      <x>0</x>
      <y>110</y>
-     <width>571</width>
+     <width>471</width>
      <height>16</height>
     </rect>
    </property>
@@ -117,7 +117,7 @@
   <widget class="QLabel" name="ideLabel">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>80</x>
      <y>260</y>
      <width>91</width>
      <height>16</height>
@@ -129,282 +129,6 @@
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;IDE Configuration&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
-  </widget>
-  <widget class="QWidget" name="verticalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>290</y>
-     <width>81</width>
-     <height>211</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="ideVLayout">
-    <item>
-     <widget class="QPushButton" name="iarButton">
-      <property name="statusTip">
-       <string>Configurate your IAR path</string>
-      </property>
-      <property name="text">
-       <string>IAR</string>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>../pic/iar.png</normaloff>../pic/iar.png</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>32</width>
-        <height>32</height>
-       </size>
-      </property>
-      <property name="autoDefault">
-       <bool>false</bool>
-      </property>
-      <property name="default">
-       <bool>false</bool>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="uv4Button">
-      <property name="statusTip">
-       <string>Configurate your UV4 path</string>
-      </property>
-      <property name="text">
-       <string>UV4</string>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>../pic/uv4.png</normaloff>../pic/uv4.png</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>32</width>
-        <height>32</height>
-       </size>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="gccButton">
-      <property name="statusTip">
-       <string>Configurate your GCC path</string>
-      </property>
-      <property name="text">
-       <string>GCC</string>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>../pic/gcc.png</normaloff>../pic/gcc.png</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>32</width>
-        <height>32</height>
-       </size>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="kdsButton">
-      <property name="statusTip">
-       <string>Configurate your KDS path</string>
-      </property>
-      <property name="text">
-       <string>KDS</string>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>../pic/kds.png</normaloff>../pic/kds.png</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>32</width>
-        <height>32</height>
-       </size>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="cw10Button">
-      <property name="statusTip">
-       <string>Configurate your Code Worrior path</string>
-      </property>
-      <property name="text">
-       <string>CW</string>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>../pic/codewarrior.png</normaloff>../pic/codewarrior.png</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>32</width>
-        <height>32</height>
-       </size>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="mingwButton">
-      <property name="statusTip">
-       <string>MinGW is required when use gcc_arm (e.g. C:/MinGW)</string>
-      </property>
-      <property name="text">
-       <string>MinGW</string>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>../pic/mingw.png</normaloff>../pic/mingw.png</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>25</width>
-        <height>25</height>
-       </size>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="verticalLayoutWidget_2">
-   <property name="geometry">
-    <rect>
-     <x>110</x>
-     <y>290</y>
-     <width>211</width>
-     <height>221</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="ideLineEditVLayout">
-    <item>
-     <widget class="QLineEdit" name="iarLineEdit">
-      <property name="statusTip">
-       <string>Configurate your IAR path</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="uv4LineEdit">
-      <property name="statusTip">
-       <string>Configurate your UV4 path</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="gccLineEdit">
-      <property name="statusTip">
-       <string>Configurate your GCC path</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="kdsLineEdit">
-      <property name="statusTip">
-       <string>Configurate your KDS path</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="cw10LineEdit">
-      <property name="statusTip">
-       <string>Configurate your Code Worrior path</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="mingwLlineEdit">
-      <property name="statusTip">
-       <string>Configurate your MinGW path</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="verticalLayoutWidget_3">
-   <property name="geometry">
-    <rect>
-     <x>330</x>
-     <y>290</y>
-     <width>77</width>
-     <height>221</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="ideComboBoxVLayout">
-    <item>
-     <widget class="QComboBox" name="iarComboBox">
-      <property name="statusTip">
-       <string>Select the lastest version of IAR</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QComboBox" name="uv4ComboBox">
-      <property name="statusTip">
-       <string>Select the lastest version of UV4</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="gccOpenButton">
-      <property name="statusTip">
-       <string>Configurate your GCC path</string>
-      </property>
-      <property name="text">
-       <string>Open</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="kdsOpenButton">
-      <property name="statusTip">
-       <string>Configurate your KDS path</string>
-      </property>
-      <property name="text">
-       <string>Open</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="cw10OpenButton">
-      <property name="statusTip">
-       <string>Configurate your Code Worrior path</string>
-      </property>
-      <property name="text">
-       <string>Open</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="mingwOpenButton">
-      <property name="statusTip">
-       <string>Configurate your MinGW path</string>
-      </property>
-      <property name="text">
-       <string>Open</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
   </widget>
   <widget class="Line" name="line">
    <property name="geometry">
@@ -422,7 +146,7 @@
   <widget class="QLabel" name="suiteLabel">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>70</x>
      <y>120</y>
      <width>61</width>
      <height>16</height>
@@ -498,28 +222,397 @@
     </item>
    </layout>
   </widget>
+  <widget class="QStackedWidget" name="stackedWidget">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>290</y>
+     <width>331</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="iarPage">
+    <widget class="QPushButton" name="iarButton">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>41</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>Configurate your IAR path</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../pic/iar.png</normaloff>../pic/iar.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>26</width>
+       <height>26</height>
+      </size>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+     <property name="default">
+      <bool>false</bool>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="iarLineEdit">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>10</y>
+       <width>209</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>Configurate your IAR path</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="iarComboBox">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>10</y>
+       <width>75</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>Select the lastest version of IAR</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="uv4Page">
+    <widget class="QPushButton" name="uv4Button">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>41</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>Configurate your UV4 path</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../pic/uv4.png</normaloff>../pic/uv4.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="uv4LineEdit">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>10</y>
+       <width>209</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>Configurate your UV4 path</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="uv4ComboBox">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>10</y>
+       <width>75</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>Select the lastest version of UV4</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="gccPage">
+    <widget class="QPushButton" name="gccButton">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>31</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>Configurate your GCC path</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../pic/gcc.png</normaloff>../pic/gcc.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="gccLineEdit">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>10</y>
+       <width>209</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>Configurate your GCC path</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="gccOpenButton">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>10</y>
+       <width>71</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>Configurate your GCC path</string>
+     </property>
+     <property name="text">
+      <string>Open</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="kdsPage">
+    <widget class="QPushButton" name="kdsButton">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>41</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>Configurate your KDS path</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../pic/kds.png</normaloff>../pic/kds.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="kdsLineEdit">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>10</y>
+       <width>209</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>Configurate your KDS path</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="kdsOpenButton">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>10</y>
+       <width>71</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>Configurate your KDS path</string>
+     </property>
+     <property name="text">
+      <string>Open</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="cwPage">
+    <widget class="QPushButton" name="cw10Button">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>41</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>Configurate your Code Worrior path</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../pic/codewarrior.png</normaloff>../pic/codewarrior.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="cw10LineEdit">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>10</y>
+       <width>209</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>Configurate your Code Worrior path</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="cw10OpenButton">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>10</y>
+       <width>71</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>Configurate your Code Worrior path</string>
+     </property>
+     <property name="text">
+      <string>Open</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="mingwPage">
+    <widget class="QPushButton" name="mingwButton">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>41</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>MinGW is required when use gcc_arm (e.g. C:/MinGW)</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../pic/mingw.png</normaloff>../pic/mingw.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="mingwLlineEdit">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>10</y>
+       <width>209</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>Configurate your MinGW path</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="mingwOpenButton">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>10</y>
+       <width>71</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>Configurate your MinGW path</string>
+     </property>
+     <property name="text">
+      <string>Open</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QComboBox" name="ideComboBox">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>300</y>
+     <width>71</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="statusTip">
+    <string>Select your IDE</string>
+   </property>
+  </widget>
  </widget>
  <tabstops>
   <tabstop>privateCheckBox</tabstop>
   <tabstop>tokenButton</tabstop>
   <tabstop>tokenLineEdit</tabstop>
-  <tabstop>iarLineEdit</tabstop>
-  <tabstop>iarComboBox</tabstop>
-  <tabstop>uv4Button</tabstop>
-  <tabstop>uv4LineEdit</tabstop>
-  <tabstop>uv4ComboBox</tabstop>
-  <tabstop>gccButton</tabstop>
-  <tabstop>gccLineEdit</tabstop>
-  <tabstop>gccOpenButton</tabstop>
-  <tabstop>kdsButton</tabstop>
-  <tabstop>kdsLineEdit</tabstop>
-  <tabstop>kdsOpenButton</tabstop>
-  <tabstop>cw10Button</tabstop>
-  <tabstop>cw10LineEdit</tabstop>
-  <tabstop>cw10OpenButton</tabstop>
-  <tabstop>mingwButton</tabstop>
-  <tabstop>mingwLlineEdit</tabstop>
-  <tabstop>mingwOpenButton</tabstop>
  </tabstops>
  <resources/>
  <connections/>

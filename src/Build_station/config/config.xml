@@ -6,13 +6,13 @@
 	<repo_list>
 	</repo_list>
 	<NEW_repo_dir>c:/mqx_cloud_repo</NEW_repo_dir>
-	<IDE cw10="yes" cw10gcc="yes" gcc_arm="yes" iar="yes" kds="yes" uv4="yes">compilers which station support</IDE>
+	<IDE cw10="no" cw10gcc="no" gcc_arm="yes" iar="no" kds="yes" uv4="no">compilers which station support</IDE>
 	<IDE_dir>
-		<cw10 version="10.4">C:\FREEKV~1\MAINTA~1\yaml</cw10>
-		<cw10gcc version="10.4">C:\FREEKV~1\MAINTA~1\yaml</cw10gcc>
+		<cw10 version="10.4" />
+		<cw10gcc version="10.4" />
 		<gcc_arm version="4.7">C:\GNUTOO~1\44068~1.820</gcc_arm>
-		<iar version="7.1">C:/IARSYS~1/EMBEDD~1</iar>
-		<uv4 version="v5.00">C:/Keil_v5/UV4</uv4>
+		<iar version="7.1" />
+		<uv4 version="v5.00" />
 		<kds version="1.0.1">C:\FREESC~1\KDS_11~1.0</kds>
 	</IDE_dir>
 	<software_debugger>

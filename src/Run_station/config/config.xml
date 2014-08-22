@@ -46,7 +46,7 @@
 		
 	</tools>
 	
-	<FreeMV enable="yes">C:\Dpc/FREEMV~2</FreeMV>
+	<FreeMV enable="no">C:\Dpc/FREEMV~2</FreeMV>
 	<FreeKV enable="yes">C:\Dpc/FREEKV~2</FreeKV>
 	<FreeKV_demo enable="yes">C:\Dpc/FREEKV~4</FreeKV_demo>
 	<FreeMV_ksdk enable="yes">C:\Dpc/FREEMV~2</FreeMV_ksdk>
@@ -59,6 +59,6 @@
 	<local_ip>10.193.99.74</local_ip>
 	<local_mac>F0-1F-AF-00-5E-13</local_mac>
 	<machine_name>b46395-01</machine_name>
-	<token private="yes">gggggg</token>
+	<token private="no">gggggg</token>
 
 </MQX_CloudTest>
