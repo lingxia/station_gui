@@ -50,6 +50,9 @@ debugger_list = ['pne',
 ide_list = ['iar',
             'gcc_arm',
             'uv4',
+			'kds',
+			'cw10',
+			'mingw'
     ]
 	
 device_type = [
@@ -66,7 +69,7 @@ device_type = [
 'MKL03Z32xxx4',
 'MKV30F128xxx10',
 'MKL43Z256xxx4',
-'MK02FN128xx10',
+'MKL43Z256xxx4',
 'MK02FN128xx10',
 'MK02FN128xx10',
 'MK02FN128xx10',

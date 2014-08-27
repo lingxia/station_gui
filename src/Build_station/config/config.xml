@@ -47,9 +47,9 @@
 	</tools>
 	
 	<FreeMV enable="yes">C:\Dpc/FREEMV~1</FreeMV>
-	<FreeKV enable="yes">C:\Dpc/FREEKV~1</FreeKV>
+	<FreeKV enable="no">C:\Dpc/FREEKV~1</FreeKV>
 	<FreeKV_demo enable="no">C:\Dpc/FREEKV~3</FreeKV_demo>
-	<FreeMV_ksdk enable="yes">C:\Dpc/FREEMV~1</FreeMV_ksdk>
+	<FreeMV_ksdk enable="no">C:\Dpc/FREEMV~1</FreeMV_ksdk>
 	<FreeKV_usb enable="no">C:\Dpc/FREEKV~3</FreeKV_usb>
 	<FreeKV_unit_test enable="no">C:\Dpc/FREEKV~3</FreeKV_unit_test>
 	<default_app_scope>auto</default_app_scope>

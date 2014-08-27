@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "buildConfigHost.py", line 579, in <module>
+  File "buildConfigHost.py", line 86, in __init__
+  File "buildConfigHost.py", line 137, in getPreConfig
+  File "getconfig.pyo", line 42, in getValue
+TypeError: 'NoneType' object is not iterable

@@ -2,7 +2,7 @@ from PyQt4 import QtGui,QtCore
 import sys,os
 import threading, time
 
-file_path = os.path.dirname(os.path.abspath(__file__))
+file_path = os.path.dirname(os.path.abspath("__file__"))
 main_path = os.path.join(file_path,'../')
 designer_path = main_path + '/designer_window/'
 pic_path = main_path + '/pic/'
